@@ -1,0 +1,237 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Roster</h1>
+            <lib-roster-submenu (searchData)="searchScheduler($event)"></lib-roster-submenu>
+            <div class="row day-month-tabs-outer">
+                <div class="col">
+                    <ul *ngIf="selectedMonthDiv" class="default-tabs dt-no-accordian mt-0" style="flex-flow:row;">
+                        <li class="nav-item active">
+                            <button (click)="previousMonth()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_297" data-name="Path 297" d="M1616.328,3621.169l-4,4,4,4"
+                                        transform="translate(-1610.913 -3619.755)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="nav-item"><button (click)="thisMonth()">This Month</button></li>
+                        <li class="nav-item">
+                            <button (click)="nextMonth()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_298" data-name="Path 298" d="M4,0,0,4,4,8"
+                                        transform="translate(5.414 9.414) rotate(180)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li>{{runningMonth}}</li>
+                    </ul>
+                    <ul *ngIf="selectedDayDiv" class="default-tabs dt-no-accordian mt-0" style="flex-flow:row;">
+                        <li class="nav-item active">
+                            <button (click)="previousDay()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_297" data-name="Path 297" d="M1616.328,3621.169l-4,4,4,4"
+                                        transform="translate(-1610.913 -3619.755)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="nav-item"><button (click)="today()">Today</button></li>
+                        <li class="nav-item">
+                            <button (click)="nextDay()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_298" data-name="Path 298" d="M4,0,0,4,4,8"
+                                        transform="translate(5.414 9.414) rotate(180)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li>{{runningDay}}</li>
+                    </ul>
+                    <ul *ngIf="selectedWeekDiv" class="default-tabs dt-no-accordian mt-0" style="flex-flow:row;">
+                        <li class="nav-item active">
+                            <button (click)="previousWeek()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_297" data-name="Path 297" d="M1616.328,3621.169l-4,4,4,4"
+                                        transform="translate(-1610.913 -3619.755)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="nav-item"><button (click)="thisWeek()">This Week</button></li>
+                        <li class="nav-item">
+                            <button (click)="nextWeek()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_298" data-name="Path 298" d="M4,0,0,4,4,8"
+                                        transform="translate(5.414 9.414) rotate(180)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li>{{runningWeek}}</li>
+                    </ul>
+                </div>
+                <div class="col d-flex flex-row-reverse">
+                    <div class="d-inline-block ml-3">
+                        <ul class="default-tabs dt-no-accordian mt-0">
+                            <li class="nav-item" #btnMonth><button (click)="showMonth()">Month</button></li>
+                            <li class="nav-item" #btnWeek><button (click)="showWeek()">Week</button></li>
+                            <li class="nav-item active" #btnDay><button (click)="showDay()">Day</button></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown show d-inline-block dropdown-default" *ngIf="selectedWeekDiv==true">
+                        <a href="javascript:void(0);" role="button" id="copyShift" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" class="btn">
+                            Copy Shift <svg xmlns="http://www.w3.org/2000/svg" width="10.055" height="6.255"
+                                viewBox="0 0 10.055 6.255" class="dd-arrow">
+                                <path id="iconfinder_arrow-down-01_186411_2_"
+                                    data-name="iconfinder_arrow-down-01_186411 (2)"
+                                    d="M8.829,15.537,4.8,11.511a.952.952,0,0,1,0-1.342l.336-.336a.952.952,0,0,1,1.342,0L9.553,12.9l3.073-3.073a.952.952,0,0,1,1.342,0l.336.336a.952.952,0,0,1,0,1.342l-4.027,4.026a.942.942,0,0,1-.724.272A.944.944,0,0,1,8.829,15.537Z"
+                                    transform="translate(-4.526 -9.556)" fill="#9a9a9a"></path>
+                            </svg>
+                        </a>
+                        <div aria-labelledby="copyShift" class="dropdown-menu">
+                            <a class="dropdown-item" data-toggle="modal" data-target="#addTemplatePopup">Save
+                                Template</a>
+                            <a class="dropdown-item" (click)="loadTemplatePopup()">Load Template</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="">
+                <lib-monthly-timeline [shiftModel]="shiftModelArray" [empModel]="empModelArray"
+                    (runningMonth)="currentMonth($event)" *ngIf="selectedMonthDiv"></lib-monthly-timeline>
+                <lib-day-timeline [empModel]="empModelArray" (runningDay)="currentDay($event)" *ngIf="selectedDayDiv">
+                </lib-day-timeline>
+                <!-- <lib-newday-timeline [empModel]="empModelArray" (runningDay)="currentDay($event)" *ngIf="selectedDayDiv"></lib-newday-timeline> -->
+                <lib-week-timeline [shiftModel]="shiftModelArray" [empModel]="empModelArray"
+                    (runningWeek)="currentWeek($event)" *ngIf="selectedWeekDiv"></lib-week-timeline>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Employee Popup Start Here -->
+    <div class="modal popup-default" id="addTemplatePopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form autocomplete="off" [formGroup]="rForm" (ngSubmit)="AddTemplate()" #formDirective="ngForm">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Template</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                <path id="iconfinder_Close_5416278"
+                                    d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                    transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label for="fname" class="field-label">Template Name</label>
+                                    <mat-form-field>
+                                        <input autocomplete="off" matInput formControlName="templateName"
+                                            placeholder="Enter Template Name" maxlength="50">
+                                        <mat-error>{{getErrorMessage}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-action-sm">Submit</button>
+                        <button type="button" (click)="cancelForm()" #btnCancel
+                            class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /Add Employee Popup End -->
+    <input type="hidden" #btnLoadTemplate data-toggle="modal" data-target="#showTemplatePopup"/>
+    <!-- Add Employee Popup Start Here -->
+    <div class="modal popup-default" id="showTemplatePopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Available Templates</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="table-wrap">
+                        <div class="table-content">
+                            <div class="tbl-search-bx">
+                                <form class="form-inline" action="javascript:void(0);">
+                                    <input type="text" #tempName placeholder="Search by template name"
+                                        class="form-control">
+                                    <!-- <input type="text" #empLocation placeholder="Search Location" class="form-control"> -->
+                                    <input type="button" value="Search" class="btn btn-action-sm"
+                                        (click)="Search(tempName.value)">
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                                <table mat-table [dataSource]="dataSource" matSort>
+                                    <ng-container matColumnDef="id">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+                                        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="templatename">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Template Name</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <div class="fst-block profile-fst-block">
+                                                <span>{{element.name}}</span>
+                                            </div>
+                                        </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="action">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <a (click)="loadTemplate(element.id)">
+                                                <b>load</b>
+                                            </a>
+                                        </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                                <!-- <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+                                        (page)="PageIndexEvent($event)">
+                                    </mat-paginator> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <!-- <button type="submit" class="btn btn-action-sm">Submit</button> -->
+                    <button type="button" #btnCancelLoadTemplate class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /Add Employee Popup End -->
+    <lhs-sidebar></lhs-sidebar>
+</div>

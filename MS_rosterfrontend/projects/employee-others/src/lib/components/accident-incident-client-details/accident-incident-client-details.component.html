@@ -1,0 +1,618 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Log-Out</h1>
+        </div>
+        <div class="page-inner-wrap">
+            <div class="page-sub-inner-wrap">
+                <div class="btm-multi-opts mb-4">
+                    <div id="content" class="tab-content" role="tablist">
+                        <div id="pane-accidentsIncidents" class="card tab-pane fade show active" role="tabpanel">
+                            <div class="collapse show p-0">
+                                <div class="card-body">
+                                    <div class="psiw-rgt">
+                                        <div class="psiw-bx-title">
+                                            <h2>Accident/Incident</h2>
+                                        </div>
+                                        <div class="psiw-bx-content">
+                                            <div class="table-wrap table-wrap-inner">
+                                                <div class="table-content">
+                                                    <div class="table-responsive">
+                                                        <table mat-table [dataSource]="dataSourceRequired"
+                                                            class="center-content" matSort>
+                                                            <ng-container matColumnDef="employeeName">
+                                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                                                    Client Name</th>
+                                                                <td mat-cell *matCellDef="let element">
+                                                                    {{element.name}}</td>
+                                                            </ng-container>
+                                                            <ng-container matColumnDef="action">
+                                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                                                    Action</th>
+                                                                <td mat-cell *matCellDef="let element">
+                                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                                        data-target="#viewAccidentIncidentPopup"
+                                                                        (click)="getAccidentIncidentDetails(element.clientId, shiftId)">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            width="21.333" height="16"
+                                                                            viewBox="0 0 21.333 16">
+                                                                            <path id="iconfinder_view_126581_2_"
+                                                                                data-name="iconfinder_view_126581 (2)"
+                                                                                d="M10.667,7.333A2.668,2.668,0,0,1,8,10a2.667,2.667,0,1,0,2.667-2.667Zm0-5.333C5.2,2,0,8.2,0,10s5.2,8,10.667,8,10.667-6.2,10.667-8S16.136,2,10.667,2Zm0,13.333A5.333,5.333,0,1,1,16,10,5.334,5.334,0,0,1,10.667,15.333Z"
+                                                                                transform="translate(0 -2)"
+                                                                                fill="#7b7b7b" />
+                                                                        </svg>
+                                                                    </a>
+                                                                    <!-- <a (click)="delete(element)">
+                                                                        <svg id="Layer_2"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            width="15" height="18.071"
+                                                                            viewBox="0 0 15 18.071">
+                                                                            <g id="Group_66039" data-name="Group 66039">
+                                                                                <g id="" Group_66037
+                                                                                    data-name="Group 66037"
+                                                                                    transform="translate(0 0)">
+                                                                                    <path id="Path_304"
+                                                                                        data-name="Path 304"
+                                                                                        d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z"
+                                                                                        transform="translate(-79.61 -43.5)"
+                                                                                        fill="#7b7b7b" />
+                                                                                </g>
+                                                                                <g id="Group_66038"
+                                                                                    data-name="Group 66038"
+                                                                                    transform="translate(1.716 7.819)">
+                                                                                    <path id="Path_305"
+                                                                                        data-name="Path 305"
+                                                                                        d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z"
+                                                                                        transform="translate(-119.27 -231.53)"
+                                                                                        fill="#7b7b7b" />
+                                                                                </g>
+                                                                            </g>
+                                                                        </svg>
+                                                                    </a> -->
+                                                                </td>
+                                                            </ng-container>
+                                                            <tr mat-header-row
+                                                                *matHeaderRowDef="displayedColumnsRequired"></tr>
+                                                            <tr mat-row
+                                                                *matRowDef="let row; columns: displayedColumnsRequired;">
+                                                            </tr>
+                                                        </table>
+                                                        <mat-paginator [length]="totalCount" [pageSize]="10"
+                                                            [pageSizeOptions]="[5, 10, 25, 100]"
+                                                            (page)="PageIndexEvent($event)"></mat-paginator>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lib-admin-sidebar></lib-admin-sidebar>
+</div>
+
+<div class="modal popup-default" id="viewAccidentIncidentPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <!-- <h4 class="modal-title">View Accident/Incident Details</h4> -->
+                <!-- <button type="submit" printSectionId="print-section" ngxPrint class="print" title="Print">
+                    <svg id="Layer_1" style="enable-background:new 0 0 30 30;" width="25" height="25" version="1.1"
+                        viewBox="0 0 30 30" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path
+                            d="M26,9H4c-1.105,0-2,0.895-2,2v9c0,1.105,0.895,2,2,2h3v-8h16v8h3c1.105,0,2-0.895,2-2v-9C28,9.895,27.105,9,26,9z" />
+                        <rect height="12" style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;"
+                            width="16" x="7" y="14" />
+                        <path d="M24,7H6V5c0-0.552,0.448-1,1-1h16c0.552,0,1,0.448,1,1V7z" />
+                    </svg>
+                </button> -->
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278"
+                            d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                            transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="print-section">
+                <h5 class="default-title mb-3" style="text-align: center;">Incident Report</h5>
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Provider Details</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Report Completed By</dt>
+                                <dd>{{ReportedBy}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Provider Name</dt>
+                                <dd>{{ProviderName}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Provider Registration ID</dt>
+                                <dd>{{RegistrationId}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Provider ABN</dt>
+                                <dd>{{ProviderABN}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Outlet Name</dt>
+                                <dd>{{OutletName}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Registration Group</dt>
+                                <dd>{{RegistrationGroup}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>State</dt>
+                                <dd>{{State}}</dd>
+                            </div>
+
+                        </div>
+                    </dl>
+                </div>
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Primary Contact Person</h5>
+                    <dl class="default-list-wrap mb-0">
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Title</dt>
+                                <dd>{{ContactTitle}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Name</dt>
+                                <dd>{{ContactFirstName}}</dd>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Position at Provider</dt>
+                                <dd>{{ContactProvider}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Phone Number</dt>
+                                <dd>{{ContactPhoneNo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Email Address</dt>
+                                <dd>{{ContactEmail}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Preferred Method of Contact</dt>
+                                <dd>{{ContactMethod}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Incident Category</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Primary Category</dt>
+                                <p class="mb-3">{{PrimaryCategoryName}}</p>
+
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Secondary Category</dt>
+                                <dd>{{SecondaryCategoryName}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>If the incident is a death of a person with disability, was the death anticipated?
+                                </dt>
+                                <dd>{{IsIncidentAnticipatedInfo}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Incident Details</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Incident Location</dt>
+                                <dd>{{locationName}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Location Type</dt>
+                                <dd>{{locationtypeinfo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Time and Date of Incident/Allegation</dt>
+                                <dd>{{Incidentdateinfo| date: 'dd/MM/yyyy'}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>If date unknown, reason why?</dt>
+                                <dd>{{Reasoninfo}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Time the NDIS provider became aware of the incident</dt>
+                                <dd>{{NdisProviderTimeinfo}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Date the NDIS provider became aware of the incident</dt>
+                                <dd>{{NdisProviderDateinfo| date: 'dd/MM/yyyy'}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Describe the incident/Allegation</dt>
+                                <dd>{{DescribeIncidentinfo}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>What were the circumstances leading up to the incident/Allegation?</dt>
+                                <dd>{{circumstanceIncidentinfo}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Impacted Person</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Title</dt>
+                                <dd>{{ImpactedTitleinfo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Name</dt>
+                                <dd>{{ImpactedName}}</dd>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <dt>NDIS Participant Number</dt>
+                                <dd>{{ImpactedNdisNoinfo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Gender</dt>
+                                <dd>{{ImpactedGenderinfo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Date of Birth</dt>
+                                <dd>{{ImpactedDOBinfo|date:'dd/MM/yyyy'}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Primary Disability</dt>
+                                <dd>{{ImpactedPrimaryDisbilityinfo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Other Disability</dt>
+                                <dd>{{ImpactedSecondaryDisabilityinfo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Does the person have any behaviours of concern?</dt>
+                                <dd>{{ImpactedCommunicationinfo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>How does the person communicate?</dt>
+                                <dd>{{ImpactedBehaviourinfo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Phone Number</dt>
+                                <dd>{{ImpactedPhoneNo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Email Address</dt>
+                                <dd>{{ImpactedEmail}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Other Detail</dt>
+                                <dd>{{OtherDetail}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Subject of Allegation</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <dt>If the incident is a death of a person with disability, was the death anticipated?
+                                </dt>
+                                <dd>{{IsSubjectAllegationInfo}}</dd>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Title</dt>
+                                <dd>{{WorkerTitle}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Name</dt>
+                                <dd>{{WorkerName}}</dd>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Position at time of allegation</dt>
+                                <dd>{{WorkerPosition}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Gender</dt>
+                                <dd>{{WorkerGender}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Date of Birth</dt>
+                                <dd>{{WorkerDOB|date:'dd/MM/yyyy'}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Phone Number</dt>
+                                <dd>{{WorkerPhoneNo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Email Address</dt>
+                                <dd>{{WorkerEmail}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt></dt>
+                                <dd></dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Subject of Allegation - Person with disability</dt>
+                                <dd></dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Title</dt>
+                                <dd>{{DisableTitle}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Name</dt>
+                                <dd>{{DisableName}}</dd>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <dt>NDIS Participant Number</dt>
+                                <dd>{{DisableNdisNo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Gender</dt>
+                                <dd>{{DisableGender}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Date of Birth</dt>
+                                <dd>{{DisableDOBirth|date:'dd/MM/yyyy'}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Primary Disability</dt>
+                                <dd>{{DisablePrimaryDisability}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Other Disability</dt>
+                                <dd>{{DisableOtherDisability}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Does the person have any behaviours of concern?</dt>
+                                <dd>{{DisableBehaviour}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>How does the person communicate?</dt>
+                                <dd>{{DisableCommunication}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Phone Number</dt>
+                                <dd>{{DisablePhoneNo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Email Address</dt>
+                                <dd>{{DisableEmail}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Other Detail</dt>
+                                <dd>{{DisableEmail}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Subject of Allegation - Other</dt>
+                                <dd>{{AllegationOtherDetail}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Title</dt>
+                                <dd>{{OtherTitle}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt> Name</dt>
+                                <dd>{{OtherName}}</dd>
+                            </div>
+
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Relationship to Impacted Person</dt>
+                                <dd>{{OtherRelationShip}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Gender</dt>
+                                <dd>{{OtherGender}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Date of Birth</dt>
+                                <dd>{{OtherDOB|date:'dd/MM/yyyy'}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Phone Number</dt>
+                                <dd>{{OtherPhoneNo}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Email Address</dt>
+                                <dd>{{OtherEmail}}</dd>
+                            </div>
+
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Immediate Action Taken</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Have the police been informed of the incident?</dt>
+                                <dd>{{IsPoliceInformed}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Offfcer's Name</dt>
+                                <dd>{{OfficerName}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Police Station</dt>
+                                <dd>{{PoliceStation}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Police Event Number</dt>
+                                <dd>{{PoliceNumber}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>If the police have not been informed of the incident/allegation, why not?</dt>
+                                <dd>{{PoliceNotInform}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Are the impacted person's family or guardian aware of the incident?</dt>
+                                <dd>{{IsFamilyAwareInfo}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>If not, why hasn't the impacted person's family or guardian been contacted?</dt>
+                                <dd>{{Guardian}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>If the impacted person is under 18, has the relevant child protection agency been
+                                    contacted?</dt>
+                                <dd>{{IsUnder18Info}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>If not, why hasn't the child protection agency been contacted?</dt>
+                                <dd>{{ChildContacted}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Describe any immediate support that has been offered/provided to the person with
+                                    disability impacted by the incident</dt>
+                                <dd>{{DescribeImmediate}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Describe any immediate action that has been taken in respect to the worker who is
+                                    the subject of the allegation</dt>
+                                <dd>{{WorkerDescribe}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Describe any immediate action that has been taken or Commenced in respect to the
+                                    person with disability who is the subject of the allegation</dt>
+                                <dd>{{DescribeDisability}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Risk Assessment</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Have you undertaken a risk assessment in response to this incident?</dt>
+                                <dd>{{IsRiskAssesmentInfo}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>If yes, date risk assessment was complete</dt>
+                                <dd>{{RiskAssesmentDate|date:'dd/MM/yyyy'}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Details of risk assessment</dt>
+                                <dd>{{RiskDetails}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>If no risk assessment has been undertaken, what is the reason for not undertaking a
+                                    risk assessment?</dt>
+                                <dd>{{NoRiskAssesmentInfo}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>If you have a risk assessment in progress, when was it started?</dt>
+                                <dd>{{InProgressRisk}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>When do you expect to be finished?</dt>
+                                <dd>{{TobeFinished}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+                <!-- <h5 class="mb-3">Attachments</h5>
+                <dl class="default-list-wrap mb-3">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 1</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 2</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 3</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 4</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 5</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 6</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 7</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 8</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 9</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 10</dt>
+                            <dd>-</dd>
+                        </div>
+                    </div>
+                </dl> -->
+                <div class="section-box">
+                    <h5 class="default-title mb-3">Declaration</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Full Name</dt>
+                                <dd>{{DeclarationName}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Position of Oranisation</dt>
+                                <dd>{{DeclarationPosition}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Date</dt>
+                                <dd>{{DeclarationDate|date:'dd/MM/yyyy'}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <!-- <button type="submit"  printSectionId="print-section" ngxPrint class="btn btn-action-sm">Print</button> -->
+                <button type="button" class="btn btn-action-sm btn-action-secondary"
+                    data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

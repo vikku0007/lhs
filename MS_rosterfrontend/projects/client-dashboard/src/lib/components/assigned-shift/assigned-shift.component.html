@@ -1,0 +1,115 @@
+<div class="table-content">
+    <div class="table-responsive">
+        <table mat-table [dataSource]="dataSourceRequired" matSort>
+            <ng-container matColumnDef="sr">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#</th>
+                <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+            </ng-container>
+            <ng-container matColumnDef="employeeName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="fst-block">
+                        <a href="javascript:void(0);" routerLink="../details">{{element.employeeName}}</a><br>
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+                <td mat-cell *matCellDef="let element">{{element.location}}</td>
+            </ng-container>
+            <ng-container matColumnDef="startDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+                <td mat-cell *matCellDef="let element">{{element.startDate | date : 'dd/MM/yyyy'}}</td>
+            </ng-container>
+            <ng-container matColumnDef="endDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
+                <td mat-cell *matCellDef="let element">{{element.endDate | date : 'dd/MM/yyyy'}}</td>
+            </ng-container>
+            <ng-container matColumnDef="startTime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Time</th>
+                <td mat-cell *matCellDef="let element">{{element.startTimeString}}</td>
+            </ng-container>
+            <ng-container matColumnDef="endTime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>End Time</th>
+                <td mat-cell *matCellDef="let element">{{element.endTimeString}}</td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+                <td mat-cell *matCellDef="let element">
+                    <div class="shift-action-bx">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal"
+                            (click)="showModalRejectShift(element)" class="btn btn-action-sm btn-reject"
+                            *ngIf="!element.isRejected" title="Reject">
+                            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" width="25">
+                                <g>
+                                    <path
+                                        d="M48,0A48,48,0,1,0,96,48,48.0512,48.0512,0,0,0,48,0Zm0,84A36,36,0,1,1,84,48,36.0393,36.0393,0,0,1,48,84Z" />
+                                    <path
+                                        d="M64.2422,31.7578a5.9979,5.9979,0,0,0-8.4844,0L48,39.5156l-7.7578-7.7578a5.9994,5.9994,0,0,0-8.4844,8.4844L39.5156,48l-7.7578,7.7578a5.9994,5.9994,0,1,0,8.4844,8.4844L48,56.4844l7.7578,7.7578a5.9994,5.9994,0,0,0,8.4844-8.4844L56.4844,48l7.7578-7.7578A5.9979,5.9979,0,0,0,64.2422,31.7578Z" />
+                                </g>
+                            </svg>
+                        </a>
+                        <a [routerLink]="['/client/dashboard/view-shift', element.id]"
+                            class="btn btn-action-sm btn-cancel" title="View">
+                            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" width="25">
+                                <g>
+                                    <path
+                                        d="M94.9936,44.6718C83.6788,27.7025,70.155,11.9989,48,11.9989S12.3212,27.7025,1.0064,44.6718a6.0063,6.0063,0,0,0,0,6.6564C12.3212,68.2975,25.845,84.0011,48,84.0011S83.6788,68.2975,94.9936,51.3282A6.0063,6.0063,0,0,0,94.9936,44.6718ZM48,72.0007C35.2672,72.0007,25.3294,65.21,13.2646,48,25.3294,30.7905,35.2672,23.9993,48,23.9993S70.6706,30.7905,82.7354,48C70.6706,65.21,60.7328,72.0007,48,72.0007Z" />
+                                    <path d="M48,36A12,12,0,1,0,60,48,12.0161,12.0161,0,0,0,48,36Z" />
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsRequired"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsRequired;"></tr>
+        </table>
+        <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+            (page)="PageIndexEvent($event)">
+        </mat-paginator>
+    </div>
+</div>
+
+<div class="modal popup-default" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form autocomplete="off" [formGroup]="rForm" (ngSubmit)="cancelShift()" #formDirective="ngForm">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Reject shift</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="fname" class="field-label">Enter reason for rejecting shift</label>
+                                <mat-form-field>
+                                    <textarea autocomplete="off" matInput formControlName="remark"
+                                        placeholder="Enter remark" maxlength="100"></textarea>
+                                    <!-- <mat-error>{{getErrorMessage}}</mat-error> -->
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-action-sm">Submit</button>
+                    <button type="button" #btnCancel class="btn btn-action-sm btn-action-secondary" data-dismiss="modal"
+                        (click)="cancelForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

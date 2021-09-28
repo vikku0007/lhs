@@ -1,0 +1,68 @@
+<form [formGroup]="rFormRisk" (ngSubmit)="AddRiskAssesment()">
+    <div class="card-header" role="tab" id="heading-finished">
+        <h5 class="mb-0">Risk Assessment</h5>
+    </div>
+    <div class="collapse show p-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Have you undertaken a risk assessment in response to this incident?</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="IsRiskAssesment">
+                            <mat-radio-button value="1">Yes</mat-radio-button>
+                            <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                            <mat-radio-button value="3">In-Progress</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">If yes, date risk assessment was complete</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" [matDatepicker]="declarationDate1" placeholder="Select Date" formControlName="RiskAssesmentDate">
+                            <mat-datepicker-toggle matSuffix [for]="declarationDate1"></mat-datepicker-toggle>
+                            <mat-datepicker #declarationDate1></mat-datepicker>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Details of risk assessment</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Details" value="" formControlName="RiskDetails">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group input-textarea">
+                        <label class="field-label">If no risk assessment has been undertaken, what is the reason for not undertaking a risk assessment?</label>
+                        <mat-form-field>
+                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="NoRiskAssesmentInfo"></textarea>
+                        </mat-form-field> 
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">If you have a risk assessment in progress, when was it started?</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="InProgressRisk">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">When do you expect to be finished?</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="TobeFinished">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-action-sm">{{textRisk}}</button>
+        </div>
+    </div>
+</form>

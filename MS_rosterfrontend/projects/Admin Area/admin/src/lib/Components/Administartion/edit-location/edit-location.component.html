@@ -1,0 +1,220 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Location</h1>
+        </div>
+       
+    </div>
+
+    <!-- Add Employee Popup Start Here -->
+   
+                <form [formGroup]="rForm">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Location</h4>
+                        
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="Name" class="field-label">Name</label>
+                                       <mat-form-field appearance="fill">
+                                            <input matInput placeholder="Enter Name" formControlName="Name"
+                                                value="" required>
+                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                        </mat-form-field>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="Address" class="field-label">Address</label>
+                                    <mat-form-field appearance="fill">
+                                        <input matInput placeholder="Enter Address" formControlName="Address"
+                                            value="" required>
+                                       
+                                    </mat-form-field>
+                                </div>
+                               
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="CalenderView" class="field-label">Default Calender View</label>
+                                       <mat-form-field>
+                                            <mat-select placeholder="Select" formControlName="CalenderView">
+                                        <mat-option value="Monthly">Monthly</mat-option>
+                                        <mat-option value="Weekly">Weekly</mat-option>
+                                        <mat-option value="Daily">Daily</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="Weekday" class="field-label">First Day Of Week</label>
+                                    <mat-form-field>
+                                        <mat-select placeholder="Select" formControlName="Weekday">
+                                            <mat-option value="Monday">Monday</mat-option>
+                                            <mat-option value="Tuesday">Tuesday</mat-option>
+                                            <mat-option value="Wednesday">Wednesday</mat-option>
+                                            <mat-option value="Thursday">Thursday</mat-option>
+                                            <mat-option value="friday">friday</mat-option>
+                                            <mat-option value="Saturday">Saturday</mat-option>
+                                        </mat-select>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="ExternalCode" class="field-label">External Code</label>
+                                     <mat-form-field appearance="fill">
+                                            <input matInput placeholder="Enter External Code" formControlName="ExternalCode"
+                                                value="" required>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="InvoicePrefix" class="field-label">Xero Invoice Prefix</label>
+                                   
+                                        <mat-form-field appearance="fill">
+                                            <input matInput placeholder="Enter Xero Invoice Prefix" formControlName="InvoicePrefix"
+                                                value="" required>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="ManagerName" class="field-label">Manager Name</label>
+                                   
+                                    <mat-form-field>
+                                        <mat-select placeholder="Select" formControlName="ManagerName">
+                                            <mat-option value="1">John Doe</mat-option>
+                                            <mat-option value="2">Kelvin</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="ManagerContact" class="field-label">Manager Contact</label>
+                                        <mat-form-field appearance="fill">
+                                            <input matInput placeholder="Enter Manager Contact" formControlName="ManagerContact"
+                                                value="" required>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label for="AdditionalSetting" class="field-label">Additional Setting</label>
+                                <br/>
+                                    <div >
+                                        
+                                        <mat-checkbox  formControlName="AdditionalSetting"></mat-checkbox>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group input-textarea">
+                                    <label for="Description" class="field-label">Description</label>
+                                      <mat-form-field appearance="fill">
+                                            <textarea matInput placeholder="Enter Description" formControlName="Description"
+                                                value="" required></textarea>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="Status" class="field-label">Status</label>
+                                    
+                                    <mat-form-field>
+                                        <mat-select placeholder="Select" formControlName="Status">
+                                    <mat-option value="1">Active</mat-option>
+                                    <mat-option value="0">Inactive</mat-option>
+                                    
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="City" class="field-label">City</label>
+                                    
+                                        <mat-form-field appearance="fill">
+                                            <input matInput placeholder="Enter City" formControlName="City"
+                                                value="" required>
+                                        </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="State" class="field-label">State</label>
+                                    <mat-form-field>
+                                        <mat-select placeholder="Select" formControlName="State">
+                                            <mat-option value="State 1">State 1</mat-option>
+                                            <mat-option value="State 2">State 2</mat-option>
+                                            <mat-option value="State 3">State 3</mat-option>
+                                    
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="Country" class="field-label">Country</label>
+                                   
+                                    <mat-form-field>
+                                        <mat-select placeholder="Select" formControlName="Country">
+                                            <mat-option value="Country 1">Country 1</mat-option>
+                                            <mat-option value="Country 2">Country 2</mat-option>
+                                    
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-action-sm" data-toggle="modal"
+                        data-target="#myModal">Submit</button>
+                        <button type="button" #btnCancel class="btn btn-action-sm btn-action-secondary"
+                            data-dismiss="modal" [routerLink]="['/admin/location']">Cancel</button>
+                    </div>
+                </form>
+           
+    <lhs-sidebar></lhs-sidebar>
+
+</div>
+<div class="modal custom-popup " id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <button type="button" class="close header-close" data-dismiss="modal">
+            &times;
+          </button>
+          <p>Are you sure you want to Edit record?</p>
+          <br/>
+          <div class="modal-btn">
+            <button mat-button class="project-btn-1-db project-btn-1-db-gray" data-dismiss="modal">No</button>
+            &nbsp;&nbsp;
+            <button
+           
+            mat-button class="project-btn-1-db"
+              data-dismiss="modal" (click)="EditLocation()"
+             
+>
+              Yes
+            </button >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

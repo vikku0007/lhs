@@ -1,0 +1,10 @@
+.timesheet-hdr-arrow.dt-no-accordian {flex-flow: inherit;}
+
+@media screen and (max-width:575px){
+    ul.timesheet-hdr-arrow.default-tabs.dt-no-accordian {display: inline-block;width: 100%;
+        li{display: inline-block;margin: 0;
+            button{padding: 5px;}
+        }
+    }
+    }
+

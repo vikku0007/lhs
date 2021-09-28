@@ -1,0 +1,18 @@
+<!-- <app-header *ngIf="authenticated"></app-header> -->
+<router-outlet>
+    <div class="pro-spinner-bx" id="loader" style="display: none;">
+        <mat-progress-spinner mode="indeterminate" diameter="60">
+
+        </mat-progress-spinner>
+    </div>
+    <div class="pro-spinner-bx" id="preloader" style="display: none;">
+        <mat-progress-spinner mode="indeterminate" diameter="60">
+
+        </mat-progress-spinner>
+    </div>
+</router-outlet>
+<!-- <app-sidebar *ngIf="authenticated"></app-sidebar> -->
+
+<!-- <p><strong>{{idleState}}</strong></p>
+<p *ngIf="lastPing"><small>Last keepalive ping <strong>{{lastPing}}</strong></small></p>
+<button (click)="reset()" *ngIf="timedOut">Restart</button> -->

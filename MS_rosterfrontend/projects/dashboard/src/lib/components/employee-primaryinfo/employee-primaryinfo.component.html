@@ -1,0 +1,508 @@
+<section class="user-info-bx user-info-bx-inner">
+  
+  <div class="ui-img-bx">
+        <img src="{{ empPrimaryInfo.imageUrl ?  baseUrl+empPrimaryInfo.imageUrl : '../../../assets/img/dummy-profile-pic.jpg' }}" class="profile-pic" alt="John Doe" />
+        <div class="overlay">
+            <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editProfilePicPopup">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                    <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)"
+                        d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z"
+                        transform="translate(-1 -1)" fill="#fff" />
+                </svg>
+            </a>
+            <div class="intro-txt">
+                <h2>{{empPrimaryInfo.salutationName}} {{empPrimaryInfo.firstName}} {{empPrimaryInfo.lastName}}</h2>
+                <small>({{empPrimaryInfo.genderName}}, {{empPrimaryInfo.maritalStatusName}})</small>
+            </div>
+        </div>
+    </div>
+    <div class="ui-content-bx">
+        <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editBasicDetailsPopup">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)"
+                    d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z"
+                    transform="translate(-1 -1)" fill="#fff" />
+            </svg>
+        </a>
+        <div class="upr-txt">
+            <p><strong>Employee ID :</strong> {{empPrimaryInfo.employeeId}}</p>
+            <p><strong>Role :</strong> {{empPrimaryInfo.roleName != null ?empPrimaryInfo.roleName: '-'}}</p>
+            <!-- <p><strong>Age :</strong> {{this.getAge(empPrimaryInfo.dateOfBirth)}} Years</p> -->
+            <p><strong class="test">Age :</strong> {{empPrimaryInfo.age}} Years</p>
+            <p><strong>Language Spoken :</strong> English</p>
+        </div>
+        <div class="btm-txt">
+            <p>{{empPrimaryInfo.address1}}</p>
+            <!-- <p>{{empPrimaryInfo.address2}}</p>
+            <p>{{empPrimaryInfo.city}} {{empPrimaryInfo.stateName}} {{empPrimaryInfo.countryName}}</p>
+
+            <p>{{empPrimaryInfo.code > 0 ? empPrimaryInfo.code : ''}}</p> -->
+            <p>{{empPrimaryInfo.emailId}}</p>
+            <p>{{empPrimaryInfo.mobileNo}}</p>
+        </div>
+    </div>
+</section>
+<!-- Edit Basic Details Popup Start Here -->
+<div class="modal popup-default" id="editBasicDetailsPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="empBasicInfoForm" (ngSubmit)="EditEmployee()" #formDirective="ngForm">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Basic Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="inputEmail" class="field-label">Salutation</label>
+                                <mat-form-field>
+                                    <!-- <mat-select placeholder="Select" formControlName="salutation">
+                                        <mat-option value="mr">Mr.</mat-option>
+                                        <mat-option value="mrs">Mrs</mat-option>
+                                    </mat-select> -->
+                                    <mat-select formControlName="salutation" placeholder="Select Salutation">
+                                        <mat-option *ngFor="let list of salutationList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-fname" class="field-label">First Name</label>
+                                <input type="hidden" formControlName="id" id="id" />
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput autofocus autocomplete="disabled" class="form-control" id="bd-fname"
+                                        formControlName="firstname" id="fname" aria-describedby="emailHelp"
+                                        placeholder="Enter First Name">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="middleName" class="field-label">Middle Name</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput autofocus autocomplete="disabled" class="form-control" id="bd-lname"
+                                        formControlName="middleName" id="middleName" aria-describedby="emailHelp"
+                                        placeholder="Enter Middel Name">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-lname" class="field-label">Last Name</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput autofocus autocomplete="disabled" class="form-control" id="bd-lname"
+                                        formControlName="lastName" id="lname" aria-describedby="emailHelp"
+                                        placeholder="Enter Last Name">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-email" class="field-label">Email</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="email" matInput autofocus autocomplete="disabled" class="form-control" id="email"
+                                        formControlName="emailId" aria-describedby="emailHelp"
+                                        placeholder="Enter Email">
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="employeeId1" class="field-label">Employee ID</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="number" matInput autofocus autocomplete="disabled" class="form-control" disabled
+                                        formControlName="employeeId" id="employeeId1" aria-describedby="emailHelp"
+                                        placeholder="Enter Employee ID">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="role" class="field-label">Role</label>
+                               <mat-form-field>
+                                    <mat-select formControlName="role" placeholder="Select Role">
+                                        <mat-option>
+                                            <ngx-mat-select-search [placeholderLabel]="'Search Role'" [formControl]="control" 
+                                            ngDefaultControl></ngx-mat-select-search>
+                                          </mat-option>
+                                         <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option> 
+                                      
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-ls" class="field-label">Language Spoken</label>
+                                <mat-form-field>
+                                    <mat-select formControlName="language" placeholder="Select Language" (selectionChange)="getOtherLanguage($event.value)">
+                                        <mat-option *ngFor="let list of languageList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12" *ngIf="isShownOtherLanguage">
+                            <div class="form-group">
+                                <label class="field-label">Other Language</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput  autofocus autocomplete="off" class="form-control" id="bd-address1"
+                                        formControlName="otherLanguage"  placeholder="Enter Other Language"
+                                       >
+                                </mat-form-field>
+                               
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="empTypeId" class="field-label">Employee Type</label>
+                                <mat-form-field>
+                                  
+                                    <mat-select formControlName="empType" placeholder="Select Employee Type">
+                                        <mat-option *ngFor="let list of empType" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <!-- </mat-form-field> -->
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="maritalStatus" class="field-label">Marital Status</label>
+                                <mat-form-field>
+                                    <!-- <mat-select placeholder="Select" formControlName="maritalStatus">
+                                        <mat-option value="Single">Single</mat-option>
+                                        <mat-option value="Married">Married</mat-option>
+                                    </mat-select> -->
+                                    <mat-select formControlName="maritalStatus" placeholder="Select Marital Status">
+                                        <mat-option *ngFor="let list of maritalStatusList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="status" class="field-label"> Status</label>
+                                <mat-form-field>
+                                    <mat-select placeholder="Select" formControlName="status">
+                                        <mat-option value="1">Active</mat-option>
+                                        <mat-option value="0">InActive</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="employeeLevel" class="field-label">Employee Level</label>
+                                <mat-form-field>
+                                    <mat-select formControlName="employeeLevel" placeholder="Select Employee Level">
+                                        <mat-option *ngFor="let list of empLevelList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-mobile" class="field-label">Mobile</label>
+                                <mat-form-field >
+                                     
+                                          <input matInput  autofocus placeholder="Enter Mobile Number"
+                                          formControlName="mobileNo" autocomplete="off" maxlength="12"
+                                          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                          type = "number" 
+                                           />
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="dob" class="field-label">Birthdate</label>
+
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="disabled" formControlName="dateOfBirth" (dateChange)="getAgedob()" [matDatepicker]="picker11"
+                                        placeholder="Select Date" [max]="todayDatemax">
+                                    <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker11></mat-datepicker >
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-age" class="field-label">Age</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput class="form-control" disabled id="bd-age"
+                                        placeholder="Age" value="{{empPrimaryInfo.age}} Years">
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="religion" class="field-label">Religion</label>
+                                <mat-form-field>
+                                    <mat-select placeholder="Select" formControlName="religion" (selectionChange)="getOtherreligion($event.value)">
+                                        <mat-option *ngFor="let list of religionList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12" *ngIf="isShownOtherReligion">
+                            <div class="form-group">
+                                <label class="field-label">Other Religion</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput  autofocus autocomplete="off" class="form-control" id="bd-address1"
+                                        formControlName="otherreligion"  placeholder="Enter Other Religion"
+                                       >
+                                </mat-form-field>
+                               
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="hobbies" class="field-label">Hobbies</label>
+                                <mat-form-field>
+                                    <mat-select placeholder="Select" formControlName="hobbies" multiple>
+                                        <mat-option *ngFor="let list of hobbiesList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                 <label for="bd-otherhobbies" class="field-label">Other Hobbies</label>
+                               
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput  autofocus autocomplete="disabled" class="form-control" id="bd-address1"
+                                        formControlName="otherhobbies"  placeholder="Enter Other Hobbies"
+                                       >
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Working Rights</label>
+                                <mat-radio-group aria-label="Select an option" formControlName="hasVisa" (change)="radioChange()">
+                                    <mat-radio-button value="1" >Yes</mat-radio-button>
+                                    <mat-radio-button value="2">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Australian Citizen</label>
+                                <mat-radio-group aria-label="Select an option" formControlName="australiancitizen" (change)="AustralianChange()">
+                                    <mat-radio-button value="1" >Yes</mat-radio-button>
+                                    <mat-radio-button value="2">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class=" col-md-12 col-sm-12">
+                        <div class="row" *ngIf="isShownVisa">
+                          <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="visaType" class="field-label">Visa Type</label>
+                                <mat-form-field>
+                                   
+                                    <mat-select formControlName="visaType" placeholder="Select Visa Type">
+                                        <mat-option *ngFor="let list of visaTypeList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Visa Expiry Date</label>
+                                <mat-form-field>
+                                    <input  matInput autofocus autocomplete="disabled" formControlName="visaExpiryDate" [matDatepicker]="picker1" placeholder="Select Date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="visaNumber" class="field-label">Visa Number</label>
+                                <mat-form-field >
+                                    <input type="text" matInput autofocus autocomplete="disabled" class="form-control" 
+                                        formControlName="visaNumber"  placeholder="Enter Visa Number" maxlength="11"
+                                        value="">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12" *ngIf="isShownPassportNumber">
+                        <div class="form-group">
+                            <label for="passportNumber" class="field-label">Passport Number</label>
+                            <mat-form-field >
+                                <input type="text" matInput autofocus autocomplete="disabled" class="form-control" 
+                                    formControlName="passportNumber"  placeholder="Enter Passport Number" maxlength="11"
+                                    value="">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                             <label for="bd-address1" class="field-label">Address</label>
+                             <lib-googleaddress [control]="address1" autofocus autocomplete="off"  (onAddressChange)="handleAddressChange($event)">
+                            </lib-googleaddress> 
+                             <!-- <mat-form-field appearance="fill">
+                                <input matInput formControlName="address1"
+                                matGoogleMapsAutocomplete
+                               
+                                (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                                (onLocationSelected)="onLocationSelected($event)">
+                            </mat-form-field>
+                            <mat-form-field appearance="fill">
+                                <input type="text" matInput  autofocus autocomplete="disabled" class="form-control" id="bd-address1"
+                                    formControlName="address1" id="addresslocal" placeholder="Enter Address 1"
+                                   >
+                            </mat-form-field> -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="bd-country" class="field-label">Country</label>
+                            <mat-form-field>
+                                <input type="text" matInput autofocus autocomplete="disabled" class="form-control" formControlName="country" id="countryid"
+                                        placeholder="Enter Country" value="Sydney">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="bd-State" class="field-label">State</label>
+                            
+                            <mat-form-field>
+                                <input type="text" matInput autofocus autocomplete="disabled" class="form-control" formControlName="state" id="stateid"
+                                placeholder="Enter State" value="">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-city" class="field-label">City</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput autofocus autocomplete="disabled" class="form-control" formControlName="city" id="cityid"
+                                        placeholder="Enter City" value="Sydney">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-code" class="field-label">Post Code</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="number" matInput autofocus autocomplete="disabled" class="form-control" formControlName="code"
+                                        id="zipCode" placeholder="Enter Code">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-action-sm">Update</button>
+                    <button type="button" #btnCancel class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+ </div><!-- /Edit Basic Details Popup End -->
+
+ <!-- Edit Profile Pic Popup Start Here -->
+<div class="modal popup-default" id="editProfilePicPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Profile Pic</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="upload-img-wrap">
+                    <div class="uiw-uploader">
+                        <svg id="iconfinder_cloud-upload_322433" xmlns="http://www.w3.org/2000/svg" width="60" height="45" viewBox="0 0 60 45">
+                            <path id="Path_300" data-name="Path 300" d="M-43.635,20.978A14.2,14.2,0,0,0-43.5,19a15.019,15.019,0,0,0-15-15A14.972,14.972,0,0,0-70.492,9.979,12.811,12.811,0,0,0-73.5,9.625,13.142,13.142,0,0,0-86.625,22.75c0,.184,0,.358.011.54A13.14,13.14,0,0,0-96,35.875,13.144,13.144,0,0,0-82.875,49H-51A15.016,15.016,0,0,0-36,34,14.991,14.991,0,0,0-43.635,20.978ZM-51,45.25H-82.877a9.374,9.374,0,0,1-9.375-9.375A9.372,9.372,0,0,1-82.877,26.5c.285,0,.559.058.834.084a9.316,9.316,0,0,1-.834-3.834A9.372,9.372,0,0,1-73.5,13.375a9.321,9.321,0,0,1,4.631,1.266A11.24,11.24,0,0,1-58.5,7.75,11.251,11.251,0,0,1-47.25,19a11.2,11.2,0,0,1-.823,4.179A11.217,11.217,0,0,1-39.75,34,11.249,11.249,0,0,1-51,45.25Z" transform="translate(96 -4)" fill="#8d36b8"/>
+                            <path id="Path_301" data-name="Path 301" d="M-86,23.625h7.75V35.25h7.75V23.625h7.75L-74.376,12Z" transform="translate(104.374 2.5)" fill="#8d36b8"/>
+                        </svg>
+                        <h2>Drag And Drop File Here</h2>
+                        <h3>Or</h3>
+                        <div class="file-wrap">
+                           
+                            <input #fileInput (change)="ImageChanges()" type="file" class="btn btn-action-sm" >
+                            <span class="btn btn-action-sm">Browse File</span>
+                           
+                        </div>
+                    </div>
+                    <div *ngIf="ImageName" class="uiw-view-img">
+                        <!-- <img src="../../../../assets/img/profile-pic.jpg" alt="" > -->
+                        <div class="img-details">
+                            <p>{{ImageName}}</p>
+                            <small>{{ImageSize}}</small>
+                        </div>
+                        <a href="javascript:void(0);" (click)="ImageDelete()" class="delete-img">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                <path id="iconfinder_Close_5416278" d="M21,11A10,10,0,1,0,31,21,10,10,0,0,0,21,11Zm2.851,11.764a.769.769,0,0,1-1.087,1.087L21,22.087l-1.764,1.764a.769.769,0,1,1-1.087-1.087L19.913,21l-1.764-1.764a.769.769,0,0,1,1.087-1.087L21,19.913l1.764-1.764a.769.769,0,0,1,1.087,1.087L22.087,21Z" transform="translate(-11 -11)" fill="#ef5257" opacity="0.75"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" (click)="AddImage()" class="btn btn-action-sm">Update</button>
+                    <button type="button" #btnImageCancel class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+           
+        </div>
+    </div>
+</div><!-- /Edit Profile Pic Popup End -->

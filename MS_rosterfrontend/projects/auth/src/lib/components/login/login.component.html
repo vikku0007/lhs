@@ -1,0 +1,107 @@
+<!-- <div class="pro-spinner-bx"><mat-progress-spinner mode="indeterminate" diameter="60"></mat-progress-spinner></div> -->
+
+<div class="auth-wrap-outer">
+    <div class="pt-5"></div>
+<div class="auth-wrap">
+    <div class="row">
+        <div class="col-6 pr-0">
+            <div class="aw-lft">
+                <div class="overlay"></div>
+                <div class="info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="126" height="2" viewBox="0 0 126 2">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #fff;
+                                }
+                            </style>
+                        </defs>
+                        <g id="Group_66281" data-name="Group 66281" transform="translate(-208 -531)">
+                            <rect id="Rectangle_6" data-name="Rectangle 6" class="cls-1" width="81" height="2" rx="1"
+                                transform="translate(208 531)" />
+                            <rect id="Rectangle_7" data-name="Rectangle 7" class="cls-1" width="24" height="2" rx="1"
+                                transform="translate(298 531)" />
+                            <rect id="Rectangle_8" data-name="Rectangle 8" class="cls-1" width="4" height="2" rx="1"
+                                transform="translate(330 531)" />
+                        </g>
+                    </svg>
+                    <h2>Roster Management</h2>
+                    <!--  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc felis, viverra eu bibendum
+                        varius, tempor sit amet orci.</p>  -->
+                </div>
+            </div>
+        </div>
+        <div class="col-6 pl-0">
+            <div class="aw-rgt">
+                <div class="logo-wrap">
+                    <img src="../../../assets/img/logo-sm.jpeg" alt="Roster Management" />
+                    </div>
+                    <div class="lw-txt">
+                        <h5>Welcome to Life Health Service</h5>
+                        <h2>Roster Management</h2>
+                        <!-- <h6>Lorem ipsum dolor sit amet, consectetur</h6> -->
+                    </div>
+                <!-- </div> -->
+                <div class="auth-form-wrap">
+                    <form [formGroup]="rForm" (ngSubmit)="Login()">
+                        <div class="form-group">
+                            <label for="inputEmail" class="field-label">Email Id</label>
+                            <!-- <input type="email" formControlName="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Your Email Id"> -->
+                            <mat-form-field appearance="fill">
+                                <input matInput placeholder="Enter Email Id" value="" formControlName="email" required>
+                                <mat-error>{{getErrorMessage}}</mat-error>
+                            </mat-form-field>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                class="field-verify">
+                                <defs>
+                                    <style>
+                                        .cls-2 {
+                                            fill: #4f924e;
+                                        }
+                                    </style>
+                                </defs>
+                                <path id="iconfinder_tick_success_done_valid_5402431" class="cls-2"
+                                    d="M10.163,2a8.163,8.163,0,1,0,8.163,8.163A8.163,8.163,0,0,0,10.163,2Zm3.845,6.294L9.926,12.375a.816.816,0,0,1-1.159,0L7.134,10.742A.82.82,0,0,1,8.294,9.583l1.053,1.061,3.5-3.51a.82.82,0,0,1,1.159,1.159Z"
+                                    transform="translate(-2 -2)" />
+                            </svg>
+                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="field-label">Password</label>
+                            <!-- <input type="password" formControlName="password" class="form-control" id="inputPassword" placeholder="Enter Your Password"> -->
+                            <mat-form-field appearance="fill">
+                                <input matInput type="password" placeholder="Enter Password" formControlName="password"
+                                    value="" required>
+                                <mat-error>{{getErrorMessage}}</mat-error>
+                            </mat-form-field>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                class="field-verify">
+                                <defs>
+                                    <style>
+                                        .cls-2 {
+                                            fill: #4f924e;
+                                        }
+                                    </style>
+                                </defs>
+                                <path id="iconfinder_tick_success_done_valid_5402431" class="cls-2"
+                                    d="M10.163,2a8.163,8.163,0,1,0,8.163,8.163A8.163,8.163,0,0,0,10.163,2Zm3.845,6.294L9.926,12.375a.816.816,0,0,1-1.159,0L7.134,10.742A.82.82,0,0,1,8.294,9.583l1.053,1.061,3.5-3.51a.82.82,0,0,1,1.159,1.159Z"
+                                    transform="translate(-2 -2)" />
+                            </svg>
+                        </div>
+                        <div class="form-check">
+                            <div class="custom-control custom-checkbox">
+                                
+                                <!-- <input type="checkbox" class="custom-control-input" id="customCheck" name="example1"> -->
+                                <!-- <label class="custom-control-label" for="customCheck">Remember Me</label> -->
+                            </div>
+                            <a routerLink="/auth/forgotpassword" class="txt-fp float-right">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-action-sm">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

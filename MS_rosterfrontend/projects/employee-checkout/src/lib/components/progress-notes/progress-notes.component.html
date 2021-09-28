@@ -1,0 +1,740 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Progress Notes
+                <a href="javascript:void(0);" class="btn btn-action-xs back-link"
+                    [routerLink]="['/employee/logout', shiftId]">Back</a>
+            </h1>
+        </div>
+        <div class="page-inner-wrap">
+            <div class="page-sub-inner-wrap">
+                <div class="psiw-rgt">
+                    <button id="openEditModalButton" hidden data-toggle="modal" data-target="#editFundPopup"></button>
+                    <button id="openViewModalButton" hidden data-toggle="modal"
+                        data-target="#ProgressnoteViewPopup"></button>
+                    <div class="psiw-bx-content mb-1">
+                        <form [formGroup]="clientForm">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Patient Name</label>
+                                        <mat-form-field>
+                                            <input matInput placeholder="Enter Patient Name"
+                                                formControlName="patientName" readonly>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Date Of Birth</label>
+                                        <mat-form-field>
+                                            <input matInput [matDatepicker]="dateOfBirth1"
+                                                formControlName="dateOfBirth1" readonly>
+                                            <mat-datepicker-toggle matSuffix [for]="dateOfBirth1">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #dateOfBirth1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Client ID</label>
+                                        <mat-form-field>
+                                            <input matInput placeholder="Enter Medical Record Number"
+                                                formControlName="medicalNo" readonly>
+
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="d-flex justify-content-end mb-2 mt-3">
+                        <a href="javascript:void(0);" class="other-action-link" data-toggle="modal"
+                            data-target="#addFundPopup">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                                <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)"
+                                    d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z"
+                                    fill="#fff" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="psiw-bx-content">
+
+                        <div class="table-wrap table-wrap-inner mb-4">
+
+                            <div class="table-content">
+                                <div class="table-responsive">
+                                    <table name="tbl-fundingInfo" mat-table [dataSource]="dataSourceProgressNotes"
+                                        matSort>
+                                        <ng-container matColumnDef="date">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                            <td mat-cell *matCellDef="let element">{{element.date| date: 'dd/MM/yyyy'}}
+                                            </td>
+                                        </ng-container>
+                                        <ng-container matColumnDef="progressNote">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress Notes</th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <a href="javascript:void(0);" (click)="openEditviewDetails(element)">
+                                                    View Progress Note
+                                                </a>
+                                            </td>
+                                        </ng-container>
+                                        <ng-container matColumnDef="createdDate">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</th>
+                                            <td mat-cell *matCellDef="let element">
+                                                {{element.createdDate|date: 'dd/MM/yyyy'}}</td>
+                                        </ng-container>
+                                        <ng-container matColumnDef="action">
+                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                            <td mat-cell *matCellDef="let element">
+                                                <a href="javascript:void(0);" (click)=openEditDetails(element)>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        viewBox="0 0 16 16">
+                                                        <path id="iconfinder_write_126582_1_"
+                                                            data-name="iconfinder_write_126582 (1)"
+                                                            d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z"
+                                                            transform="translate(-1 -1)" fill="#7b7b7b" />
+                                                    </svg>
+                                                </a>
+                                                <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal"
+                                                    (click)="DeleteModal(element, $event)">
+                                                    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15"
+                                                        height="18.071" viewBox="0 0 15 18.071">
+                                                        <g id="Group_66039" data-name="Group 66039">
+                                                            <g id="Group_66037" data-name="Group 66037"
+                                                                transform="translate(0 0)">
+                                                                <path id="Path_304" data-name="Path 304"
+                                                                    d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z"
+                                                                    transform="translate(-79.61 -43.5)"
+                                                                    fill="#7b7b7b" />
+                                                            </g>
+                                                            <g id="Group_66038" data-name="Group 66038"
+                                                                transform="translate(1.716 7.819)">
+                                                                <path id="Path_305" data-name="Path 305"
+                                                                    d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z"
+                                                                    transform="translate(-119.27 -231.53)"
+                                                                    fill="#7b7b7b" />
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                </a>
+                                            </td>
+                                        </ng-container>
+                                        <mat-paginator [length]="totalCount" [pageSize]="10"
+                                            [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                                        </mat-paginator>
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumnsProgressNotes"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumnsProgressNotes;"></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lib-admin-sidebar></lib-admin-sidebar>
+</div>
+
+<div class="modal popup-default" id="ProgressnoteViewPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">View Progress Note Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="">
+                                <div class="section-box mb-3">
+                                    <h5 class="default-title mb-3">Progress Notes</h5>
+                                    <dl class="default-list-wrap progess-notes-listing mb-0">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>Date:</strong></p>
+                                                <p class="mb-3">{{progressNotesFields.date| date: 'dd/MM/yyyy'}}</p>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-12">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>Summary:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.summary}}</p>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-md-12 col-sm-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>09:00 AM-11:00 AM:</strong></p>
+                                                <p class="mb-3">{{progressNotesFields.note9AMTo11AM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>11:00 AM-13:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note11AMTo1PM}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>13:00 PM-15:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note1PMTo15PM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>15:00 PM-17:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note15PMTo17PM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>17:00 PM-19:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note17PMTo19PM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>19:00 PM-21:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note19PMTo21PM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>21:00 PM-23:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note21PMTo23PM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>23:00 PM-01:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note23PMTo1AM}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>01:00 AM-03:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note1AMTo3AM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>03:00 AM-05:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note3AMTo5AM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>05:00 AM-07:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note5AMTo7AM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>07:00 AM-09:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note7AMTo9AM}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                <p class="mb-0"><strong>Any other information:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.otherInfo}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </dl>
+                                </div>
+
+                            </div>
+                            <div class="">
+                                <button type="button" class="btn btn-action-sm btn-action-secondary"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br /><br />
+                </div>
+
+                <!-- Modal footer -->
+                <!-- <div class="modal-footer">
+                    <button type="submit" class="btn btn-action-sm">Update</button>
+                    <button type="button" #btnEditcommunicationCancel class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal">Cancel</button>
+                </div> -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit notes popup -->
+<div class="modal popup-default" id="editFundPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rFormEditProgressNotes">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Progress Notes</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Date</label>
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" [matDatepicker]="editProgressDate"
+                                        placeholder="Select Date" formControlName="editProgressDate">
+                                    <mat-datepicker-toggle matSuffix [for]="editProgressDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #editProgressDate></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <label class="field-label">Information</label>
+                            <div class="form-group input-textarea">
+                               
+                               
+                                    <!-- <textarea matInput autofocus autocomplete="off"
+                                        placeholder="Enter Progress on NDIS Goals/Community access/Cultural Needs/Medication Given"
+                                        formControlName="editNDISGoals" value=""></textarea>
+                                    <mat-error>{{getErrorMessage}}</mat-error> -->
+                                    <p style="color: black;">*Enter Progress on NDIS Goals/Community access/Cultural Needs/Medication Given*</p>
+                               
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">09:00 AM-11:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote09AMto11AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">11:00 AM-13:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote11AMto13PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">13:00 PM-15:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote13PMto15PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">15:00 PM-17:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote15PMto17PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">17:00 PM-19:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote17PMto19PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">19:00 PM-21:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput placeholder="Enter Progress Notes"
+                                        formControlName="editNote19toPM21PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">21:00 PM-23:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote21PMto23PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">23:00 PM-01:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote23PMto01AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">01:00 AM-03:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote01AMto03AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">03:00 AM-05:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote03AMto05AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">05:00 AM-07:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote05AMto07AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">07:00 AM-09:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="editNote07AMto09AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Any other information</label>
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off"
+                                        placeholder="Enter Any other information" formControlName="editOtherInfo"
+                                        value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-action-sm" (click)="UpdateProgressNotesItem()">Update</button>
+                <button type="button" #btnEditfundtype class="btn btn-action-sm btn-action-secondary"
+                    data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Edit notes Popup End -->
+
+<div class="modal popup-default" id="addFundPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rFormProgressNotes" #formDirective="ngForm">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Progress Notes</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Date</label>
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" [matDatepicker]="progressDate"
+                                        placeholder="Select Date" formControlName="progressDate">
+                                    <mat-datepicker-toggle matSuffix [for]="progressDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #progressDate></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <label class="field-label">Information</label>
+                            <div class="form-group input-textarea">
+                               
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <!-- <mat-form-field >
+                                    <textarea matInput autofocus autocomplete="off" placeholder="Enter Progress on NDIS Goals/Community access/Cultural Needs/Medication Given"
+                                    formControlName="NDISGoals" value=""
+                                        ></textarea>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>             -->
+                               
+                                    <p style="color: black;">*Enter Progress on NDIS Goals/Community access/Cultural Needs/Medication Given*
+                                    </p>
+                               
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">09:00 AM-11:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note09AMto11AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">11:00 AM-13:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note11AMto13PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">13:00 PM-15:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note13PMto15PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">15:00 PM-17:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field appearance="fill">
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note15PMto17PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">17:00 PM-19:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note17PMto19PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">19:00 PM-21:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note19toPM21PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">21:00 PM-23:00 PM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note21PMto23PM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">23:00 PM-01:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note23PMto01AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">01:00 AM-03:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note01AMto03AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">03:00 AM-05:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note03AMto05AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">05:00 AM-07:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note05AMto07AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-monToFri6To12AM" class="field-label">07:00 AM-09:00 AM</label>
+                                <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off" placeholder="Enter Progress Notes"
+                                        formControlName="Note07AMto09AM" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Any other information</label>
+                                <mat-form-field>
+                                    <input matInput autofocus autocomplete="off"
+                                        placeholder="Enter Any other information" formControlName="OtherInfo" value="">
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-action-sm" (click)="AddProgressNotesItem()">Add</button>
+                <button type="button" (click)="cancelModal()" #btnAddfundtype
+                    class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /Add Fund Popup End -->
+
+<div class="modal custom-popup " id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <button type="button" class="close header-close" data-dismiss="modal">
+                    &times;
+                </button>
+                <p>Are you sure you want to delete record?</p>
+                <br />
+                <div class="modal-btn">
+                    <button mat-button class="project-btn-1-db project-btn-1-db-gray"
+                        data-dismiss="modal">Cancel</button>
+                    &nbsp;&nbsp;
+                    <button mat-button class="project-btn-1-db" data-dismiss="modal"
+                        (click)="DeleteProgressNotes($event)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

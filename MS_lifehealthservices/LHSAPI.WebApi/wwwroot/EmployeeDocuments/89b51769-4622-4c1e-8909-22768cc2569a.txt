@@ -1,0 +1,17 @@
+------------------28th September-----------------
+1. Added table ShiftEmailNotification
+-------------------30th Sep-------------
+2. Added distinct keyword in rejectpayroll SP.
+--------------------05 Oct ----------------
+3. Added StartUtcDate/EndUtcDate in [ShiftInfo]
+4. Added IsCheckOutEmailSent in [ShiftEmailNotification]
+5. Rename IsEmailSent to IsCheckInEmailSent in [ShiftEmailNotification]
+--------------------09 Oct-------------------
+select * from StandardCode where CodeDescription like '%property%'
+update StandardCode set CodeDescription='Property damage' where id=1287
+Create new sp for get payroll details (V1)
+------------------14 Oct-------------
+1. Added column Remark in [ShiftInfo] table
+----------------------------CHANGES UPDATED TO DB----------------------------
+--------------------16 Oct 2020--------------
+1. SP updates for Usp_GetAdminDashboardEmployeeHours

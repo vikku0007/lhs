@@ -1,0 +1,256 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Shift Details</h1>
+            <button id="openViewModalButton" hidden data-toggle="modal" data-target="#ProgressnoteViewPopup"></button>
+        </div>
+        <div class="page-inner-wrap">
+            <div class="row flex-row-reverse">
+                <!-- <div class="col-sm-12 col-md-5 mb-sm-4">
+                    <iframe class="map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424146.1026650165!2d150.65179546185027!3d-33.84735671951983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney%20NSW%2C%20Australia!5e0!3m2!1sen!2sin!4v1594428551888!5m2!1sen!2sin"
+                        frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div> -->
+                <div class="col-sm-12 col-md-12">
+                    <div class="section-info-bx sib-normal">
+                        <div class="section-content">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4">
+                                    <h3>StartDate</h3>
+                                    <p>{{shiftInfo.startDate | date :'dd/MM/yyyy - EEEE'}}</p>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <h3>EndDate</h3>
+                                    <p>{{shiftInfo.endDate | date :'dd/MM/yyyy - EEEE'}}</p>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <h3>Time</h3>
+                                    <p>{{shiftInfo.startTimeString }} to {{shiftInfo.endTimeString }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Location</h3>
+                                    <p>{{shiftInfo.locationName}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Employees | Duration</h3>
+                                    <p *ngFor="let item of shiftInfo.employeeShiftInfoViewModel">{{item.name}} |
+                                        {{ shiftInfo.customDuration}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <h3>Clients</h3>
+                                    <p *ngFor="let item of shiftInfo.clientShiftInfoViewModel">{{item.name}} </p>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <h3>Ratio</h3>
+                                    <p>{{shiftInfo.employeeCount}}: {{shiftInfo.clientCount}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Description</h3>
+                                    <p>{{shiftInfo.description}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Shift Repeat</h3>
+                                    <p>{{shiftInfo.shiftRepeatType}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>SleepOver</h3>
+                                    <p>{{shiftInfo.isSleepOver}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>ActiveNight</h3>
+                                    <p>{{shiftInfo.isActiveNight}}</p>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="shiftInfo?.serviceTypeViewModel.length>0">
+                                <div class="col-md-12">
+                                    <h3>Service Type</h3>
+                                    <ul *ngFor="let service of shiftInfo.serviceTypeViewModel">
+                                        <li>{{service.name}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="shiftInfo.adminCheckoutRemark!=null">
+                                <div class="col-md-12">
+                                    <h3>Remark</h3>
+                                    <p>{{shiftInfo.adminCheckoutRemark}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-wrap mb-5">
+                        <ul>
+                            <li class="tw-bx-red">
+                                <div class="tw-item">
+                                    <p class="mb-0"><strong>Shift History:</strong></p>
+                                    <p>LogIn Time - {{shifthistory.checkInTimestring}}</p>
+                                    <p>LogIn Date - {{shifthistory.checkInDate| date: 'dd/MM/yyyy'}}</p>
+                                    <p>LogOut Time - {{shifthistory.checkOutTimestring}}</p>
+                                    <p>LogOut Date - {{shifthistory.checkOutDate| date: 'dd/MM/yyyy'}}</p>
+                                    <p *ngIf="shifthistory.isShiftCompleted">Duration - {{shifthistory.customDuration}}
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="tw-bx-green">
+                                <div class="tw-item">
+                                    <p class="mb-0"><strong>Progress Notes:</strong></p>
+                                    <p *ngFor="let item of progressNotesInfo">Created Date & Time -
+                                        <a href="javascript:void(0);"
+                                            (click)="openEditviewDetails(item)">{{item.createdDate|date:'dd/MM/yyyy - h:mm a'}}</a>
+                                    </p>
+                                    <!-- <p><span class="txt-green">Rajdeep Singh Bunait</span> added feedback<br>was unable to clock out</p> -->
+                                </div>
+                            </li>
+                            <li class="tw-bx-red">
+                                <div class="tw-item">
+                                    <p class="mb-0"><strong>Logout Remark:</strong> </p>
+                                    <p>{{shiftInfo.checkoutRemark}}</p>
+                                    <!-- <p><span class="txt-green">Rajdeep Singh Bunait</span> added feedback<br>was unable to clock out</p> -->
+                                </div>
+                            </li>
+                            <li class="tw-bx-green">
+                                <div class="tw-item">
+                                    <p class="mb-0"><strong>To Do List:</strong></p>
+                                    <p>Date - {{todoshift.dateTime| date: 'dd/MM/yyyy'}}</p>
+                                    <p>Shift Type - {{todoshift.shiftTypeName}}</p>
+                                    <strong>Description - Initials</strong>
+
+                                    <p *ngFor="let item of shifttodolist">
+                                        {{item.description}} - {{item.initials}}
+                                    </p>
+
+                                    <!-- <p><span class="txt-green">Rajdeep Singh Bunait</span> added feedback<br>was unable to clock out</p> -->
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="button" routerLink="/roster/shifts" class="btn btn-action-lg">View Shift List</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lhs-sidebar></lhs-sidebar>
+</div>
+
+<div class="modal popup-default" id="ProgressnoteViewPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">View Progress Note Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="section-box mb-3">
+                                    <h5 class="default-title mb-3">Progress Notes</h5>
+                                    <dl class="default-list-wrap mb-0">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <p class="mb-0"><strong>Date:</strong></p>
+                                                <p class="mb-3">{{progressNotesFields.date| date: 'dd/MM/yyyy'}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>Summary:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.summary}}</p>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12">
+                                                <p class="mb-0"><strong>09:00 AM-11:00 AM:</strong></p>
+                                                <p class="mb-3">{{progressNotesFields.note9AMTo11AM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>11:00 AM-13:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note11AMTo1PM}}</p>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>13:00 PM-15:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note1PMTo15PM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>15:00 PM-17:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note15PMTo17PM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>17:00 PM-19:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note17PMTo19PM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>19:00 PM-21:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note19PMTo21PM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>21:00 PM-23:00 PM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note21PMTo23PM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>23:00 PM-01:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note23PMTo1AM}}</p>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>01:00 AM-03:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note1AMTo3AM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>03:00 AM-05:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note3AMTo5AM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>05:00 AM-07:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note5AMTo7AM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>07:00 AM-09:00 AM:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.note7AMTo9AM}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p class="mb-0"><strong>Any other information:</strong></p>
+                                                <p class="mb-0">{{progressNotesFields.otherInfo}}</p>
+                                            </div>
+                                        </div>
+                                    </dl>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-action-sm btn-action-secondary"
+                                    data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br /><br />
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

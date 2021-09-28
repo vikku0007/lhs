@@ -1,0 +1,31 @@
+
+<label class="row"><input type="checkbox" [(ngModel)]="navigatorConfig.freeHandSelectionEnabled"> Free-hand
+    range</label> 
+    <div class="cust-schdular-outer">
+<daypilot-navigator [config]="navigatorConfig" [date]="navigatorDate" (dateChange)="dateChange()"
+                    #navigator></daypilot-navigator>
+
+<daypilot-scheduler [config]="config" [events]="events" (viewChange)="schedulerViewChanged()" 
+CellWidth = "200" RowMinHeight = "150" #scheduler></daypilot-scheduler>
+    </div>
+
+<!-- <div class="fullscreen">
+    <lib-sidebar-container #sidebar [(expanded)]="expanded">
+        <lib-sidebar-expanded>
+            <label class="row"><input type="checkbox" [(ngModel)]="navigatorConfig.freeHandSelectionEnabled"> Free-hand
+                range</label>            
+            <div style="padding: 3px;">
+                <daypilot-navigator [config]="navigatorConfig" [date]="navigatorDate" (dateChange)="dateChange()"
+                    #navigator></daypilot-navigator>
+            </div>
+        </lib-sidebar-expanded>
+        <lib-sidebar-collapsed></lib-sidebar-collapsed>
+        <lib-sidebar-main>
+            <div class="main-body">
+                <daypilot-scheduler [config]="config" [events]="events" (viewChange)="schedulerViewChanged()"
+                    #scheduler></daypilot-scheduler>
+                <div class="main-bottom"></div>
+            </div>
+        </lib-sidebar-main>
+    </lib-sidebar-container>
+</div> -->

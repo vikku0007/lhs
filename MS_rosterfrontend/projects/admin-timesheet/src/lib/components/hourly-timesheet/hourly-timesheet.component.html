@@ -1,0 +1,41 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Hourly Timesheet</h1>
+            <div class="row">
+                <div class="col">
+                    <ul class="timesheet-hdr-arrow default-tabs dt-no-accordian mt-0">
+                        <li class="nav-item active">
+                            <button (click)="previousMonth()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_297" data-name="Path 297" d="M1616.328,3621.169l-4,4,4,4"
+                                        transform="translate(-1610.913 -3619.755)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="nav-item"><button (click)="thisMonth()">This Month</button></li>
+                        <li class="nav-item">
+                            <button (click)="nextMonth()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_298" data-name="Path 298" d="M4,0,0,4,4,8"
+                                        transform="translate(5.414 9.414) rotate(180)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li>{{runningMonth}}</li>
+                    </ul>
+                </div>
+            </div>            
+            <div>
+                <daypilot-scheduler [config]="config" [events]="events" 
+                    CellWidth="200" RowMinHeight="150" #scheduler></daypilot-scheduler>
+            </div>
+        </div>
+    </div>
+    <lhs-sidebar></lhs-sidebar>
+</div>

@@ -1,0 +1,169 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Employee Payroll In MYOb</h1>
+        </div>
+        <div class="filter-wrap">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Employee</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Select" [(ngModel)]="employeeId"
+                                (selectionChange)="empChange($event.value)">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Employee'"
+                                        [formControl]="searchcontrol" ngDefaultControl>
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                    {{list.fullName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Start Date</label>
+                        <mat-form-field>
+                            <input (dateChange)="DateChange()" [(ngModel)]="startdate" class="filter-date" matInput
+                                [matDatepicker]="pickerDate" placeholder="Enter Start Date">
+                            <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerDate></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">End Date</label>
+                        <mat-form-field>
+                            <input (dateChange)="DateChange()" [(ngModel)]="enddate" class="filter-date" matInput
+                                [matDatepicker]="pickerDate1" placeholder="Enter End Date">
+                            <mat-datepicker-toggle matSuffix [for]="pickerDate1"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerDate1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-action-sm float-right" mat-raised-button
+                    (click)="exporter.exportTable('txt')">Export
+                    to TXT</button>
+
+                <button style="margin-right: 10px;" class="btn btn-action-lg float-right" mat-raised-button
+                    (click)="exporter.exportTable('xlsx', {fileName:'AllApprovedEmployeeHours', sheet: 'sheet_1', Props: {Author: 'LHS'}})">Export
+                    to MYOB</button>
+
+            </div>
+        </div>
+
+        <div class="table-wrap mt-2">
+            <div class="table-content">
+                <div class="table-responsive">
+                    <table matTableExporter mat-table [dataSource]="dataSource" matSort #exporter="matTableExporter"
+                        [hiddenColumns]="[0,15]">
+                        <ng-container matColumnDef="sr">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#</th>
+                            <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="lastname">
+                            <th mat-header-cell *matHeaderCellDef>Employee Co./Last Name</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block">
+                                    <a href="javascript:void(0);" routerLink="/employee/emp-detail"
+                                        [queryParams]="{Id: element.employeeId}">
+                                        {{element.lastName}}</a><br>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="firstname">
+                            <th mat-header-cell *matHeaderCellDef>Employee First Name</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block">
+                                    <a href="javascript:void(0);" routerLink="/employee/emp-detail"
+                                        [queryParams]="{Id: element.employeeId}">
+                                        {{element.firstName}}</a><br>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="payrollCategory">
+                            <th mat-header-cell *matHeaderCellDef>Payroll Category</th>
+                            <td mat-cell *matCellDef="let element">{{element.payrollCategory}} 
+                                <span *ngIf="element.payrollCategory!='SleepOver' && element.payrollCategory!='Admin' && element.payrollCategory!='Cleaning'
+                                "> - {{element.codeDescription}}</span>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="job">
+                            <th mat-header-cell *matHeaderCellDef>Job</th>
+                            <td mat-cell *matCellDef="let element">{{element.jobCode}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="customerLastName">
+                            <th mat-header-cell *matHeaderCellDef>Customer Co./Last Name</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block">
+                                    <a href="javascript:void(0);" routerLink="/employee/emp-detail"
+                                        [queryParams]="{Id: element.employeeId}">
+                                        {{element.clientLastName}}</a><br>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="customerFirstName">
+                            <th mat-header-cell *matHeaderCellDef>Customer First Name</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block">
+                                    <a href="javascript:void(0);" routerLink="/employee/emp-detail"
+                                        [queryParams]="{Id: element.employeeId}">
+                                        {{element.clientFirstName}}</a><br>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="notes">
+                            <th mat-header-cell *matHeaderCellDef>Notes</th>
+                            <td mat-cell *matCellDef="let element">{{element.notes}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef>Date</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block">
+                                    {{element.startDate | date: 'dd/MM/yyyy'}}
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="units">
+                            <th mat-header-cell *matHeaderCellDef>Units</th>
+                            <td mat-cell *matCellDef="let element">{{element.total}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="empCardId">
+                            <th mat-header-cell *matHeaderCellDef>Employee Card Id</th>
+                            <td mat-cell *matCellDef="let element">{{element.empCardId}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="empRecordId">
+                            <th mat-header-cell *matHeaderCellDef>Employee Record Id</th>
+                            <td mat-cell *matCellDef="let element">{{element.empRecordId}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="startStopTime">
+                            <th mat-header-cell *matHeaderCellDef>Start/Stop Time</th>
+                            <td mat-cell *matCellDef="let element">{{element.startStopTime}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="custCardId">
+                            <th mat-header-cell *matHeaderCellDef>Customer Card Id</th>
+                            <td mat-cell *matCellDef="let element">{{element.customerCardId}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="custRecordId">
+                            <th mat-header-cell *matHeaderCellDef>Customer Record Id</th>
+                            <td mat-cell *matCellDef="let element">{{element.customerRecordId}}</td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lhs-sidebar></lhs-sidebar>
+</div>

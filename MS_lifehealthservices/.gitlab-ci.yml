@@ -1,0 +1,19 @@
+stages:
+  - build
+before_script:
+  - cd 
+  - 'C:\nuget2019\nuget restore "C:\GitLab-Runner\builds\50e68721\0\SDD\MS_lifehealthservices\LHSAPI.sln"'
+
+build-dev:
+ stage: build
+ tags:
+    - staging
+ script:
+  - cd "C:\Windows\System32\inetsrv"
+  - 'appcmd stop sites "lifehealthservices"'
+  - del C:\inetpub\wwwroot\lifehealthservices\*.* -recurse -force
+  - cd "C:\GitLab-Runner\builds\50e68721\0\SDD\MS_lifehealthservices\"
+  - 'dotnet publish LHSAPI.sln -c release -o "C:\GitLab-Runner\Projects_SDD\MS_lifehealthservices"'
+  - 'xcopy /H /S /y /c /q /k /e /f /i C:\GitLab-Runner\Projects_SDD\MS_lifehealthservices C:\inetpub\wwwroot\lifehealthservices\ '
+  - cd "C:\Windows\System32\inetsrv"
+  - 'appcmd start sites "lifehealthservices"'

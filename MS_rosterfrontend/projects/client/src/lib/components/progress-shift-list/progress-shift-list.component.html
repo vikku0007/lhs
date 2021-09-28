@@ -1,0 +1,97 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title page-tile-with-tabs">
+            <h1>Client Details
+                <lib-page-submenu></lib-page-submenu>
+            </h1>
+            <button id="openEditModalButton" hidden data-toggle="modal" data-target="#editCompliancePopup"></button>
+        </div>
+        <div class="page-inner-wrap">
+            <div class="page-sub-inner-wrap">
+                <div class="row">
+                   
+                    <div class="col-sm-12">
+                        <div class="psiw-rgt">
+                            <div class="psiw-bx-title">
+                                <h2>Shift List</h2>
+                               
+                            </div>
+                            <div class="psiw-bx-content mb-5">
+                                <div class="table-wrap table-wrap-inner">
+                                    <div class="table-content">
+                                        <div class="table-responsive">
+                                            <table mat-table [dataSource]="dataSourceRequired" class="center-content"
+                                                matSort>
+                                               
+                                                <ng-container matColumnDef="name">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name
+                                                    </th>
+                                                    <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                                                </ng-container>
+                                               
+                                                <ng-container matColumnDef="startdate">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date
+                                                    </th>
+                                                    <td mat-cell *matCellDef="let element">{{element.startDate| date: 'dd/MM/yyyy'}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="enddate">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>End Date
+                                                    </th>
+                                                    <td mat-cell *matCellDef="let element">{{element.endDate | date: 'dd/MM/yyyy'}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="starttime">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Time
+                                                    </th>
+                                                    <td mat-cell *matCellDef="let element">{{element.startTimeString}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="endtime">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>End Time
+                                                    </th>
+                                                    <td mat-cell *matCellDef="let element">{{element.endTimeString}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="duration">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Duration
+                                                    </th>
+                                                    <td mat-cell *matCellDef="let element">{{element.duration}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="action">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                                        Action</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        <a href=""  routerLink="/client/progress-notes-details" [queryParams]="{Id: ClientId,ShiftId:element.id,EmpId:element.employeeId}"
+                                                           >
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                width="16" height="16" viewBox="0 0 16 16">
+                                                                <path id="iconfinder_write_126582_1_"
+                                                                    data-name="iconfinder_write_126582 (1)"
+                                                                    d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z"
+                                                                    transform="translate(-1 -1)"
+                                                                    fill="#7b7b7b" />
+                                                            </svg>
+                                                        </a>
+                                                      </td>
+                                                </ng-container>
+                                                <tr mat-header-row *matHeaderRowDef="displayedColumnsRequired"></tr>
+                                                <tr mat-row *matRowDef="let row; columns: displayedColumnsRequired;">
+                                                </tr>
+                                            </table>
+                                            <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                                            </mat-paginator>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <lhs-sidebar></lhs-sidebar>
+</div>>
+
+
+

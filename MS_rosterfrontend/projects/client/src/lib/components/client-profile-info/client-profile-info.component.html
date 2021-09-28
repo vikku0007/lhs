@@ -1,0 +1,727 @@
+<html> 
+    <head> 
+         <style> 
+            body { 
+                text-align:center; 
+            } 
+            h1 { 
+                color:green; 
+            } 
+            @media print { 
+               .noprint { 
+                  visibility: hidden; 
+               } 
+            } 
+        </style> 
+    </head> 
+   
+</html> 
+<div class="section-title">
+    <h2>Client Profile</h2>
+    
+    <a (click)="ShowclientProfile()" href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#viewOnBoardingNotesPopup">
+        <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+            <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+        </svg>
+    </a>
+ </div>
+    <div class="btm-multi-opts">
+        <ul id="tabs" class="nav nav-tabs default-tabs" role="tablist">
+            <li class="nav-item">
+                <a id="tab-scheduled" href="#pane-shiftAvailability" class="nav-link active" data-toggle="tab" role="tab">Social Connections</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab-onshift" href="#pane-progressNotes" class="nav-link" data-toggle="tab" role="tab">Cultural Needs</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab-finished" href="#pane-incidentsReported" class="nav-link" data-toggle="tab" role="tab">Personal Preferences</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab-finished" href="#pane-rejectedShifts" class="nav-link" data-toggle="tab" role="tab">Living Arrangements</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab-finished" href="#pane-complaints" class="nav-link" data-toggle="tab" role="tab">Behaviours of concern <br> Safety Considerations</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab-finished" href="#pane-warningLetters" class="nav-link" data-toggle="tab" role="tab">Eating and Nutrition</a>
+            </li>
+            <li class="nav-item">
+                <a id="tab-finished" href="#pane-medicationErrors" class="nav-link" data-toggle="tab" role="tab">Any other information</a>
+            </li>
+        </ul>
+
+        <div id="content" class="tab-content mt-3" role="tablist">
+            <div id="pane-shiftAvailability" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-shiftAvailability">
+                <form [formGroup]="rFormsocial" (ngSubmit)="AddSocialconnectioninfo()">
+                <div class="collapse show p-0">
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Social Connection</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="socialconnection" matInput placeholder="(e.g. Requirements whilst out in the community, socialisation skills etc.)"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-action-sm">{{textsocial}}</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+    
+            <div id="pane-progressNotes" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-progressNotes">
+                <form [formGroup]="rFormcultureneed" (ngSubmit)="AddcultureNeedinfo()">
+                <div class="collapse show p-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Are there any cultural aspects of the person’s life that need to be considered?</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="cultureneed" matInput placeholder="How can we best support you?"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-action-sm">{{textculture}}</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+    
+            <div id="pane-incidentsReported" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-incidentsReported">
+                <form [formGroup]="rFormpreferences" (ngSubmit)="AddClientPreferenceinfo()">
+                <div class="collapse show p-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Interests, Likes & Dislikes:</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="interest" matInput placeholder="Enter Interests, Likes & Dislikes"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">What is important to the client?</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="clientimportance" matInput placeholder="Enter What is important to the client?"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Characteristics of the people who support you best?</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="charecteristics" matInput placeholder="Enter Characteristics of the people who support you best?"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Fears and anxieties</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="anxities" matInput placeholder="Enter Fears and anxieties"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-action-sm">{{textPersonalPreference}}</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            <div id="pane-rejectedShifts" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-rejectedShifts">
+                <form [formGroup]="rFormarrangement"  (ngSubmit)="AddLivingArrangementinfo()">
+                <div class="collapse show p-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Living Arrangements</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="livingarrangement" matInput placeholder="Living Arrangements"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-action-sm">{{textLivingArrangement}}</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+
+            <div id="pane-complaints" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-complaints">
+                <form [formGroup]="rFormbehaviourconcern" (ngSubmit)="AddClientBehaviourInfo()">
+                <div class="collapse show p-0">
+                    <div class="card-body">
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-8">
+                                <strong>Does the client have a history of falls?</strong><br>
+                                <p>If yes, provide details</p>
+                            </div>
+                            <div class="col-sm-12 col-md-4 text-right">
+                                <mat-radio-group aria-label="Select an option" formControlName="Ishistoryfalls" (change)="showhistoryfalls()">
+                                    <mat-radio-button value="1">Yes</mat-radio-button>
+                                    <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea" *ngIf="isShownhistorydescription">
+                                    <label class="field-label">Description</label>
+                                    <mat-form-field>
+                                        <textarea matInput placeholder="Write Description" formControlName="historydescription"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-8">
+                                <strong> Does the client have a history of absconding?</strong><br>
+                                <p>If yes, please indicate triggers for absconding in the box below</p>
+                            </div>
+                            <div class="col-sm-12 col-md-4 text-right">
+                                <mat-radio-group aria-label="Select an option" formControlName="Isabsconding" (change)="showabsconding()">
+                                    <mat-radio-button value="1">Yes</mat-radio-button>
+                                    <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea" *ngIf="isShownabscondingdescription">
+                                    <label class="field-label">Description</label>
+                                    <mat-form-field>
+                                        <textarea matInput placeholder="Write Description" formControlName="abscondingdescription"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-8">
+                                <strong> Does the client have any behaviours of concern?</strong><br>
+                                <p>Please tick where appropriate</p>
+                            </div>
+                            <div class="col-sm-12 col-md-4 text-right">
+                                <mat-radio-group aria-label="Select an option" formControlName="Isbehaviourconcern" (change)="showconcern()">
+                                    <mat-radio-button value="1">Yes</mat-radio-button>
+                                    <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Isselfinjury"></mat-checkbox>
+                                <strong> Self-InJury</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Iskicking"></mat-checkbox>
+                                <strong> Kicking</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Ispinching"></mat-checkbox>
+                                <strong> Pinching</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Isscreaming"></mat-checkbox>
+                                <strong> Screaming</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Ishitting"></mat-checkbox>
+                                <strong> Hitting</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Isbiting"></mat-checkbox>
+                                <strong> Biting</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Ispullinghair"></mat-checkbox>
+                                <strong> Pulling Hair</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Isthrowing"></mat-checkbox>
+                                <strong> Throwing Objects</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Isheadbutting"></mat-checkbox>
+                                <strong> Head-butting</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Isobsessive"></mat-checkbox>
+                                <strong> Obsessive Behaviours</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Isbanging"></mat-checkbox>
+                                <strong> Banging</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4">
+                                <mat-checkbox value="1" formControlName="Isother"></mat-checkbox>
+                                <strong> Other (Please detail below.....)</strong>
+                            </div>
+                        </div>
+                        <div class="row mb-1" *ngIf="isShownconcern">
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Please list any behaviour that may disrupt their day, have an impact on others or behaviours of concern.</label>
+                                    <mat-form-field>
+                                        <textarea matInput placeholder="Write Description"  formControlName="behaviourdetails"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-8">
+                                <strong> Do they have a Behaviour Support Plan (BSP)? If so please attach.</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-4 text-right">
+                                <mat-radio-group aria-label="Select an option"  formControlName="IsBSP"  (change)="showhistoryBSP()">
+                                    <mat-radio-button value="1">Yes</mat-radio-button>
+                                    <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-8">
+                                <strong> If yes, when was the last Behaviour Support Plan completed? </strong>
+                                <p>Our Support Coordinator or Behaviour Support Manager will be in contact with you</p>
+                            </div>
+                           
+                        </div>
+                        <div class="row mb-1" *ngIf="isShownBSP">
+                        <div class="col-sm-12 col-md-12 text-right">
+                            <div class="form-group">
+                              
+                                <mat-form-field>
+                                    <textarea matInput placeholder="Write Description"  formControlName="BSPdetails"></textarea>
+                                </mat-form-field> 
+                            </div>
+                        </div>
+                        </div>
+                        <button type="submit" class="btn btn-action-sm">{{textBehaviourofconcern}}</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            <div id="pane-warningLetters" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-warningLetters">
+                <form [formGroup]="rFormeatingnutritioninfo" (ngSubmit)="AddClienteatingNutritionInfo()">
+                <div class="collapse show p-0">
+                    <div class="card-body">
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-6">
+                                <mat-checkbox value="1" formControlName="Iseatsindependent" ></mat-checkbox>
+                                <strong> Eats independently</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-6" >
+                               
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Eating And Nutrition Details</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="eatingdetails" matInput placeholder="Enter Eating And Nutrition Details"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-6">
+                                <mat-checkbox value="1" formControlName="Ispreparingmeals" ></mat-checkbox>
+                                <strong> Requires assistance preparing meals</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-6" >
+                                <div class="form-group input-textarea">
+                                <label class="field-label">Meal Assistance Details</label>
+                                <mat-form-field>
+                                    <textarea formControlName="mealdetails" matInput placeholder="Enter Meal Assistance Details"></textarea>
+                                </mat-form-field> 
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-6">
+                                <mat-checkbox value="1" formControlName="Isutensils" ></mat-checkbox>
+                                <strong> Uses utensils</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-6" >
+                                 <div class="form-group input-textarea">
+                                    <label class="field-label">Utensil Details</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="utensilsdetails" matInput placeholder="Enter Utensil Details"></textarea>
+                                    </mat-form-field> 
+                             
+                            </div>
+                           </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-6">
+                                <mat-checkbox value="1" formControlName="Isfluids" ></mat-checkbox>
+                                <strong>Modified Fluids</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-6" >
+                                 <div class="form-group input-textarea">
+                                    <label class="field-label">Modified Food/ Fluid Details</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="foodfluiddetails" matInput placeholder="Enter Modified Food/ Fluid Details"></textarea>
+                                    </mat-form-field> 
+                             
+                            </div>
+                           </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-6">
+                                <mat-checkbox value="1" formControlName="Ismodifiedfood"></mat-checkbox>
+                                <strong> Modified foods</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-6">
+                                <mat-checkbox value="1" formControlName="IsPEG"></mat-checkbox>
+                                <strong> PEG (A feeding tube placed through the skin, into the stomach)</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="row mb-1" >
+                            <div class="col-sm-12 col-md-6">
+                                <mat-checkbox value="1" formControlName="Isswallowing"></mat-checkbox>
+                                <strong> Swallowing impairment</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-6">
+                                <mat-checkbox value="1" formControlName="Isdietplan" ></mat-checkbox>
+                                <strong> Diet plan (e.g. special dietary requirements) / restrictions</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-6" >
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Like/Dislikes, Allergies</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="likedislikedetails" matInput placeholder="Enter Like/Dislikes, Allergies"></textarea>
+                                    </mat-form-field> 
+                             
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-sm-12 col-md-6">
+                                <mat-checkbox value="1" formControlName="Ischokinghistory" ></mat-checkbox>
+                                <strong> Has a history of choking? (E.g. food, etc.)</strong>
+                            </div>
+                            <div class="col-sm-12 col-md-6" >
+                               
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Details</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="chokingdetails" matInput placeholder="Enter Details"></textarea>
+                                    </mat-form-field> 
+                             
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Food preferences and dietary requirements</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="foodpreferencedetails" matInput placeholder="Food preferences and dietary requirements"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-action-sm">{{textNutritionModel}}</button>
+                    
+                </div>
+            </div>
+        </form>
+            </div>
+            <div id="pane-medicationErrors" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-medicationErrors">
+                <form [formGroup]="rFormotherinfo" (ngSubmit)="AddClientOtherInfo()">
+                <div class="collapse show p-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Any other information</label>
+                                    <mat-form-field>
+                                        <textarea formControlName="otherinformation" matInput placeholder="(Personal finances, Shift parameters, time, details, addresses etc.)"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-action-sm">{{textotherinfo}}</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal popup-default" id="viewOnBoardingNotesPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+          <!-- Modal Header -->
+                <div class="modal-header">
+                    <!-- <h4 class="modal-title">Client Profile Details</h4> -->
+                       <button  printSectionId="print-section" ngxPrint type="submit" class="print" title="Print">
+                            <svg id="Layer_1" style="enable-background:new 0 0 30 30;" width="25" height="25" version="1.1" viewBox="0 0 30 30" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <path d="M26,9H4c-1.105,0-2,0.895-2,2v9c0,1.105,0.895,2,2,2h3v-8h16v8h3c1.105,0,2-0.895,2-2v-9C28,9.895,27.105,9,26,9z"/>
+                                <rect height="12" style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" width="16" x="7" y="14"/>
+                                <path d="M24,7H6V5c0-0.552,0.448-1,1-1h16c0.552,0,1,0.448,1,1V7z"/>
+                            </svg>
+                        </button>
+                     <button  type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                        </svg>  
+                    </button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body" id="print-section">
+                    <h5 class="default-title mb-3" style="text-align: center;">Client Profile Details</h5>
+                    <div class="section-box mb-3">
+                        <h5 class="default-title mb-3">Social Connections</h5>
+                        <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Social Connection</dt>
+                                <dd>{{socialconnectioninfo}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                    </div>
+
+                   <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Cultural Needs</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Are there any cultural aspects of the person’s life that need to be considered?</dt>
+                                <dd>{{cultureneedinfo}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+                
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Personal Preferences</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Interests, Likes & Dislikes</dt>
+                                <dd>{{interestinfo}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>What is important to the clients</dt>
+                                <dd>{{clientimportanceinfo}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Characteristics of the people who support you best?</dt>
+                                <dd>{{charecteristicsinfo}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Fear and Anxieties</dt>
+                                <dd>{{anxitiesinfo}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                    </div>
+                    <div class="section-box mb-3">
+                        <h5 class="default-title mb-3">Living Arrangements</h5>
+                        <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Living Arrangements</dt>
+                                <dd>{{livingarrangementinfo}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                    </div>
+                    <div class="section-box mb-3">
+                        <h5 class="default-title mb-3">Behaviours of concern safety Considerations</h5>
+                        <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Does the client have a history of falls?</dt>
+                                <dd>{{Ishistoryfalls}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Description</dt>
+                                <dd>{{historydescription}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Does the client have a history of absconding?</dt>
+                                <dd>{{Isabsconding}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Description</dt>
+                                <dd>{{abscondingdescription}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Does the client have any behaviours of concern?</dt>
+                                <dd>{{Isbehaviourconcern}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Please list any behaviour that may disrupt their day, have an impact on others or behaviours of concern.</dt>
+                                <dt>Self-InJury </dt>
+                                <dd>{{Isselfinjury}}</dd>
+                                
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Kicking</dt>
+                                <dd>{{Iskicking}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Pinching</dt>
+                                <dd>{{Ispinching}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Screaming</dt>
+                                <dd>{{Isscreaming}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Hiting</dt>
+                                <dd>{{Ishitting}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Biting</dt>
+                                <dd>{{Isbiting}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Pulling Hair</dt>
+                                <dd>{{Ispullinghair}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Throwing Objects</dt>
+                                <dd>{{Isthrowing}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Head Butting</dt>
+                                <dd>{{Isheadbutting}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Obsessive</dt>
+                                <dd>{{Isobsessive}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Banging</dt>
+                                <dd>{{Isbanging}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <dt>Other</dt>
+                                <dd>{{Isother}}</dd>
+                            </div>
+                           
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Do they have a Behaviour Support Plan (BSP)? </dt>
+                                <dd>{{IsBSP}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>when was the last Behaviour Support Plan completed?</dt>
+                                <dd>{{BSPdetails}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                    </div>
+                    <div class="section-box mb-3">
+                        <h5 class="default-title mb-3">Eating and Nutrition</h5>
+                        <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Eats independently</dt>
+                                <dd>{{Iseatsindependent}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Eating and Nutritional Details</dt>
+                                <dd>{{eatingdetails}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Requires assistance preparing meals</dt>
+                                <dd>{{Ispreparingmeals}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Meal Assistance Details</dt>
+                                <dd>{{mealdetails}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Uses Utensils</dt>
+                                <dd>{{Isutensils}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Utensils Details</dt>
+                                <dd>{{utensilsdetails}}</dd>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <dt>Modified Fluids</dt>
+                                <dd>{{Isfluids}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Modified Fluids Detais</dt>
+                                <dd>{{foodfluiddetails}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Modified Foods</dt>
+                                <dd>{{Ismodifiedfood}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt> PEG (A feeding tube placed through the skin, into the stomach)</dt>
+                                <dd>{{IsPEG}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Swallowing impairment</dt>
+                                <dd>{{Isswallowing}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Diet plan (e.g. special dietary requirements) / restrictions</dt>
+                                <dd>{{Isdietplan}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Likes/Dislikes Details</dt>
+                                <dd>{{likedislikedetails}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Has a history of choking? (E.g. food, etc.)</dt>
+                                <dd>{{Ischokinghistory}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Has a history of choking Details.</dt>
+                                <dd>{{chokingdetails}}</dd>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Food Preerences and dietary requirements</dt>
+                                <dd>{{foodpreferencedetails}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Any Other Information</h5>
+                    <dl class="default-list-wrap mb-0">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <dt>Any Other Information</dt>
+                                <dd>{{otherinformationinfo}}</dd>
+                            </div>
+                        </div>
+                    </dl>
+                    </div>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" printSectionId="print-section" ngxPrint  class="btn btn-action-sm">Print</button>
+                    <button type="button" class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>

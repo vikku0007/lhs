@@ -1,0 +1,81 @@
+<form [formGroup]="rFormProvider" (ngSubmit)="AddProviderInfo()">
+    <div class="card-header">
+        <h5 class="mb-0">Provider Details</h5>
+    </div>
+
+    <div class="collapse show p-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 ">
+                    <div class="form-group">
+                        <label class="field-label">Provider Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" readonly placeholder="Provider Name"   formControlName="ProviderName" value="" >
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Provider Registration ID</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" readonly placeholder="Provider Registration ID" value="" formControlName="RegistrationId">
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Provider ABN</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" readonly placeholder="Provider ABN" value="" formControlName="ProviderABN">
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Report Completed By</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Report Completed By" formControlName="ReportedBy" value="" >
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Outlet Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Outlet Name" value="" formControlName="OutletName">
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Registration Group</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Registration Group" value="" formControlName="RegistrationGroup">
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">State</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Select" formControlName="State">
+ 
+                                <mat-option *ngFor="let list of StateList" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+               
+            </div>
+            <button type="submit" class="btn btn-action-sm">{{textProvider}}</button>
+        </div>
+    </div>
+    </form>

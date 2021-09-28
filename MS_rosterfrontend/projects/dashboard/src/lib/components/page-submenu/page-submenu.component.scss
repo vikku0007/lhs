@@ -1,0 +1,30 @@
+@import "../../../../../../src/assets/scss/variable.scss";
+@import "../../../../../../src/assets/scss/mixin.scss";
+.page-submenu-wrap {
+    position:absolute;
+    top:-5px;
+    right:0;
+    @include default-transition;
+    a {
+        color:lighten($default-txtColor, 30%);
+        display:inline-block;
+        font-size:0.875rem;
+        font-weight:$fw-semiBold;
+        margin-left:5px;
+        padding:10px 15px;
+        border-radius:20px;
+        &:hover,
+        &.active {
+            background-color:$primary-color;
+            color:#ffffff;
+            text-decoration:none;
+        }
+    }
+    &.sticky {
+        position:fixed;
+        top:15px;
+        left:230px;
+        right:auto;
+        z-index:1000;
+    }
+}

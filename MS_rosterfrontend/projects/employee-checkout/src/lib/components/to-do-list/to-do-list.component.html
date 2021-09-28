@@ -1,0 +1,131 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>To Do List
+                <a href="javascript:void(0);" class="btn btn-action-xs back-link" [routerLink]="['/employee/logout', shiftId]">Back</a>
+            </h1>
+        </div>
+        <div class="page-inner-wrap">
+            <div class="page-sub-inner-wrap">
+                <form [formGroup]="rForm" #formDirective="ngForm" (ngSubmit)="AddToDoDetails()">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="field-label">Shift</label>
+                                <mat-form-field>
+                                    <mat-select (selectionChange)="SelectShift($event.value)" placeholder="Select Shift"
+                                        formControlName="TodoShift">
+                                        <mat-option *ngFor="let list of ShifttimeList" [value]="list.id">                                            
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="psiw-rgt mb-4" *ngIf="isShownAMShift">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-4">
+                                        <div class="form-group mb-0">
+                                            <label class="field-label">Date</label>
+                                            <mat-form-field>
+                                                <input matInput [matDatepicker]="amdnt" formControlName="TodoDate"
+                                                    placeholder="Select Date">
+                                                <mat-datepicker-toggle matSuffix [for]="amdnt"></mat-datepicker-toggle>
+                                                <mat-datepicker #amdnt></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4">
+                                        <div class="form-group">
+                                            <label class="field-label">Time</label>
+                                            <mat-form-field>
+                                                <mat-select placeholder="Select Time" formControlName="TodoTime">
+                                                    <mat-option *ngFor="let list of TimeDropdownList" [value]="list.id">
+                                                        {{list.text}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="psiw-bx-content">
+                                    <div class="table-wrap table-wrap-inner">
+                                        <div class="table-content">
+                                            <div class="table-responsive">
+                                                <table name="standardList" class="center-content" mat-table
+                                                    [dataSource]="dataSourceStandard" matSort>
+                                                    <ng-container matColumnDef="description">
+                                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description
+                                                        </th>
+                                                        <td mat-cell *matCellDef="let element">{{element.description}}</td>
+                                                    </ng-container>
+                                                    <ng-container matColumnDef="tick1">
+                                                        <th class="center-item" mat-header-cell *matHeaderCellDef
+                                                            mat-sort-header><label class="field-label">Tick All</label>
+                                                            &nbsp; &nbsp; &nbsp; &nbsp;
+                                                                <input type="checkbox" formControlName="selectbox"
+                                                                    (change)="toggleAllSelection()" [value]="0" /></th>
+                                                        <td class="center-item" mat-cell
+                                                            *matCellDef="let element;let i = index;">
+                                                            <input type="checkbox"
+                                                                id="{{removeSpace(element.description)}}Isinitials"
+                                                                (change)="getInitials(element,$event)"
+                                                                formControlName="Isinitials" /></td>
+                                                    </ng-container>
+                                                    <ng-container matColumnDef="initials">
+                                                        <th class="center-item" mat-header-cell *matHeaderCellDef
+                                                            mat-sort-header>Notes</th>
+                                                        <td class="center-item" mat-cell *matCellDef="let element">
+                                                            <div class="form-group form-group-sm">
+                                                                <mat-form-field appearance="fill">
+                                                                    <input matInput placeholder="Enter Notes" autofocus
+                                                                        autocomplete="off" formControlName="initials"
+                                                                        id="{{removeSpace(element.description)}}initials">
+                                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                                </mat-form-field>
+                                                            </div>
+                                                        </td>
+                                                    </ng-container>
+                                                    <!-- <ng-container matColumnDef="tick2">
+                                                    <th class="center-item" mat-header-cell *matHeaderCellDef mat-sort-header>Tick</th>
+                                                    <td class="center-item" mat-cell *matCellDef="let element ;let i = index;">
+                                                        <input type="checkbox"  id="{{removeSpace(element.description)}}Isreceived" formControlName="Isreceived"
+                                                        (change)="getreceives(element,$event)"
+                                                        /></td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="received">
+                                                    <th class="center-item" mat-header-cell *matHeaderCellDef mat-sort-header>Received</th>
+                                                    <td class="center-item" mat-cell *matCellDef="let element">
+                                                        <div class="form-group form-group-sm">
+                                                            <mat-form-field appearance="fill">
+                                                                <input matInput placeholder="Enter Value" value="" required  
+                                                                id="{{removeSpace(element.description)}}received" readonly>
+                                                                <mat-error>{{getErrorMessage}}</mat-error>
+                                                            </mat-form-field>
+                                                        </div>
+                                                    </td>
+                                                </ng-container> -->
+                                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsStandard"></tr>
+                                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsStandard;">
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-action-sm">Submit</button>
+                        </div>
+    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <lib-admin-sidebar></lib-admin-sidebar>
+</div>

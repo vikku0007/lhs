@@ -1,0 +1,414 @@
+<div class="page-wrapper" id="myDIV">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-inner-wrap">
+            <div class="row">
+                <div class="col-lg-9 col-md-12">
+                    <div class="counters-wrap mb-4">
+                        <ul class="default-tabs dt-no-accordian">
+                            <li class="nav-item" #btnShowAll><button (click)="showallshifthours()">Show All</button>
+                            </li>
+                            <li class="nav-item" #btnWeek><button (click)="showweekshifthours()">Week</button></li>
+                            <li class="nav-item active" #btnToday><button (click)="showShiftHourstoday()">Today</button>
+                            </li>
+                        </ul>
+
+                        <div class="row">
+                            <div class="col">
+                                <a data-toggle="modal" data-target="#myModal" (click)="getShiftsList('totalHours')">
+                                    <div class="counter-bx cb-blue">
+                                        <h5>Total Hours</h5>
+                                        <h2>{{shifthoursInfo.totalHours}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a data-toggle="modal" data-target="#myModal" (click)="getShiftsList('bookedHours')">
+                                    <div class="counter-bx cb-green">
+                                        <h5>Booked Hours</h5>
+                                        <h2>{{shifthoursInfo.bookedHours}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a data-toggle="modal" data-target="#myModal" (click)="getShiftsList('cancelShifts')">
+                                    <div class="counter-bx cb-yellow">
+                                        <h5>Rejected Shifts</h5>
+                                        <h2>{{shifthoursInfo.cancelShifts}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a data-toggle="modal" data-target="#myModal" (click)="getShiftsList('pendingShifts')">
+                                    <div class="counter-bx cb-red">
+                                        <h5>Pending Shifts</h5>
+                                        <h2>{{shifthoursInfo.pendingShifts}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- <div class="col">
+                                <div class="counter-bx cb-purple">
+                                    <h5>Unallocated Hours</h5>
+                                    <h2>{{shifthoursInfo.unallocatedHours}}</h2>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <section class="section-info-bx">
+                                <ul class="default-tabs dt-no-accordian">
+                                    <li class="nav-item" #btnMonthTiming><button
+                                            (click)="ShowMonthTiming()">Month</button></li>
+                                    <li class="nav-item" #btnWeekTiming><button (click)="ShowWeekTiming()">Week</button>
+                                    </li>
+                                    <li class="nav-item active" #btnTodayTiming><button
+                                            (click)="ShowTodayTiming()">Today</button></li>
+                                </ul>
+                                <div class="section-content mt-5">
+                                    <div class="row">
+                                        <div class="chart-wrapper" *ngIf="isShownChart">
+                                            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                                                [chartType]="doughnutChartType" [colors]="doughnutChartColors">
+                                            </canvas>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Staff on Time</h3>
+                                            <p>{{shifttimingInfo.shiftOnTime}}</p>
+                                            <br>
+                                            <h3>Staff Late</h3>
+                                            <p>{{shifttimingInfo.shiftLate}}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="staff-wrap">
+                                <div id="content" class="tab-content" role="tablist">
+                                    <div id="pane-scheduled" class="card tab-pane fade show active" role="tabpanel"
+                                        aria-labelledby="tab-scheduled">
+
+                                        <!-- Note: New place of `data-parent` -->
+                                        <div class="collapse show">
+                                            <div class="card-body">
+                                                <div class="alert-item-wrap">
+                                                    <div class="staff-bx">
+                                                        <section class="section-info-bx">
+                                                            <div class="section-title">
+                                                                <h2>
+                                                                    Alerts -
+                                                                    {{notificationcount==0?0:notificationcount}}
+                                                                </h2>
+                                                            </div>
+
+                                                            <div class="section-content pb-4">
+                                                                <div class="alert-item-wrap">
+                                                                    <div class="alert-item"
+                                                                        *ngFor="let list of notificationlist">
+                                                                        <span
+                                                                            class="blue-circle">{{list.createdDate| date: 'dd/MM/yyyy'}}</span>
+                                                                        <p>{{list.employeeName}}</p>
+                                                                        <p>{{list.description}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <a routerLink="/admin/dashboard/notification"
+                                                                    class="detail-link">Show More</a>
+                                                                <!-- <a href="javascript:void(0)" (click)="ClearAll()" class="detail-link">Clear All</a> -->
+                                                            </div>
+
+                                                        </section>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <lib-client-funding-list>
+                    </lib-client-funding-list>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <div class="staff-wrap">
+                        <h2>Today's Staff</h2>
+                        <ul id="tabs" class="nav nav-tabs default-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a id="tab-schedule" (click)="getScheduledShiftDetails()" href="#pane-schedule"
+                                    class="nav-link active" data-toggle="tab" role="tab">Scheduled</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="tab-onshift" (click)="getOnShiftDetails()" href="#pane-onshift" class="nav-link"
+                                    data-toggle="tab" role="tab">On Shift</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="tab-finished" (click)="getFinishedShiftDetails()" href="#pane-finished"
+                                    class="nav-link" data-toggle="tab" role="tab">Finished</a>
+                            </li>
+                        </ul>
+
+                        <div id="content" class="tab-content" role="tablist">
+                            <!-- <div id="pane-scheduled" class="card tab-pane fade show active" role="tabpanel"
+                                aria-labelledby="tab-scheduled">
+                                <div class="card-header" role="tab" id="heading-scheduled">
+                                    <h5 class="mb-0">{{schedulecount==0?0:schedulecount}} Employee</h5>
+                                </div>
+                                <div class="collapse show">
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>
+                                                <div class="staff-bx" *ngFor="let list of scheduledlist">
+                                                    <h3>{{list.employeeName}}</h3>
+                                                    <h6>{{list.location}}</h6>
+                                                    <div class="clearfix">
+                                                        <span
+                                                            class="float-left badge badge-pill badge-light">{{list.startTimeString}}
+                                                            -{{list.endTimeString}}</span>
+                                                        <br />
+                                                        <span class="float-left badge badge-pill badge-light">
+                                                            {{list.startDate| date: 'dd/MM/yyyy'}} to
+                                                            {{list.endDate| date: 'dd/MM/yyyy'}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div id="pane-schedule" class="card tab-pane fade show active" role="tabpanel"
+                                aria-labelledby="tab-schedule">
+                                <div class="card-header" role="tab" id="heading-onshift">
+                                    <h5 class="mb-0">{{schedulecount==0?0:schedulecount}} Employee</h5>
+                                </div>
+                                <div class="collapse show">
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>
+                                                <div class="staff-bx" *ngFor="let schedule of scheduledlist">
+                                                    <h3>{{schedule.employeeName}}</h3>
+                                                    <h6>{{schedule.location}}</h6>
+                                                    <div class="clearfix">
+                                                        <span
+                                                            class="float-left badge badge-pill badge-light">{{schedule.startTimeString}}
+                                                            -{{schedule.endTimeString}}</span>
+                                                        <br /><br /> <span
+                                                            class="float-left badge badge-pill badge-light">{{schedule.startDate| date: 'dd/MM/yyyy'}}
+                                                            to {{schedule.endDate| date: 'dd/MM/yyyy'}}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="pane-onshift" class="card tab-pane fade" role="tabpanel"
+                                aria-labelledby="tab-onshift">
+                                <div class="card-header" role="tab" id="heading-onshift">
+                                    <h5 class="mb-0">{{onshitcount==0?0:onshitcount}} Employee</h5>
+                                </div>
+                                <div class="collapse show">
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>
+                                                <div class="staff-bx" *ngFor="let onlist of OnShiftlist">
+                                                    <h3>{{onlist.employeeName}}</h3>
+                                                    <h6>{{onlist.location}}</h6>
+                                                    <div class="clearfix">
+                                                        <span
+                                                            class="float-left badge badge-pill badge-light">{{onlist.startTimeString}}
+                                                            -{{onlist.endTimeString}}</span>
+                                                        <br /><br /> <span
+                                                            class="float-left badge badge-pill badge-light">{{onlist.startDate| date: 'dd/MM/yyyy'}}
+                                                            to {{onlist.endDate| date: 'dd/MM/yyyy'}}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="pane-finished" class="card tab-pane fade" role="tabpanel"
+                                aria-labelledby="tab-finished">
+                                <div class="card-header" role="tab" id="heading-finished">
+                                    <h5 class="mb-0">{{finishcount==0?0:finishcount}} Employee</h5>
+                                </div>
+                                <div class="collapse show">
+                                    <div class="card-body">
+                                        <ul>
+                                            <li>
+                                                <div class="staff-bx" *ngFor="let finishlist of Finishedlist">
+                                                    <h3>{{finishlist.employeeName}}</h3>
+                                                    <h6>{{finishlist.location}}</h6>
+                                                    <div class="clearfix">
+                                                        <span
+                                                            class="float-left badge badge-pill badge-light">{{finishlist.startTimeString}}
+                                                            -{{finishlist.endTimeString}}</span>
+                                                        <br /> <span
+                                                            class="float-left badge badge-pill badge-light">{{finishlist.startDate| date: 'dd/MM/yyyy'}}
+                                                            to {{finishlist.endDate| date: 'dd/MM/yyyy'}}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <lhs-sidebar></lhs-sidebar>
+</div>
+
+<div class="modal popup-default popup-lg" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Employee Shift List</h4>
+                    <button type="button" class="close" data-dismiss="modal" #btnCancel>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="filter-wrap" *ngIf="defaultSelection=='all'">
+                        <form [formGroup]="rForm" (ngSubmit)="getShiftsList(tempSelection)">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Start Date</label>
+                                        <mat-form-field>
+                                            <input matInput autofocus autocomplete="off" [matDatepicker]="startDate"
+                                                placeholder="Select Start Date" formControlName="startDate">
+                                            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                                            <mat-datepicker #startDate></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">End Date</label>
+                                        <mat-form-field>
+                                            <input matInput autofocus autocomplete="off" [matDatepicker]="endDate"
+                                                placeholder="Select End Date" formControlName="endDate">
+                                            <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                                            <mat-datepicker #endDate></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12" *ngIf="tempSelection=='totalHours'">
+                                    <div class="form-group">
+                                        <label class="field-label">Status</label>
+                                        <mat-form-field>
+                                            <mat-select placeholder="Select Status" formControlName="shiftStatus">
+                                                <mat-option *ngFor="let list of shiftStatusList" [value]="list.id">
+                                                    {{list.codeDescription}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-action-sm">Search</button>
+                            &nbsp; <button type="button" (click)="ClearFilter()"
+                                class="btn btn-action-sm">Clear</button>
+                        </form>
+                    </div>
+                    <div class="table-content">
+                        <div class="table-responsive table-date-min-width">
+                            <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                                <ng-container matColumnDef="description">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.description}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>StartDate - EndDate</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.startDate |  date :'dd/MM/yyyy'}}
+                                        {{element.endDate |  date :'dd/MM/yyyy'}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="time">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>StartTime - EndTime</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.startTimeString}} - {{element.endTimeString}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="duration">
+                                    <th mat-header-cell *matHeaderCellDef>Duration</th>
+                                    <td mat-cell *matCellDef="let element">{{element.duration}} Hrs</td>
+                                </ng-container>
+                                <ng-container matColumnDef="client">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Clients</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngFor="let item of element.clientShiftInfoViewModel">
+                                            <p>{{item.name}}</p>
+
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="staff">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employees</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngFor="let item of element.employeeShiftInfoViewModel">
+                                            <p>{{item.name}}</p>
+
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="location">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+                                    <td mat-cell *matCellDef="let element">{{element.locationName}}</td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="status">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                                    <td mat-cell *matCellDef="let element">{{element.statusName}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="action">
+                                    <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a (click)="cancelModal()" routerLink="/roster/view-shift"
+                                            [queryParams]="{Id: element.id}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="21.333" height="16"
+                                                viewBox="0 0 21.333 16">
+                                                <path id="iconfinder_view_126581_2_"
+                                                    data-name="iconfinder_view_126581 (2)"
+                                                    d="M10.667,7.333A2.668,2.668,0,0,1,8,10a2.667,2.667,0,1,0,2.667-2.667Zm0-5.333C5.2,2,0,8.2,0,10s5.2,8,10.667,8,10.667-6.2,10.667-8S16.136,2,10.667,2Zm0,13.333A5.333,5.333,0,1,1,16,10,5.334,5.334,0,0,1,10.667,15.333Z"
+                                                    transform="translate(0 -2)" fill="#7b7b7b" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumnsRequired"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumnsRequired;"></tr>
+                            </table>
+                            <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+                                (page)="PageIndexEvent($event)">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

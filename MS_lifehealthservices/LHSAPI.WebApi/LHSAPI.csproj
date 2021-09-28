@@ -1,0 +1,185 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\ClientDocuments\01afcb2b-b840-4387-8cbc-c797404ae6ae.xlsx" />
+    <None Include="wwwroot\ClientDocuments\0d8e0b89-bc0a-4f97-bb66-4e61bfa23d24.pdf" />
+    <None Include="wwwroot\ClientDocuments\16300089-fafc-4e44-9abd-af69c9c6ddae.pdf" />
+    <None Include="wwwroot\ClientDocuments\17ad25e9-b67e-48a0-9c83-c546f43a27ab.xlsx" />
+    <None Include="wwwroot\ClientDocuments\1c6b6cea-53f9-420a-aa13-4df26da790b5.pdf" />
+    <None Include="wwwroot\ClientDocuments\1ff30919-d164-4f98-aa6c-77339acaf1dc.pdf" />
+    <None Include="wwwroot\ClientDocuments\244319aa-a052-41f7-8b4d-132b7b914aa4.pdf" />
+    <None Include="wwwroot\ClientDocuments\26e97ce1-1251-48ab-a530-4b85acbf231b.pdf" />
+    <None Include="wwwroot\ClientDocuments\27030976-c3db-464f-a5d7-1543566f133d.pdf" />
+    <None Include="wwwroot\ClientDocuments\28661a8c-91f1-46ce-adfd-2ef72024c067.pdf" />
+    <None Include="wwwroot\ClientDocuments\39f05cf4-549d-4345-ab0d-274d24ee0675.pdf" />
+    <None Include="wwwroot\ClientDocuments\3dcfe86d-a2c9-4296-b27c-f9687e2739f1.docx" />
+    <None Include="wwwroot\ClientDocuments\4088dec4-d922-40c9-b79d-84892fa6aeb4.xlsx" />
+    <None Include="wwwroot\ClientDocuments\42cfe9c2-0c76-4d76-bbea-b2ba555d8b02.pdf" />
+    <None Include="wwwroot\ClientDocuments\4350605d-95f0-466a-b39f-59d957b43c6c.xlsx" />
+    <None Include="wwwroot\ClientDocuments\4834b175-8aae-4f06-aedf-341c4c4f4b8e.pdf" />
+    <None Include="wwwroot\ClientDocuments\495fc237-ce5f-46ac-9068-0771527c40aa.xlsx" />
+    <None Include="wwwroot\ClientDocuments\4c0f4a13-7e69-491c-8225-61292b79141b.pdf" />
+    <None Include="wwwroot\ClientDocuments\4e0ba32e-ab13-44c8-996e-5d99c45d6c13.pdf" />
+    <None Include="wwwroot\ClientDocuments\55034804-a682-4585-8d84-683d1a08ad92.pdf" />
+    <None Include="wwwroot\ClientDocuments\57133cfb-daed-4c98-80cb-a04981885817.pdf" />
+    <None Include="wwwroot\ClientDocuments\575f27f8-04e4-4769-9616-2ee9e9f342a0.pdf" />
+    <None Include="wwwroot\ClientDocuments\68d5f9c8-39b4-46c8-9eca-fae1fbf240b4.xlsx" />
+    <None Include="wwwroot\ClientDocuments\6bb4d7a4-9aba-4854-b471-b4f64442d5c4.doc" />
+    <None Include="wwwroot\ClientDocuments\6d70e6ed-c6d4-4aeb-a7ec-bf15bbf54225.docx" />
+    <None Include="wwwroot\ClientDocuments\6e340e8e-18a7-4517-af6d-1c56fdf81532.xlsx" />
+    <None Include="wwwroot\ClientDocuments\71d34cc3-3228-4b8d-803c-6e909ad394c1.xlsx" />
+    <None Include="wwwroot\ClientDocuments\95835ffb-4c1b-4216-a6c8-edf0deeaa432.pdf" />
+    <None Include="wwwroot\ClientDocuments\960cc9d9-663f-494e-8ee0-62bbf4711132.docx" />
+    <None Include="wwwroot\ClientDocuments\9d46d00c-dbec-4c2e-a5c1-4a4af1d0de8e.docx" />
+    <None Include="wwwroot\ClientDocuments\9f742398-0ba2-4691-b49d-0753e399d48d.xlsx" />
+    <None Include="wwwroot\ClientDocuments\a0f98c0d-b94a-4cb1-a934-d8a1fb98d108.xlsx" />
+    <None Include="wwwroot\ClientDocuments\a369ab5a-4cc0-4c9b-8f1e-05de728ebe3f.pdf" />
+    <None Include="wwwroot\ClientDocuments\b03a8161-dbc6-4051-8ba8-cfe10a478b0e.pdf" />
+    <None Include="wwwroot\ClientDocuments\b097e764-f415-4ed7-9c42-30e73addcad5.docx" />
+    <None Include="wwwroot\ClientDocuments\b74a4a3f-b4d2-472d-bac3-4f7d347f948b.docx" />
+    <None Include="wwwroot\ClientDocuments\bb9c9e06-69f4-469d-a25e-8c54f6762019.docx" />
+    <None Include="wwwroot\ClientDocuments\bfbc7179-7271-460d-9ffe-414a7b476abc.pdf" />
+    <None Include="wwwroot\ClientDocuments\c3469fe7-cc48-4080-9473-f05ea35f3920.xlsx" />
+    <None Include="wwwroot\ClientDocuments\ca9fbf5d-dd37-426c-9e94-47a015091aed.xlsx" />
+    <None Include="wwwroot\ClientDocuments\cf66f5ff-d6c5-4f0a-929c-684c87294251.docx" />
+    <None Include="wwwroot\ClientDocuments\d81fa9d9-b730-45b6-8932-c3a12b50602f.xlsx" />
+    <None Include="wwwroot\ClientDocuments\da2ca81b-7bd5-4a3c-830c-0327c7e12510.pdf" />
+    <None Include="wwwroot\ClientDocuments\de929b2a-9339-4a9b-83a5-b1eff87e19e2.docx" />
+    <None Include="wwwroot\ClientDocuments\e0214018-d1fd-4a26-b189-4eddf3d2fd37.pdf" />
+    <None Include="wwwroot\ClientDocuments\e5261989-b48b-424e-a00f-ba9c76c8ce55.pdf" />
+    <None Include="wwwroot\ClientDocuments\e5fb0925-3b71-430c-82db-1a8002c3dda5.doc" />
+    <None Include="wwwroot\ClientDocuments\ede2fd43-2c3c-42fe-9ef7-2b8d2b235d1a.docx" />
+    <None Include="wwwroot\ClientDocuments\fbcda533-78f1-4daf-a443-85fe7e6ab848.xlsx" />
+    <None Include="wwwroot\ClientDocuments\fde2a976-0ddd-4558-ae5c-5cf66890d8c6.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\006249e0-a335-404b-9a29-358ff2314189.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\010cf7d2-6a9e-432e-af1d-54a80e60d46c.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\0d20ab60-44b2-4cec-9c40-9b793406e16b.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\0e4d8672-139a-4c39-a326-9f2b10909960.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\15fd8f12-855b-46dc-82c2-350806adaeb5.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\19364bf7-bc1c-4c32-895e-f22e5c7e3c10.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\19911549-35eb-4913-bd54-b48698a9bbfb.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\1a315380-90e2-4671-a593-f869c300ca86.docx" />
+    <None Include="wwwroot\EmployeeDocuments\1c027db3-790a-4b0b-a744-5879497281ab.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\1d0029b0-feeb-44b8-a32b-aaf3b5c54c25.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\1de56d5a-1200-43d6-af5a-26b60444521a.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\205e9bef-9161-43d6-8aff-88a70d4ea0d2.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\26510bf5-9ba2-4ce4-9b43-5af9d5e1f8b6.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\27ab8461-cba4-408e-b623-e5bd6694aa2b.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\31a5aed6-2d18-40e3-aa37-81e2ff8ef0ec.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\342e0027-8166-42b2-8a16-8eaf8a68a996.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\35459996-c638-4e42-b50d-fa343c3669ed.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\35d82a9d-43f2-4350-9bae-22112813ecad.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\36828c4c-0227-4bfa-88b2-e700b25cd40f.docx" />
+    <None Include="wwwroot\EmployeeDocuments\38fab836-64c8-4b26-b1d2-01bc97a8bec6.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\3f0e6864-2cac-4dad-8b72-7c45e24d0501.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\4200fb7f-56b8-4bdb-9582-efbca2166408.docx" />
+    <None Include="wwwroot\EmployeeDocuments\45179e00-f96e-4a0b-b8d2-8e2bec60483f.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\4eec26e4-3e52-47eb-9984-dce8cf13ba36.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\567da6e7-7abf-441c-963f-86a053bab157.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\568c655f-7340-4e24-a3d1-171dd567a41a.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\56b51f50-4225-4968-9420-751d6f18c624.docx" />
+    <None Include="wwwroot\EmployeeDocuments\572716c0-f7c8-4d32-b381-6268f3b509f7.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\583f40fc-1439-4b7e-a3ff-82afc6ce97cc.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\5c1cf68f-ce9e-4824-88c4-e2e3c2e4f7fa.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\5c9033ac-7eb1-47e6-9fb8-a5ee77ce1535.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\6755a316-e474-458e-a7e5-90cab6c6af37.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\68597c0f-fd44-42e1-a125-0fa806c628f2.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\6a17338a-f19e-4607-adde-b2d2e988f6a2.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\6c19ae53-de20-4258-ada2-729d1faca70f.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\6d835ce8-55f0-4392-808f-a4b50ad11f31.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\6d9e3404-d229-44af-974c-4c01d9222cb8.docx" />
+    <None Include="wwwroot\EmployeeDocuments\7279b832-1e3b-4f9d-8973-7053e762ddae.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\7996589a-bb79-4c29-bf8b-14f5c4ca8768.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\7c68ab46-e837-4247-b319-a4d48d19ddaa.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\7d151d45-ec51-4a25-b058-5900ab41f759.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\7d2226d8-b9a8-4e3b-8205-f013be29bca6.scss" />
+    <None Include="wwwroot\EmployeeDocuments\816344a0-747c-4109-99dc-299315402b9a.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\81e266a6-2620-4932-8602-a08526941f00.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\83e7ad53-3387-4b33-8a9b-5d220ac7e281.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\844ba5f4-9b47-4609-b533-f23451a99397.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\85d02ea5-0348-43f2-81ba-e5432a470d04.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\8b2bf5d8-f35f-4ce3-a461-1e584d4a5a34.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\8e031d41-76ac-497a-91dd-b782a18337d6.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\963b8e54-1ec3-4fb4-a5a2-3567a461f7e1.scss" />
+    <None Include="wwwroot\EmployeeDocuments\968c0e72-866e-4e0f-a1e7-1e5cae333f33.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\970ce25a-58a7-4ab1-9371-4503066f9d3b.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\9ab9cdd6-dbc6-4143-a3e6-87d723ee1613.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\9b278b45-ad1d-4fb4-aab3-a59598c5fb0d.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\a62ac93d-fec5-4142-8645-00de9a2ffdbe.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\a9fb287b-e981-4087-ba4d-56bc9381c17e.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\ac69b185-7763-4665-b9ed-a86070a0ed71.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\b0314d38-bf8a-48c5-9658-e4895df58184.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\b6103973-ac49-4bb8-928d-998a10e2df8a.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\b6b0c16a-b941-4702-a3d6-83f60e72099c.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\c5a8d7df-b017-45cd-999b-eb3400ff32ff.doc" />
+    <None Include="wwwroot\EmployeeDocuments\c5b18a83-d1ed-4ce1-8274-925be56c6c5c.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\c655484b-7a8f-4d7b-99e3-ea5e78c91839.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\c72e4688-4ef4-4ecc-a880-e94444be65f5.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\c8c2c008-8686-4fc6-83ba-3ca7f8bae361.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\caa3e516-46bf-4b5b-be49-acb4d80b7a2a.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\cc20160e-8a41-40d5-bc08-64ec3f201417.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\cd312bfd-5f2b-412b-9c2e-f04ccadd6027.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\ce41e0f1-fcc1-4f76-aff3-bfcd63346acf.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\cf8f384b-d2cc-4584-8121-d90980e9e168.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\d1d00b3d-e8f4-4f86-9354-436adac720e7.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\d2215f5f-feb4-4fb3-a599-0fa4dfb14605.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\d7cc1e24-572e-4af2-b664-d833146276a0.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\e9af0469-2fb0-4983-a6ec-82db660ec3bc.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\eac36a58-a8c4-4e5f-a9c0-e3e74d573216.docx" />
+    <None Include="wwwroot\EmployeeDocuments\f4850caa-a2c0-4815-baaa-5a95622ad453.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\f52a69f4-3574-48ab-816c-21bb1e099d9a.xlsx" />
+    <None Include="wwwroot\EmployeeDocuments\f7b64726-612f-4feb-8c40-3d33d471a8e4.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\f96d6706-0d11-4e96-947b-b1eb1e911505.pdf" />
+    <None Include="wwwroot\EmployeeDocuments\fe1ff120-06a5-4ed2-8762-ae21408cf77d.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ASystems.DirectoryServicesProviders" Version="1.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0-preview1.19506.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="TestBase-Mvc" Version="4.1.4.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LHSAPI.Application\LHSAPI.Application.csproj" />
+    <ProjectReference Include="..\LHSAPI.Domain\LHSAPI.Domain.csproj" />
+    <ProjectReference Include="..\LHSAPI.Infrastucture\LHSAPI.Infrastucture.csproj" />
+    <ProjectReference Include="..\LHSAPI.Persistence\LHSAPI.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="LHSAPI.Infrastucture">
+      <HintPath>..\LHSAPI.Infrastucture\bin\Debug\netcoreapp3.1\LHSAPI.Infrastucture.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\AdminDocuments\" />
+  </ItemGroup>
+
+
+</Project>

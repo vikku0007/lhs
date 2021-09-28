@@ -1,0 +1,1115 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Accident/Incident
+                <a href="javascript:void(0);" class="btn btn-action-xs back-link" [routerLink]="['/employee/logout', shiftId]">Back</a>
+                
+            </h1>
+            
+        </div>
+        <div class="row">
+        <div class="col-sm-12">
+        <a href="javascript:void(0);" (click)="ShowAccidentDetails()" class="btn btn-action-xs popup-link" 
+                data-toggle="modal" data-target="#viewAccidentIncidentPopup">View</a>
+        </div>
+        </div>
+        <div class="page-inner-wrap">
+            <div class="psiw-rgt">
+                <div class="vertical-tab-wrap">
+                    
+                    <ul id="tabs" class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a id="tab-scheduled" href="#provider-details" class="nav-link active" data-toggle="tab"
+                                role="tab">Provider Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-onshift" href="#primary-contact-person" class="nav-link" data-toggle="tab"
+                                role="tab">Primary Contact Person</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-finished" href="#incident-category" class="nav-link" data-toggle="tab"
+                                role="tab">Incident Category</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-finished" href="#incident-details" class="nav-link" data-toggle="tab"
+                                role="tab">Incident Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-finished" href="#impacted-person" class="nav-link" data-toggle="tab"
+                                role="tab">Impacted Person</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-finished" href="#subject-of-allegation" class="nav-link" data-toggle="tab"
+                                role="tab">Subject of Allegation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-finished" href="#immediate-action-taken" class="nav-link" data-toggle="tab"
+                                role="tab">Immediate Action Taken</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-finished" href="#risk-assessment" class="nav-link" data-toggle="tab"
+                                role="tab">Risk Assessment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-finished" href="#attachments" class="nav-link" data-toggle="tab"
+                                role="tab">Attachments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-finished" href="#declaration" class="nav-link" data-toggle="tab"
+                                role="tab">Declaration</a>
+                        </li>
+                    </ul>
+
+                    <div id="content" class="tab-content" role="tablist">
+                        <div id="provider-details" class="card tab-pane fade show active" role="tabpanel"
+                            aria-labelledby="tab-scheduled">
+                            <lib-incident-providerdetail></lib-incident-providerdetail>
+                        </div>
+
+                        <div id="primary-contact-person" class="card tab-pane fade" role="tabpanel"
+                            aria-labelledby="tab-onshift">
+                           <lib-incident-contactperson></lib-incident-contactperson>
+                        </div>
+
+                        <div id="incident-category" class="card tab-pane fade" role="tabpanel"
+                            aria-labelledby="tab-finished">
+                            <lib-incident-category></lib-incident-category>
+                        </div>
+                        <div id="incident-details" class="card tab-pane fade" role="tabpanel"
+                            aria-labelledby="tab-finished">
+                           <lib-incident-details></lib-incident-details>
+                        </div>
+                        <div id="impacted-person" class="card tab-pane fade" role="tabpanel"
+                            aria-labelledby="tab-finished">
+                            <lib-incident-impactedperson></lib-incident-impactedperson>
+                        </div>
+                        <div id="subject-of-allegation" class="card tab-pane fade" role="tabpanel"
+                            aria-labelledby="tab-finished">
+                            <lib-incident-subjectallegation></lib-incident-subjectallegation>
+                            <!-- <div class="card-header" role="tab" id="heading-finished">
+                                <h5 class="mb-0">Subject of Allegation</h5>
+                            </div>
+                            <div class="collapse show p-0">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">If the incident is a death of a person with
+                                                    disability, was the death anticipated?</label>
+                                                <mat-radio-group aria-label="Select an option">
+                                                    <mat-radio-button value="1">Yes</mat-radio-button>
+                                                    <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                                    <mat-radio-button value="3">Unknown</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h6>Subject of Allegation - Worker</h6>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Title</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Title" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">First Name</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter First Name" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Last Name</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Last Name" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Position at time of allegation</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Last Name" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Gender</label>
+                                                <mat-form-field>
+                                                    <mat-select placeholder="Gender">
+                                                        <mat-option [value]="1">Male</mat-option>
+                                                        <mat-option [value]="2">Female</mat-option>
+                                                        <mat-option [value]="3">Indeterminate</mat-option>
+                                                        <mat-option [value]="4">Intersex</mat-option>
+                                                        <mat-option [value]="5">Unspeccfied</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Date of Birth</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter DOB" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Phone Number</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Phone Number" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Email</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Email" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h6>Subject of Allegation - Person with disability</h6>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Title</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Title" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">First Name</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter First Name" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Last Name</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Last Name" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">NDIS Participant Number</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Last Name" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Gender</label>
+                                                <mat-form-field>
+                                                    <mat-select placeholder="Gender">
+                                                        <mat-option [value]="1">Male</mat-option>
+                                                        <mat-option [value]="2">Female</mat-option>
+                                                        <mat-option [value]="3">Indeterminate</mat-option>
+                                                        <mat-option [value]="4">Intersex</mat-option>
+                                                        <mat-option [value]="5">Unspeccfied</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Date of Birth</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter DOB" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Primary Disability</label>
+                                                <mat-form-field>
+                                                    <mat-select placeholder="Gender">
+                                                        <mat-option [value]="1">Autism</mat-option>
+                                                        <mat-option [value]="2">Intellectual Disability</mat-option>
+                                                        <mat-option [value]="3">Cerebral Palsy</mat-option>
+                                                        <mat-option [value]="4">Psychosocial Disability</mat-option>
+                                                        <mat-option [value]="5">Other Neurological</mat-option>
+                                                        <mat-option [value]="6">Other Physical</mat-option>
+                                                        <mat-option [value]="7">Acquired Brain Injury</mat-option>
+                                                        <mat-option [value]="8">Visual Impairment</mat-option>
+                                                        <mat-option [value]="9">Hearing Impairment</mat-option>
+                                                        <mat-option [value]="10">Other Sensory/Speech</mat-option>
+                                                        <mat-option [value]="11">Multiple Sclerosis</mat-option>
+                                                        <mat-option [value]="12">Stroke</mat-option>
+                                                        <mat-option [value]="13">Spinal Cord Injury</mat-option>
+                                                        <mat-option [value]="14">Other</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Other Disability</label>
+                                                <mat-form-field>
+                                                    <mat-select placeholder="Gender">
+                                                        <mat-option [value]="1">Autism</mat-option>
+                                                        <mat-option [value]="2">Intellectual Disability</mat-option>
+                                                        <mat-option [value]="3">Cerebral Palsy</mat-option>
+                                                        <mat-option [value]="4">Psychosocial Disability</mat-option>
+                                                        <mat-option [value]="5">Other Neurological</mat-option>
+                                                        <mat-option [value]="6">Other Physical</mat-option>
+                                                        <mat-option [value]="7">Acquired Brain Injury</mat-option>
+                                                        <mat-option [value]="8">Visual Impairment</mat-option>
+                                                        <mat-option [value]="9">Hearing Impairment</mat-option>
+                                                        <mat-option [value]="10">Other Sensory/Speech</mat-option>
+                                                        <mat-option [value]="11">Multiple Sclerosis</mat-option>
+                                                        <mat-option [value]="12">Stroke</mat-option>
+                                                        <mat-option [value]="13">Spinal Cord Injury</mat-option>
+                                                        <mat-option [value]="14">Other</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Does the person have any behaviours of
+                                                    concern?</label>
+                                                <mat-form-field>
+                                                    <mat-select placeholder="Gender">
+                                                        <mat-option [value]="1">Food-Related</mat-option>
+                                                        <mat-option [value]="2">Eating non-food items</mat-option>
+                                                        <mat-option [value]="3">Property Damage</mat-option>
+                                                        <mat-option [value]="4">Physical Aggression</mat-option>
+                                                        <mat-option [value]="5">Verbal Aggeression</mat-option>
+                                                        <mat-option [value]="6">Harm to Self</mat-option>
+                                                        <mat-option [value]="7">Unintensional Self-Risk</mat-option>
+                                                        <mat-option [value]="8">Leaving Premises w/out support
+                                                        </mat-option>
+                                                        <mat-option [value]="9">Refusal to do things</mat-option>
+                                                        <mat-option [value]="10">Repetitive or Unusual Habits
+                                                        </mat-option>
+                                                        <mat-option [value]="11">Offending Behaviour</mat-option>
+                                                        <mat-option [value]="12">Sexually inappropriate Behaviour
+                                                        </mat-option>
+                                                        <mat-option [value]="13">Other</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">How does the person communicate?</label>
+                                                <mat-form-field>
+                                                    <mat-select placeholder="Gender">
+                                                        <mat-option [value]="1">Verbal Communication</mat-option>
+                                                        <mat-option [value]="2">Adjusted Verbal Language</mat-option>
+                                                        <mat-option [value]="3">Electronic Communication</mat-option>
+                                                        <mat-option [value]="4">Picture Communication</mat-option>
+                                                        <mat-option [value]="5">Sign Language</mat-option>
+                                                        <mat-option [value]="6">Other Signing</mat-option>
+                                                        <mat-option [value]="7">Use of Gestures</mat-option>
+                                                        <mat-option [value]="8">Interpreter</mat-option>
+                                                        <mat-option [value]="9">Other</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Phone Number</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Phone Number" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Email Address</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Email Address" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h6>Subject of Allegation - Other</h6>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Title</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Title" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">First Name</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter First Name" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Last Name</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Last Name" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Relationship to Impacted Person</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Last Name" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Gender</label>
+                                                <mat-form-field>
+                                                    <mat-select placeholder="Gender">
+                                                        <mat-option [value]="1">Male</mat-option>
+                                                        <mat-option [value]="2">Female</mat-option>
+                                                        <mat-option [value]="3">Indeterminate</mat-option>
+                                                        <mat-option [value]="4">Intersex</mat-option>
+                                                        <mat-option [value]="5">Unspeccfied</mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Date of Birth</label>
+                                                <mat-form-field>
+                                                    <input matInput [matDatepicker]="SOAOtherDOB"
+                                                        placeholder="Select Date">
+                                                    <mat-datepicker-toggle matSuffix [for]="SOAOtherDOB">
+                                                    </mat-datepicker-toggle>
+                                                    <mat-datepicker #SOAOtherDOB></mat-datepicker>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Phone Number</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Phone Number" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Email Address</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Email Address" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-action-sm">Submit</button>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div id="immediate-action-taken" class="card tab-pane fade" role="tabpanel"
+                            aria-labelledby="tab-finished">
+                            <lib-incident-immediateaction></lib-incident-immediateaction>
+                            <!-- <div class="card-header" role="tab" id="heading-finished">
+                                <h5 class="mb-0">Immediate Action Taken</h5>
+                            </div>
+                            <div class="collapse show p-0">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Have the police been informed of the
+                                                    incident?</label>
+                                                <mat-radio-group aria-label="Select an option">
+                                                    <mat-radio-button value="1">Yes</mat-radio-button>
+                                                    <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Offfcer's Name</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Offfcer's Name" value=""
+                                                        required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Police Station</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Police Station" value=""
+                                                        required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Police Event Number</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Police Event Number" value=""
+                                                        required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">If the police have not been informed of the
+                                                    incident/allegation, why not?</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Email Address" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">Are the impacted person's family or guardian
+                                                    aware of the incident?</label>
+                                                <mat-radio-group aria-label="Select an option">
+                                                    <mat-radio-button value="1">Yes</mat-radio-button>
+                                                    <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                                    <mat-radio-button value="3">Unsure</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">If not, why hasn't the impacted person's
+                                                    family or guardian been contacted?</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Email Address" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">If the impacted person is under 18, has the
+                                                    relevant child protection agency been contacted?</label>
+                                                <mat-radio-group aria-label="Select an option">
+                                                    <mat-radio-button value="1">Yes</mat-radio-button>
+                                                    <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                                    <mat-radio-button value="3">Unknown</mat-radio-button>
+                                                    <mat-radio-button value="4">Not Applicable</mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label class="field-label">If not, why hasn't the child protection
+                                                    agency been contacted?</label>
+                                                <mat-form-field appearance="fill">
+                                                    <input matInput placeholder="Enter Email Address" value="" required>
+                                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h6>Impacted</h6>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group input-textarea">
+                                                <label class="field-label">Describe any immediate support that has been
+                                                    offered/provided to the person with disability impacted by the
+                                                    incident</label>
+                                                <mat-form-field>
+                                                    <textarea matInput
+                                                        placeholder="Write Your Message Here..."></textarea>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h6>Subject of Allegation - Worker</h6>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group input-textarea">
+                                                <label class="field-label">Describe any immediate action that has been
+                                                    taken in respect to the worker who is the subject of the
+                                                    allegation</label>
+                                                <mat-form-field>
+                                                    <textarea matInput
+                                                        placeholder="Write Your Message Here..."></textarea>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h6>Subject of Allegation - Person with Disability</h6>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="form-group input-textarea">
+                                                <label class="field-label">Describe any immediate action that has been
+                                                    taken or Commenced in respect to the person with disability who is
+                                                    the subject of the allegation</label>
+                                                <mat-form-field>
+                                                    <textarea matInput
+                                                        placeholder="Write Your Message Here..."></textarea>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-action-sm">Submit</button>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div id="risk-assessment" class="card tab-pane fade" role="tabpanel"
+                            aria-labelledby="tab-finished">
+                          <lib-incident-riskassesment></lib-incident-riskassesment>
+                        </div>
+                        <div id="attachments" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                          <lib-incident-attachment></lib-incident-attachment>
+                        </div>
+                        <div id="declaration" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                            <lib-incident-declaration></lib-incident-declaration>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lib-admin-sidebar></lib-admin-sidebar>
+</div>
+
+<div class="modal popup-default" id="viewAccidentIncidentPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <!-- <h4 class="modal-title">View Accident/Incident Details</h4> -->
+                <button type="submit" printSectionId="print-section" ngxPrint class="print" title="Print">
+                    <svg id="Layer_1" style="enable-background:new 0 0 30 30;" width="25" height="25" version="1.1" viewBox="0 0 30 30" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path d="M26,9H4c-1.105,0-2,0.895-2,2v9c0,1.105,0.895,2,2,2h3v-8h16v8h3c1.105,0,2-0.895,2-2v-9C28,9.895,27.105,9,26,9z"/>
+                        <rect height="12" style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" width="16" x="7" y="14"/>
+                        <path d="M24,7H6V5c0-0.552,0.448-1,1-1h16c0.552,0,1,0.448,1,1V7z"/>
+                    </svg>
+                </button>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body" id="print-section">
+                <h5 class="default-title mb-3" style="text-align: center;">Incident Report</h5>
+                <div class="section-box mb-3">
+                <h5 class="default-title mb-3">Provider Details</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Report Completed By</dt>
+                            <dd>{{ReportedBy}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Provider Name</dt>
+                            <dd>{{ProviderName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Provider Registration ID</dt>
+                            <dd>{{RegistrationId}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Provider ABN</dt>
+                            <dd>{{ProviderABN}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Outlet Name</dt>
+                            <dd>{{OutletName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Registration Group</dt>
+                            <dd>{{RegistrationGroup}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>State</dt>
+                            <dd>{{State}}</dd>
+                        </div>
+                       
+                    </div>
+                </dl>
+            </div>
+            <div class="section-box mb-3">
+                <h5 class="default-title mb-3">Primary Contact Person</h5>
+                <dl class="default-list-wrap mb-0">
+                  
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{ContactTitle}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Name</dt>
+                            <dd>{{ContactFirstName}}</dd>
+                        </div>
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Position at Provider</dt>
+                            <dd>{{ContactProvider}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{ContactPhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{ContactEmail}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Preferred Method of Contact</dt>
+                            <dd>{{ContactMethod}}</dd>
+                        </div>
+                    </div>
+                </dl>
+            </div>
+            <div class="section-box mb-3">
+                <h5 class="default-title mb-3">Incident Category</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Primary Category</dt>
+                            <p class="mb-3">{{PrimaryCategoryName}}</p>
+                            
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Secondary Category</dt>
+                            <dd>{{SecondaryCategoryName}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If the incident is a death of a person with disability, was the death anticipated?</dt>
+                            <dd>{{IsIncidentAnticipatedInfo}}</dd>
+                        </div>
+                    </div>
+                </dl>
+            </div>
+            <div class="section-box mb-3">
+                <h5 class="default-title mb-3">Incident Details</h5>
+                <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Incident Location</dt>
+                            <dd>{{locationName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Location Type</dt>
+                            <dd>{{locationtypeinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Time and Date of Incident/Allegation</dt>
+                            <dd>{{Incidentdateinfo| date: 'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>If date unknown, reason why?</dt>
+                            <dd>{{Reasoninfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Time the NDIS provider became aware of the incident</dt>
+                            <dd>{{NdisProviderTimeinfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Date the NDIS provider became aware of the incident</dt>
+                            <dd>{{NdisProviderDateinfo| date: 'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Describe the incident/Allegation</dt>
+                            <dd>{{DescribeIncidentinfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>What were the circumstances leading up to the incident/Allegation?</dt>
+                            <dd>{{circumstanceIncidentinfo}}</dd>
+                        </div>
+                    </div>
+                </dl>
+            </div>
+
+                 <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Impacted Person</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{ImpactedTitleinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Name</dt>
+                            <dd>{{ImpactedName}}</dd>
+                        </div>
+                       
+                        <div class="col-md-6 col-sm-12">
+                            <dt>NDIS Participant Number</dt>
+                            <dd>{{ImpactedNdisNoinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Gender</dt>
+                            <dd>{{ImpactedGenderinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date of Birth</dt>
+                            <dd>{{ImpactedDOBinfo|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Primary Disability</dt>
+                            <dd>{{ImpactedPrimaryDisbilityinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Other Disability</dt>
+                            <dd>{{ImpactedSecondaryDisabilityinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Does the person have any behaviours of concern?</dt>
+                            <dd>{{ImpactedCommunicationinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>How does the person communicate?</dt>
+                            <dd>{{ImpactedBehaviourinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{ImpactedPhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{ImpactedEmail}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Other Detail</dt>
+                            <dd>{{OtherDetail}}</dd>
+                        </div>
+                    </div>
+                </dl>
+                 </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Subject of Allegation</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If the incident is a death of a person with disability, was the death anticipated?</dt>
+                            <dd>{{IsSubjectAllegationInfo}}</dd>
+                        </div>
+                       
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{WorkerTitle}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Name</dt>
+                            <dd>{{WorkerName}}</dd>
+                        </div>
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Position at time of allegation</dt>
+                            <dd>{{WorkerPosition}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Gender</dt>
+                            <dd>{{WorkerGender}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date of Birth</dt>
+                            <dd>{{WorkerDOB|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{WorkerPhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{WorkerEmail}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt></dt>
+                            <dd></dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Subject of Allegation - Person with disability</dt>
+                            <dd></dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{DisableTitle}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Name</dt>
+                            <dd>{{DisableName}}</dd>
+                        </div>
+                       
+                        <div class="col-md-6 col-sm-12">
+                            <dt>NDIS Participant Number</dt>
+                            <dd>{{DisableNdisNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Gender</dt>
+                            <dd>{{DisableGender}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date of Birth</dt>
+                            <dd>{{DisableDOBirth|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Primary Disability</dt>
+                            <dd>{{DisablePrimaryDisability}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Other Disability</dt>
+                            <dd>{{DisableOtherDisability}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Does the person have any behaviours of concern?</dt>
+                            <dd>{{DisableBehaviour}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>How does the person communicate?</dt>
+                            <dd>{{DisableCommunication}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{DisablePhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{DisableEmail}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Other Detail</dt>
+                            <dd>{{DisableEmail}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Subject of Allegation - Other</dt>
+                            <dd>{{AllegationOtherDetail}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{OtherTitle}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt> Name</dt>
+                            <dd>{{OtherName}}</dd>
+                        </div>
+                       
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Relationship to Impacted Person</dt>
+                            <dd>{{OtherRelationShip}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Gender</dt>
+                            <dd>{{OtherGender}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date of Birth</dt>
+                            <dd>{{OtherDOB|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{OtherPhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{OtherEmail}}</dd>
+                        </div>
+
+                    </div>
+                </dl>
+            </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Immediate Action Taken</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Have the police been informed of the incident?</dt>
+                            <dd>{{IsPoliceInformed}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Offfcer's Name</dt>
+                            <dd>{{OfficerName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Police Station</dt>
+                            <dd>{{PoliceStation}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Police Event Number</dt>
+                            <dd>{{PoliceNumber}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If the police have not been informed of the incident/allegation, why not?</dt>
+                            <dd>{{PoliceNotInform}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Are the impacted person's family or guardian aware of the incident?</dt>
+                            <dd>{{IsFamilyAwareInfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If not, why hasn't the impacted person's family or guardian been contacted?</dt>
+                            <dd>{{Guardian}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If the impacted person is under 18, has the relevant child protection agency been contacted?</dt>
+                            <dd>{{IsUnder18Info}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If not, why hasn't the child protection agency been contacted?</dt>
+                            <dd>{{ChildContacted}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Describe any immediate support that has been offered/provided to the person with disability impacted by the incident</dt>
+                            <dd>{{DescribeImmediate}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Describe any immediate action that has been taken in respect to the worker who is the subject of the allegation</dt>
+                            <dd>{{WorkerDescribe}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Describe any immediate action that has been taken or Commenced in respect to the person with disability who is the subject of the allegation</dt>
+                            <dd>{{DescribeDisability}}</dd>
+                        </div>
+                    </div>
+                </dl>
+                </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Risk Assessment</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Have you undertaken a risk assessment in response to this incident?</dt>
+                            <dd>{{IsRiskAssesmentInfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If yes, date risk assessment was complete</dt>
+                            <dd>{{RiskAssesmentDate|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Details of risk assessment</dt>
+                            <dd>{{RiskDetails}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If no risk assessment has been undertaken, what is the reason for not undertaking a risk assessment?</dt>
+                            <dd>{{NoRiskAssesmentInfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If you have a risk assessment in progress, when was it started?</dt>
+                            <dd>{{InProgressRisk}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>When do you expect to be finished?</dt>
+                            <dd>{{TobeFinished}}</dd>
+                        </div>
+                    </div>
+                </dl>
+                </div>
+                <!-- <h5 class="mb-3">Attachments</h5>
+                <dl class="default-list-wrap mb-3">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 1</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 2</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 3</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 4</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 5</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 6</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 7</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 8</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 9</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 10</dt>
+                            <dd>-</dd>
+                        </div>
+                    </div>
+                </dl> -->
+                <div class="section-box">
+                    <h5 class="default-title mb-3">Declaration</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Full Name</dt>
+                            <dd>{{DeclarationName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Position of Oranisation</dt>
+                            <dd>{{DeclarationPosition}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date</dt>
+                            <dd>{{DeclarationDate|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                    </div>
+                </dl>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit"  printSectionId="print-section" ngxPrint class="btn btn-action-sm">Print</button>
+                <button type="button" class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

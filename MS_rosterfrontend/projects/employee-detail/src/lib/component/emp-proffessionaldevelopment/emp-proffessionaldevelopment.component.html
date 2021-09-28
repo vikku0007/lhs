@@ -1,0 +1,468 @@
+<div class="section-title">
+    <h2>Professional Development</h2>
+     <button id="openEdittrainingModalButton" [hidden]="true" data-toggle="modal" data-target="#edittrainingInfoPopup">Open Modal</button>
+     <button id="openModalButtontraining" [hidden]="true" data-toggle="modal" data-target="#addTrainingInfoPopup">Open Modal</button>
+    <!-- data-toggle="modal" data-target="#addEducationInfoPopup" -->
+    <a href="javascript:void(0);" class="action-link" (click)="openModaltraining(true)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+            <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)"
+                d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z"
+                fill="#fff" />
+        </svg>
+    </a>
+</div>
+<div class="section-content">
+    <div class="row">
+        <div class="col">
+            <div class="table-wrap table-wrap-inner">
+                <div class="table-content">
+                    <div class="table-responsive">
+                        <table name="tbl1" mat-table [dataSource]="dataSourceEducation" matSort>
+                            <ng-container matColumnDef="trainingtype">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Training Type</th>
+                                <td mat-cell *matCellDef="let element">{{element.trainingTypeName}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="training">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Training</th>
+                                <td mat-cell *matCellDef="let element">{{element.mandatoryName}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="coursetype">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Course Type</th>
+                                <td mat-cell *matCellDef="let element">{{element.courseTypeName}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="startdate">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>StarDate</th>
+                                <td mat-cell *matCellDef="let element">{{element.startDate| date :'dd/MM/yyyy'}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="enddate">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
+                                <td mat-cell *matCellDef="let element">{{element.endDate  | date :'dd/MM/yyyy' }}</td>
+                            </ng-container>
+                            <!-- <ng-container matColumnDef="duration">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Duration</th>
+                                <td mat-cell *matCellDef="let element">{{element.duration}}</td>
+                            </ng-container> -->
+                            <ng-container matColumnDef="remarks">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+                                <td mat-cell *matCellDef="let element">{{element.remarks}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <a href="javascript:void(0);" (click)=openEditModal(element)>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 16 16">
+                                            <path id="iconfinder_write_126582_1_"
+                                                data-name="iconfinder_write_126582 (1)"
+                                                d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z"
+                                                transform="translate(-1 -1)" fill="#7b7b7b" />
+                                        </svg>
+                                    </a>
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#myModalTraining" (click)="DeleteModalTraining(element.id, $event)">
+                                        <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071"
+                                            viewBox="0 0 15 18.071">
+                                            <g id="Group_66039" data-name="Group 66039">
+                                                <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                    <path id="Path_304" data-name="Path 304"
+                                                        d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z"
+                                                        transform="translate(-79.61 -43.5)" fill="#7b7b7b" />
+                                                </g>
+                                                <g id="Group_66038" data-name="Group 66038"
+                                                    transform="translate(1.716 7.819)">
+                                                    <path id="Path_305" data-name="Path 305"
+                                                        d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z"
+                                                        transform="translate(-119.27 -231.53)" fill="#7b7b7b" />
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    <a href="{{baseUrl + element.fileName}}" target="_blank" *ngIf="element.fileName?true:false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21.333" height="16" viewBox="0 0 21.333 16">
+                                            <path id="iconfinder_view_126581_2_" data-name="iconfinder_view_126581 (2)" d="M10.667,7.333A2.668,2.668,0,0,1,8,10a2.667,2.667,0,1,0,2.667-2.667Zm0-5.333C5.2,2,0,8.2,0,10s5.2,8,10.667,8,10.667-6.2,10.667-8S16.136,2,10.667,2Zm0,13.333A5.333,5.333,0,1,1,16,10,5.334,5.334,0,0,1,10.667,15.333Z" transform="translate(0 -2)" fill="#7b7b7b"/>
+                                          </svg>
+                                    </a>
+                                    <a href="javascript:void(0)"  *ngIf="element.fileName?true:false"  (click)="downloadPdf(baseUrl + element.fileName)">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" viewBox="0 0 16 16">
+                                            <path id="iconfinder_write_126582_1_"
+                                                data-name="iconfinder_write_126582 (1)"
+                                                d="M15.608,6.262h-2.338v0.935h2.338c0.516,0,0.934,0.418,0.934,0.935v8.879c0,0.517-0.418,0.935-0.934,0.935H4.392c-0.516,0-0.935-0.418-0.935-0.935V8.131c0-0.516,0.419-0.935,0.935-0.935h2.336V6.262H4.392c-1.032,0-1.869,0.837-1.869,1.869v8.879c0,1.031,0.837,1.869,1.869,1.869h11.216c1.031,0,1.869-0.838,1.869-1.869V8.131C17.478,7.099,16.64,6.262,15.608,6.262z M9.513,11.973c0.017,0.082,0.047,0.162,0.109,0.226c0.104,0.106,0.243,0.143,0.378,0.126c0.135,0.017,0.274-0.02,0.377-0.126c0.064-0.065,0.097-0.147,0.115-0.231l1.708-1.751c0.178-0.183,0.178-0.479,0-0.662c-0.178-0.182-0.467-0.182-0.645,0l-1.101,1.129V1.588c0-0.258-0.204-0.467-0.456-0.467c-0.252,0-0.456,0.209-0.456,0.467v9.094L8.443,9.553c-0.178-0.182-0.467-0.182-0.645,0c-0.178,0.184-0.178,0.479,0,0.662L9.513,11.973z"
+                                                transform="translate(-1 -1)" fill="#7b7b7b" />
+                                        </svg>
+                                </a>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsEducation"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsEducation;"></tr>
+                        </table>
+                        <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal popup-default" id="edittrainingInfoPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rForm"  #formDirective="ngForm">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Professional Development Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Training Type</label>
+                                <mat-form-field>
+                                    <mat-select  formControlName="editOptional"  placeholder="Select" (selectionChange)="getEdittraining($event.value)">
+                                        <mat-option *ngFor="let list of docList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Training</label>
+                                <mat-form-field>
+                                    <mat-select  formControlName="editMandatory"  placeholder="Select">
+                                        <mat-option *ngFor="let list of MandatoryList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12" *ngIf="isShownOtherTraining">
+                            <div class="form-group">
+                                <label class="field-label">Other Training</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput  autofocus autocomplete="off" class="form-control" id="bd-address1"
+                                        formControlName="othertrainingedit"  placeholder="Enter Other Training"
+                                       >
+                                </mat-form-field>
+                               
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Course Type</label>
+                                <mat-form-field>
+                                    <mat-select  formControlName="editCoursType"  placeholder="Select">
+                                        <mat-option *ngFor="let list of CoursetypeList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-email" class="field-label">Start Date</label>
+                                 <mat-form-field>
+                                        <input matInput autofocus autocomplete="off" formControlName="editStartDate" [matDatepicker]="picker3" placeholder="Enter Start Date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker3></mat-datepicker>
+                                    </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-email" class="field-label">End Date</label>
+                                 <mat-form-field>
+                                        <input matInput autofocus autocomplete="off" formControlName="editEndDate" [matDatepicker]="picker4" placeholder="Enter End Date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker4></mat-datepicker>
+                                    </mat-form-field>
+                            </div>
+                        </div>
+                       
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Alert</label>
+                                <mat-radio-group formControlName="editAlert" aria-label="Select an option">
+                                    <mat-radio-button value="1" >Yes</mat-radio-button>
+                                    <mat-radio-button value="2">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-email" class="field-label">Remarks</label>
+                                  <mat-form-field appearance="fill">
+                                        <textarea matInput autofocus autocomplete="off" placeholder="Enter Remarks" formControlName="editRemarks" value=""
+                                            ></textarea>
+                                     </mat-form-field>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="upload-img-wrap" *ngIf="isShownReqBrowse">
+                        <div class="col-md-12 col-sm-12"><label class="field-label">Upload Document</label></div>
+                        <div class="uiw-uploader">
+                             <div class="file-wrap">
+                               <input #fileInputEdit (change)="uploadEditDocument($event)"  type="file" class="btn btn-action-sm" >
+                                <span class="btn btn-action-sm">Browse File</span>
+
+                            </div>
+                            <div *ngIf="EditReqImageName" class="uiw-view-img">
+                                <!-- <img src="../../../../assets/img/profile-pic.jpg" alt="" > -->
+                                <div class="img-details">
+                                    <p>{{EditReqImageName}}</p>
+                                    <small>{{EditReqImageSize}}</small>
+                                </div>
+                                <a href="javascript:void(0);" (click)="EditReqImageDelete()" class="delete-img">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                        <path id="iconfinder_Close_5416278" d="M21,11A10,10,0,1,0,31,21,10,10,0,0,0,21,11Zm2.851,11.764a.769.769,0,0,1-1.087,1.087L21,22.087l-1.764,1.764a.769.769,0,1,1-1.087-1.087L19.913,21l-1.764-1.764a.769.769,0,0,1,1.087-1.087L21,19.913l1.764-1.764a.769.769,0,0,1,1.087,1.087L22.087,21Z" transform="translate(-11 -11)" fill="#ef5257" opacity="0.75"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row" *ngIf="isShownReqUrl">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <div class="row" >
+                                    <div class="col-md-11">
+                                        <a href="javascript:void(0)" (click)="downloadPdf(Imageurl)">
+                                            Download Document</a>
+
+                        </div>
+                                </div>
+
+                        <div class="row">
+                            <div class="col-md-11"> </div>
+                            <div class="col-md-1">
+                                <a href="javascript:void(0);" (click)="ImageDelete()" class="delete-img">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                        <path id="iconfinder_Close_5416278" d="M21,11A10,10,0,1,0,31,21,10,10,0,0,0,21,11Zm2.851,11.764a.769.769,0,0,1-1.087,1.087L21,22.087l-1.764,1.764a.769.769,0,1,1-1.087-1.087L19.913,21l-1.764-1.764a.769.769,0,0,1,1.087-1.087L21,19.913l1.764-1.764a.769.769,0,0,1,1.087,1.087L22.087,21Z" transform="translate(-11 -11)" fill="#ef5257" opacity="0.75"/>
+                                    </svg>
+                                </a>
+                                </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-action-sm" (click)="SubmitClickEdit()">Update</button>
+                    <button type="button" #btnEdittrainingCancel class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal" (click)="gridload()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal popup-default" id="addTrainingInfoPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rForm1"  #formDirective1="ngForm">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Professional Development Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Training Type</label>
+                                <mat-form-field>
+                                    <mat-select  formControlName="addOptional"  placeholder="Select" (selectionChange)="gettraining($event.value)">
+                                        <mat-option *ngFor="let list of docList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Training</label>
+                                <mat-form-field>
+                                    <mat-select  formControlName="addMandatory"  placeholder="Select">
+                                        <mat-option>
+                                            <ngx-mat-select-search [placeholderLabel]="'Search Compliances'" [formControl]="control" 
+                                            ngDefaultControl></ngx-mat-select-search>
+                                          </mat-option>
+                                         <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option> 
+
+                                 </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12" *ngIf="isShownOtherTraining">
+                            <div class="form-group">
+                                <label class="field-label">Other Training</label>
+                                <mat-form-field appearance="fill">
+                                    <input type="text" matInput  autofocus autocomplete="off" class="form-control" id="bd-address1"
+                                        formControlName="othertraining"  placeholder="Enter Other Training"
+                                       >
+                                </mat-form-field>
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Course Type</label>
+                                <mat-form-field>
+                                    <mat-select  formControlName="addCoursType"  placeholder="Select">
+                                        <mat-option *ngFor="let list of CoursetypeList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-email" class="field-label">Start Date</label>
+                                 <mat-form-field>
+                                        <input matInput autofocus autocomplete="off" formControlName="addStartDate" [matDatepicker]="picker1" placeholder="Enter Start Date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-email" class="field-label">End Date</label>
+                                 <mat-form-field>
+                                        <input matInput autofocus autocomplete="off" formControlName="addEndDate" [matDatepicker]="picker2" placeholder="Enter End Date">
+                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker2></mat-datepicker>
+                                    </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-mname" class="field-label">Duration</label>
+
+                                <mat-form-field appearance="fill">
+                                    <input matInput type="number" placeholder="Enter Duration" formControlName="addDuration"
+                                        value="" required>
+
+                                </mat-form-field>
+                            </div>
+                        </div> -->
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Alert</label>
+                                <mat-radio-group formControlName="addAlert" aria-label="Select an option">
+                                    <mat-radio-button value="1">Yes</mat-radio-button>
+                                    <mat-radio-button value="2">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-email" class="field-label">Remarks</label>
+                                  <mat-form-field appearance="fill">
+                                        <textarea matInput autofocus autocomplete="off" placeholder="Enter Remarks" formControlName="addRemarks" value=""
+                                            required></textarea>
+                                     </mat-form-field>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="upload-img-wrap">
+                        <div class="col-md-12 col-sm-12"><label class="field-label">Upload Document</label></div>
+                        <div class="uiw-uploader">
+                             <div class="file-wrap">
+                               <input #fileInput (change)="uploadRequireDocument($event)"  type="file" class="btn btn-action-sm" >
+                                <span class="btn btn-action-sm">Browse File</span>
+
+                            </div>
+                            <div *ngIf="ReqImageName" class="uiw-view-img">
+                                <!-- <img src="../../../../assets/img/profile-pic.jpg" alt="" > -->
+                                <div class="img-details">
+                                    <p>{{ReqImageName}}</p>
+                                    <small>{{ReqImageSize}}</small>
+                                </div>
+                                <a href="javascript:void(0);" (click)="ReqBrowseImageDelete()" class="delete-img">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                        <path id="iconfinder_Close_5416278" d="M21,11A10,10,0,1,0,31,21,10,10,0,0,0,21,11Zm2.851,11.764a.769.769,0,0,1-1.087,1.087L21,22.087l-1.764,1.764a.769.769,0,1,1-1.087-1.087L19.913,21l-1.764-1.764a.769.769,0,0,1,1.087-1.087L21,19.913l1.764-1.764a.769.769,0,0,1,1.087,1.087L22.087,21Z" transform="translate(-11 -11)" fill="#ef5257" opacity="0.75"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-action-sm" (click)="SubmitClick()">Add</button>
+                    <button type="button" (click)="cancelModal()" #btnAddEducationCancel class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+   <div class="modal custom-popup " id="myModalTraining">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <button type="button" class="close header-close" data-dismiss="modal">
+                    &times;
+                  </button>
+                  <p>Are you sure you want to delete record?</p>
+                  <br/>
+                  <div class="modal-btn">
+                    <button mat-button class="project-btn-1-db project-btn-1-db-gray" data-dismiss="modal">Cancel</button>
+                    &nbsp;&nbsp;
+                    <button
+    
+                    mat-button class="project-btn-1-db"
+                      data-dismiss="modal"
+    
+                      (click)="deleteTrainingdetails($event)"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>

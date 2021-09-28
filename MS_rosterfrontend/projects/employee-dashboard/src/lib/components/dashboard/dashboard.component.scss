@@ -1,0 +1,24 @@
+::ng-deep .shift-action-bx {
+    .btn {
+        background-color:transparent !important;
+        padding:0;
+        &.btn-check-in,
+        &.btn-approve {
+            path {
+                fill:#2FCE9D !important;
+            }
+        }
+        &.btn-check-out,
+        &.btn-reject
+        {
+            path {
+                fill:#F66565 !important;
+            }
+        }
+        &.btn-view {
+            path {
+                fill:#a2a2a2 !important;
+            }
+        }
+     }
+}

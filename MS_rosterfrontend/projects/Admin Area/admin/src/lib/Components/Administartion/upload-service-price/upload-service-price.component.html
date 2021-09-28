@@ -1,0 +1,115 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+
+        <div class="page-inner-wrap">
+            <div class="page-sub-inner-wrap">
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="psiw-rgt">
+                            <div class="psiw-bx-title">
+                                <h2>Service Rate</h2>
+
+                            </div>
+
+                            <div class="psiw-bx-content">
+                                <div class="table-wrap table-wrap-inner">
+                                    <div class="upload-img-wrap">
+                                        <div class="col-md-12 col-sm-6"><label class="field-label">Upload File</label>
+                                            
+                                        </div>
+                                        <div class="col-md-12 col-sm-6">
+                                            Download sample excel:
+                                            <a href="javascript:void(0)" 
+                                                (click)="downloadPdf(baseUrl + 'EmployeeDocuments/service.xlsx')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    viewBox="0 0 16 16">
+                                                    <path id="iconfinder_write_126582_1_"
+                                                        data-name="iconfinder_write_126582 (1)"
+                                                        d="M15.608,6.262h-2.338v0.935h2.338c0.516,0,0.934,0.418,0.934,0.935v8.879c0,0.517-0.418,0.935-0.934,0.935H4.392c-0.516,0-0.935-0.418-0.935-0.935V8.131c0-0.516,0.419-0.935,0.935-0.935h2.336V6.262H4.392c-1.032,0-1.869,0.837-1.869,1.869v8.879c0,1.031,0.837,1.869,1.869,1.869h11.216c1.031,0,1.869-0.838,1.869-1.869V8.131C17.478,7.099,16.64,6.262,15.608,6.262z M9.513,11.973c0.017,0.082,0.047,0.162,0.109,0.226c0.104,0.106,0.243,0.143,0.378,0.126c0.135,0.017,0.274-0.02,0.377-0.126c0.064-0.065,0.097-0.147,0.115-0.231l1.708-1.751c0.178-0.183,0.178-0.479,0-0.662c-0.178-0.182-0.467-0.182-0.645,0l-1.101,1.129V1.588c0-0.258-0.204-0.467-0.456-0.467c-0.252,0-0.456,0.209-0.456,0.467v9.094L8.443,9.553c-0.178-0.182-0.467-0.182-0.645,0c-0.178,0.184-0.178,0.479,0,0.662L9.513,11.973z"
+                                                        transform="translate(-1 -1)" fill="#7b7b7b" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="uiw-uploader">
+                                            <div class="file-wrap">
+                                                <input #fileInput (change)="uploadExcellfile($event)" type="file"
+                                                    class="btn btn-action-sm">
+                                                <span class="btn btn-action-sm">Browse File</span>
+
+                                            </div>
+                                            <div *ngIf="ReqFileName" class="uiw-view-img">
+                                                <!-- <img src="../../../../assets/img/profile-pic.jpg" alt="" > -->
+                                                <div class="img-details">
+                                                    <p>{{ReqFileName}}</p>
+                                                    <small>{{ReqFileSize}}</small>
+                                                </div>
+                                                <a href="javascript:void(0);" (click)="ReqBrowseImageDelete()"
+                                                    class="delete-img">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                        viewBox="0 0 20 20">
+                                                        <path id="iconfinder_Close_5416278"
+                                                            d="M21,11A10,10,0,1,0,31,21,10,10,0,0,0,21,11Zm2.851,11.764a.769.769,0,0,1-1.087,1.087L21,22.087l-1.764,1.764a.769.769,0,1,1-1.087-1.087L19.913,21l-1.764-1.764a.769.769,0,0,1,1.087-1.087L21,19.913l1.764-1.764a.769.769,0,0,1,1.087,1.087L22.087,21Z"
+                                                            transform="translate(-11 -11)" fill="#ef5257"
+                                                            opacity="0.75" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" (click)="uploadfile()"
+                                                class="btn btn-action-sm">Upload</button>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="table-content">
+
+                                        <div class="table-responsive">
+                                            <table name="tbl2" mat-table [dataSource]="dataSourcepayrate" matSort>
+
+                                                <ng-container matColumnDef="itemnumber">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Item Number
+                                                    </th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        {{element.supportItemNumber}}
+                                                    </td>
+                                                </ng-container>
+
+                                                <ng-container matColumnDef="itemname">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Item Name</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        {{element.supportItemName}}
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="rate">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Rate</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        ${{element.rate}}
+                                                    </td>
+                                                </ng-container>
+
+
+                                                <tr mat-header-row *matHeaderRowDef="displayedColumnsLeave"></tr>
+                                                <tr mat-row *matRowDef="let row; columns: displayedColumnsLeave;"></tr>
+                                            </table>
+                                            <mat-paginator [length]="totalCount" [pageSize]="10"
+                                                [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                                            </mat-paginator>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lhs-sidebar></lhs-sidebar>
+</div>

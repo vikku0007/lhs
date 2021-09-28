@@ -1,0 +1,117 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "auth": [
+        "dist/auth/auth",
+        "dist/auth"
+      ],
+      "dashboard": [
+        "dist/dashboard/dashboard",
+        "dist/dashboard"
+      ],
+      "core": [
+        "dist/core/core",
+        "dist/core"
+      ],
+      "lhscomponent": [
+        "dist/lhscomponent/lhscomponent",
+        "dist/lhscomponent"
+      ],
+      "lhs-component": [
+        "dist/lhs-component/lhs-component",
+        "dist/lhs-component"
+      ],
+      "admin": [
+        "dist/admin/admin",
+        "dist/admin"
+      ],
+      "lhs-service": [
+        "dist/lhs-service/lhs-service",
+        "dist/lhs-service"
+      ],
+      "client": [
+        "dist/client/client",
+        "dist/client"
+      ],
+      "roster": [
+        "dist/roster/roster",
+        "dist/roster"
+      ],
+      "lhs-directive": [
+        "dist/lhs-directive/lhs-directive",
+        "dist/lhs-directive"
+      ],
+      "lhs-directives": [
+        "dist/lhs-directives/lhs-directives",
+        "dist/lhs-directives"
+      ],
+      "admin-dashboard": [
+        "dist/admin-dashboard/admin-dashboard",
+        "dist/admin-dashboard"
+      ],
+      "lhs-googleadress-component": [
+        "dist/lhs-googleadress-component/lhs-googleadress-component",
+        "dist/lhs-googleadress-component"
+      ],
+      "lhs-googleadress": [
+        "dist/lhs-googleadress/lhs-googleadress",
+        "dist/lhs-googleadress"
+      ],
+      "employee-dashboard": [
+        "dist/employee-dashboard/employee-dashboard",
+        "dist/employee-dashboard"
+      ],
+      "employee-payroll": [
+        "dist/employee-payroll/employee-payroll",
+        "dist/employee-payroll"
+      ],
+      "employee-others": [
+        "dist/employee-others/employee-others",
+        "dist/employee-others"
+      ],
+      "employee-checkout": [
+        "dist/employee-checkout/employee-checkout",
+        "dist/employee-checkout"
+      ],
+      "employee-roster": [
+        "dist/employee-roster/employee-roster",
+        "dist/employee-roster"
+      ],
+      "client-dashboard": [
+        "dist/client-dashboard/client-dashboard",
+        "dist/client-dashboard"
+      ],
+      "client-roster": [
+        "dist/client-roster/client-roster",
+        "dist/client-roster"
+      ],
+      "employee-detail": [
+        "dist/employee-detail/employee-detail",
+        "dist/employee-detail"
+      ],
+      "admin-timesheet": [
+        "dist/admin-timesheet/admin-timesheet",
+        "dist/admin-timesheet"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

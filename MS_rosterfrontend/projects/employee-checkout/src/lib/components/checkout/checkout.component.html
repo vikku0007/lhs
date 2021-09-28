@@ -1,0 +1,112 @@
+<div class="container-fluid page-wrap">
+    <!-- <div class="page-title">
+        <h1>Check Out
+            <a href="javascript:void(0);" class="btn btn-action-xs back-link" routerLink="../">Back</a>
+        </h1>
+    </div> -->
+    <div class="page-inner-wrap">
+        <div class="page-sub-inner-wrap">
+            <div class="psiw-rgt">
+                <div class="psiw-bx-content">
+                    <form [formGroup]="rForm" (ngSubmit)="logout()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group readonly">
+                                        <label class="field-label">Client Name</label>
+                                        <mat-form-field appearance="fill">
+                                            <input matInput placeholder="Enter Client Name" readonly value="John Doe" required>
+                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group readonly">
+                                        <label class="field-label">Staff Name</label>
+                                        <mat-form-field appearance="fill">
+                                            <input matInput placeholder="Enter Staff Name" value="Petey Cruiser" readonly required>
+                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group readonly">
+                                        <label class="field-label">Location</label>
+                                        <mat-form-field appearance="fill">
+                                            <input matInput placeholder="Enter Location" value="Melbourne" readonly required>
+                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group readonly">
+                                        <label class="field-label">Dates</label>
+                                        <mat-form-field>
+                                            <input class="filter-date" matInput [matDatepicker]="checkOutDate" placeholder="From Date">
+                                            <mat-datepicker-toggle matSuffix [for]="checkOutDate"></mat-datepicker-toggle>
+                                            <mat-datepicker #checkOutDate></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group readonly">
+                                        <label class="field-label">Time</label>
+                                        <mat-form-field appearance="fill">
+                                            <input matInput placeholder="Enter Time" value="9:40 AM" readonly required>
+                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div> -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group input-textarea">
+                                            <label class="field-label">Remarks</label>
+                                            <mat-form-field>
+                                                <textarea matInput formControlName="remark" placeholder="Write Your Remarks Here..."></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="field-label">To Do List Filled</label>
+                                            <mat-radio-group formControlName="radioToDo" aria-label="Select an option">
+                                                <mat-radio-button value="1" checked="true">Yes</mat-radio-button>
+                                                <mat-radio-button value="2">No</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="field-label">Accident/Incident Happen</label>
+                                            <mat-radio-group formControlName="radioAccident" aria-label="Select an option">
+                                                <mat-radio-button value="1" checked="true">Yes</mat-radio-button>
+                                                <mat-radio-button value="2" >No</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="field-label">Progress Notes Filled</label>
+                                            <mat-radio-group formControlName="radioProgress" aria-label="Select an option">
+                                                <mat-radio-button value="1" checked="true">Yes</mat-radio-button>
+                                                <mat-radio-button value="2" >No</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-action-sm mr-3">Submit</button>
+                                <button type="button" class="btn btn-action-sm btn-action-secondary">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

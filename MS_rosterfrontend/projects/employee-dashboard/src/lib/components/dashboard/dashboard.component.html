@@ -1,0 +1,436 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-inner-wrap">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="counters-wrap mb-4">
+                        <div class="row">
+                            <div class="col">
+                                <a data-toggle="modal" data-target="#myShiftModal"
+                                    (click)="getShiftsList('completedHours')">
+                                    <div class="counter-bx cb-blue">
+                                        <h5>Completed Hours</h5>
+                                        <h2>{{shifthoursInfo.completedHours}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a data-toggle="modal" data-target="#myShiftModal"
+                                    (click)="getShiftsList('rejectedHours')">
+                                    <div class="counter-bx cb-green">
+                                        <h5>Rejected Hours</h5>
+                                        <h2>{{shifthoursInfo.cancelHours}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a data-toggle="modal" data-target="#myShiftModal"
+                                    (click)="getShiftsList('approvedShifts')">
+                                    <div class="counter-bx cb-yellow">
+                                        <h5>Approved Shifts</h5>
+                                        <h2>{{shifthoursInfo.approvedShifts}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a data-toggle="modal" data-target="#myShiftModal"
+                                    (click)="getShiftsList('pendingShifts')">
+                                    <div class="counter-bx cb-red">
+                                        <h5>Pending Shifts</h5>
+                                        <h2>{{shifthoursInfo.pendingShifts}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="staff-wrap">
+                            <div id="content" class="tab-content" role="tablist">
+                                <div id="pane-scheduled" class="card tab-pane fade show active" role="tabpanel"
+                                    aria-labelledby="tab-scheduled">
+
+                                    <!-- Note: New place of `data-parent` -->
+                                    <div class="collapse show">
+                                        <div class="card-body">
+                                            <div class="alert-item-wrap">
+                                                <div class="staff-bx">
+                                                    <section class="section-info-bx">
+                                                        <div class="section-title">
+                                                            <h2>
+                                                                Alerts -
+                                                                {{notificationcount==0?0:notificationcount}}
+                                                            </h2>
+                                                        </div>
+
+                                                        <div class="section-content pb-4">
+                                                            <div class="alert-item-wrap">
+                                                                <div class="alert-item"
+                                                                    *ngFor="let list of notificationlist">
+                                                                    <span
+                                                                        class="blue-circle">{{list.createdDate| date: 'dd/MM/yyyy'}}</span>
+                                                                    <p>{{list.employeeName}}</p>
+                                                                    <p>{{list.description}}</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <a href="javascript:void(0)" (click)="ClearAll()"
+                                                                class="detail-link">Clear All</a>
+                                                        </div>
+
+                                                    </section>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <!-- <div class="btm-multi-opts mb-4">
+                        <ul id="tabs" class="nav nav-tabs default-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a id="tab-scheduled" href="#pane-shiftAvailability" class="nav-link active"
+                                    data-toggle="tab" role="tab">Incident Reported</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="tab-onshift" href="#pane-progressNotes" class="nav-link" data-toggle="tab"
+                                    role="tab">Complaints</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="tab-finished" href="#pane-incidentsReported" class="nav-link" data-toggle="tab"
+                                    role="tab">Warning Letters</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="tab-finished" href="#pane-rejectedShifts" class="nav-link" data-toggle="tab"
+                                    role="tab">Complaints</a>
+                            </li>
+                        </ul>
+
+                        <div id="content" class="tab-content" role="tablist">
+                            <div id="pane-shiftAvailability" class="card tab-pane fade show active" role="tabpanel"
+                                aria-labelledby="tab-shiftAvailability">
+                                <div class="collapse show p-0">
+                                    <div class="card-body">
+                                        <div class="table-wrap">
+                                            <div class="table-content">
+                                                <div class="table-responsive">
+                                                    <table mat-table [dataSource]="dataSourceMultitabs" matSort>
+                                                        <ng-container matColumnDef="sr">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="name">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="shiftId">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Shift
+                                                                ID</th>
+                                                            <td mat-cell *matCellDef="let element">{{element.shiftId}}
+                                                            </td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="location">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                                                Location</th>
+                                                            <td mat-cell *matCellDef="let element">{{element.location}}
+                                                            </td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="date">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let element">{{element.date}}</td>
+                                                        </ng-container>
+                                                        <tr mat-header-row *matHeaderRowDef="displayedColumnsMultitabs">
+                                                        </tr>
+                                                        <tr mat-row
+                                                            *matRowDef="let row; columns: displayedColumnsMultitabs;">
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="pane-progressNotes" class="card tab-pane fade" role="tabpanel"
+                                aria-labelledby="tab-progressNotes">
+                                <div class="collapse show p-0">
+                                    <div class="card-body">
+                                        <div class="table-wrap">
+                                            <div class="table-content">
+                                                <div class="table-responsive">
+                                                    <table mat-table [dataSource]="dataSourceMultitabs" matSort>
+                                                        <ng-container matColumnDef="sr">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="name">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="shiftId">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Shift
+                                                                ID</th>
+                                                            <td mat-cell *matCellDef="let element">{{element.shiftId}}
+                                                            </td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="location">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                                                Location</th>
+                                                            <td mat-cell *matCellDef="let element">{{element.location}}
+                                                            </td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="date">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let element">{{element.date}}</td>
+                                                        </ng-container>
+                                                        <tr mat-header-row *matHeaderRowDef="displayedColumnsMultitabs">
+                                                        </tr>
+                                                        <tr mat-row
+                                                            *matRowDef="let row; columns: displayedColumnsMultitabs;">
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="pane-incidentsReported" class="card tab-pane fade" role="tabpanel"
+                                aria-labelledby="tab-incidentsReported">
+                                <div class="collapse show p-0">
+                                    <div class="card-body">
+                                        <div class="table-wrap">
+                                            <div class="table-content">
+                                                <div class="table-responsive">
+                                                    <table mat-table [dataSource]="dataSourceMultitabs" matSort>
+                                                        <ng-container matColumnDef="sr">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="name">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="shiftId">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Shift
+                                                                ID</th>
+                                                            <td mat-cell *matCellDef="let element">{{element.shiftId}}
+                                                            </td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="location">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                                                Location</th>
+                                                            <td mat-cell *matCellDef="let element">{{element.location}}
+                                                            </td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="date">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let element">{{element.date}}</td>
+                                                        </ng-container>
+                                                        <tr mat-header-row *matHeaderRowDef="displayedColumnsMultitabs">
+                                                        </tr>
+                                                        <tr mat-row
+                                                            *matRowDef="let row; columns: displayedColumnsMultitabs;">
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="pane-rejectedShifts" class="card tab-pane fade" role="tabpanel"
+                                aria-labelledby="tab-rejectedShifts">
+                                <div class="collapse show p-0">
+                                    <div class="card-body">
+                                        <div class="table-wrap">
+                                            <div class="table-content">
+                                                <div class="table-responsive">
+                                                    <table mat-table [dataSource]="dataSourceMultitabs" matSort>
+                                                        <ng-container matColumnDef="sr">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="name">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="shiftId">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Shift
+                                                                ID</th>
+                                                            <td mat-cell *matCellDef="let element">{{element.shiftId}}
+                                                            </td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="location">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                                                                Location</th>
+                                                            <td mat-cell *matCellDef="let element">{{element.location}}
+                                                            </td>
+                                                        </ng-container>
+                                                        <ng-container matColumnDef="date">
+                                                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date
+                                                            </th>
+                                                            <td mat-cell *matCellDef="let element">{{element.date}}</td>
+                                                        </ng-container>
+                                                        <tr mat-header-row *matHeaderRowDef="displayedColumnsMultitabs">
+                                                        </tr>
+                                                        <tr mat-row
+                                                            *matRowDef="let row; columns: displayedColumnsMultitabs;">
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-wrap mb-4">
+                                <div class="table-title">
+                                    <h2>Current Shift</h2>
+                                </div>
+                                <lib-currentshift [employeeId]="employeeId"
+                                    (updateAssignedShift)="updateAssignedShift($event)"></lib-currentshift>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-wrap">
+                                <div class="table-title">
+                                    <h2>Assigned Shift</h2>
+                                </div>
+                                <lib-assignedshift [assignedShiftModel]="assignedModel" [totalCount]="totalCount"
+                                    (pageAssignedShift)="updatePagingAssignedShift($event)"
+                                    (updateCurrentShift)="updateCurrentShift($event)"
+                                    (updateAlert)="updateAlert($event)"></lib-assignedshift>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <lib-admin-sidebar></lib-admin-sidebar>
+</div>
+
+<div class="modal popup-default popup-lg" id="myShiftModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Employee Shift List</h4>
+                    <button type="button" class="close" data-dismiss="modal" #btnCancel>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="table-content">
+                        <div class="table-responsive table-date-min-width">
+                            <table mat-table [dataSource]="dataSource" matSort class="w-100">
+                                <ng-container matColumnDef="description">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.description}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>StartDate - EndDate</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.startDate |  date :'dd/MM/yyyy'}}
+                                        {{element.endDate |  date :'dd/MM/yyyy'}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="time">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>StartTime - EndTime</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.startTimeString}} - {{element.endTimeString}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="duration">
+                                    <th mat-header-cell *matHeaderCellDef>Duration</th>
+                                    <td mat-cell *matCellDef="let element">{{element.duration}} Hrs</td>
+                                </ng-container>
+                                <ng-container matColumnDef="client">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Clients</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngFor="let item of element.clientShiftInfoViewModel">
+                                            <p>{{item.name}}</p>
+
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="staff">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employees</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div *ngFor="let item of element.employeeShiftInfoViewModel">
+                                            <p>{{item.name}}</p>
+
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="location">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+                                    <td mat-cell *matCellDef="let element">{{element.locationName}}</td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="status">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                                    <td mat-cell *matCellDef="let element">{{element.statusName}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="action">
+                                    <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a (click)="cancelModal()" [routerLink]="['/employee/dashboard/view-shift' ,element.id]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="21.333" height="16"
+                                                viewBox="0 0 21.333 16">
+                                                <path id="iconfinder_view_126581_2_"
+                                                    data-name="iconfinder_view_126581 (2)"
+                                                    d="M10.667,7.333A2.668,2.668,0,0,1,8,10a2.667,2.667,0,1,0,2.667-2.667Zm0-5.333C5.2,2,0,8.2,0,10s5.2,8,10.667,8,10.667-6.2,10.667-8S16.136,2,10.667,2Zm0,13.333A5.333,5.333,0,1,1,16,10,5.334,5.334,0,0,1,10.667,15.333Z"
+                                                    transform="translate(0 -2)" fill="#7b7b7b" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumnsRequired"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumnsRequired;"></tr>
+                            </table>
+                            <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+                                (page)="PageIndexEvent($event)">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

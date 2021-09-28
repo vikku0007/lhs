@@ -1,0 +1,322 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Employee Warnings <lib-submenu-page></lib-submenu-page>
+            </h1>
+        </div>
+        <div class="page-inner-wrap">
+            <div class="page-sub-inner-wrap">
+                <div class="row">
+                    <div class="col-sm-11"></div>
+                    <div class="col-sm-1">
+                        <a href="javascript:void(0);" class="btn btn-action-xs back-link"
+                            (click)="openEmployeeDetail()">Back</a>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- <div class="psiw-rgt">
+                        <div class="psiw-bx-title">
+                            <button id="openEditModalButton" hidden data-toggle="modal" data-target="#editLeavePopup"></button>
+                        </div>
+                        <form [formGroup]="rForm" #formDirective="ngForm" (ngSubmit)="AddStaffWarning()"  #formDirective="ngForm">
+                        <div class="psiw-bx-content mb-5">
+                            <div class="row">
+                               
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Types Of Warning</label>
+                                        <mat-form-field>
+                                            <mat-select  formControlName="warningType"  placeholder="Select Warning">
+                                                <mat-option *ngFor="let list of WarningTypeList" [value]="list.id">
+                                                    {{list.codeDescription}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Types Of Offenses</label>
+                                        <mat-form-field>
+                                            <mat-select formControlName="offensesType" placeholder="Select Offense" (selectionChange)="selectChangeHandler($event.value)">
+                                                <mat-option *ngFor="let list of OffenseTypeList" [value]="list.id">
+                                                    {{list.codeDescription}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           <div class="row" *ngIf="isShownOther">
+                            <div class="col-md-12">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Other Offenses</label>
+                                    <mat-form-field>
+                                        <textarea matInput autofocus autocomplete="off" formControlName="otheroffenses" placeholder="Enter Other Offenses"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div>
+                           </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group input-textarea">
+                                        <label class="field-label">Description Of Warnings</label>
+                                        <mat-form-field>
+                                            <textarea matInput autofocus autocomplete="off" formControlName="description" placeholder="Write Your Message Here..."></textarea>
+                                        </mat-form-field> 
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group input-textarea">
+                                        <label class="field-label">Plan For Improvement</label>
+                                        <mat-form-field>
+                                            <textarea matInput autofocus autocomplete="off" formControlName="improvementPlan" placeholder="Write Your Message Here..."></textarea>
+                                        </mat-form-field> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="two-btn-group">
+                            <button type="submit" class="btn btn-action-sm">Submit</button>
+                            
+                         </div>
+                        </div>
+                        </form>
+                    </div> -->
+                        <div class="psiw-rgt">
+                            <div class="table-wrap">
+                                <div class="table-title">
+                                    <h2>Employee Warnings </h2>
+                                </div>
+                                <div class="table-content">
+                                    <div class="table-responsive">
+                                        <table mat-table [dataSource]="dataSource" matSort>
+                                            <ng-container matColumnDef="sr">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#</th>
+                                                <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="warningType">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Warning Type</th>
+                                                <td mat-cell *matCellDef="let element">{{element.warningType}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="offenseTypeName">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Offense Type</th>
+                                                <td mat-cell *matCellDef="let element">{{element.offenseTypeName}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="description">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                                                <td mat-cell *matCellDef="let element">{{element.description}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="improvementPlan">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Improvement Plan
+                                                </th>
+                                                <td mat-cell *matCellDef="let element">{{element.improvementPlan}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="otheroffenses">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Other Offenses
+                                                </th>
+                                                <td mat-cell *matCellDef="let element">{{element.otherOffenses}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="warningDate">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    {{element.createdDate | date :'dd/MM/yyyy'}}
+
+                                                </td>
+                                            </ng-container>
+
+                                            <ng-container matColumnDef="action">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    <a href="javascript:void(0);" (click)=openEditDetails(element)>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            viewBox="0 0 16 16">
+                                                            <path id="iconfinder_write_126582_1_"
+                                                                data-name="iconfinder_write_126582 (1)"
+                                                                d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z"
+                                                                transform="translate(-1 -1)" fill="#7b7b7b" />
+                                                        </svg>
+                                                    </a>
+                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                        data-target="#myModal"
+                                                        (click)="DeleteModal(element.Id, $event)">
+                                                        <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15"
+                                                            height="18.071" viewBox="0 0 15 18.071">
+                                                            <g id="Group_66039" data-name="Group 66039">
+                                                                <g id="Group_66037" data-name="Group 66037"
+                                                                    transform="translate(0 0)">
+                                                                    <path id="Path_304" data-name="Path 304"
+                                                                        d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z"
+                                                                        transform="translate(-79.61 -43.5)"
+                                                                        fill="#7b7b7b" />
+                                                                </g>
+                                                                <g id="Group_66038" data-name="Group 66038"
+                                                                    transform="translate(1.716 7.819)">
+                                                                    <path id="Path_305" data-name="Path 305"
+                                                                        d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z"
+                                                                        transform="translate(-119.27 -231.53)"
+                                                                        fill="#7b7b7b" />
+                                                                </g>
+                                                            </g>
+                                                        </svg>
+                                                    </a>
+                                                </td>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                        </table>
+                                        <mat-paginator [length]="totalCount" [pageSize]="10"
+                                            [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                                        </mat-paginator>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <lib-admin-sidebar></lib-admin-sidebar>
+</div>
+<div class="modal custom-popup " id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <button type="button" class="close header-close" data-dismiss="modal">
+                    &times;
+                </button>
+                <p>Are you sure you want to delete record?</p>
+                <br />
+                <div class="modal-btn">
+                    <button mat-button class="project-btn-1-db project-btn-1-db-gray"
+                        data-dismiss="modal">Cancel</button>
+                    &nbsp;&nbsp;
+                    <button mat-button class="project-btn-1-db" data-dismiss="modal" (click)="DeletestaffInfo($event)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal popup-default" id="editLeavePopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rForm1" #formDirective="ngForm" #formDirective="ngForm">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Employee Warning</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- <div class="col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">Employee Name</label>
+                                    <mat-form-field appearance="fill">
+                                        <input matInput formControlName="empName" placeholder="Enter Employee Name" value="John Doe">
+                                        
+                                    </mat-form-field>
+                                </div>
+                            </div> -->
+                        <!-- <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">Date</label>
+                                    <mat-form-field>
+                                        <input class="filter-date" formControlName="Editdate" matInput [matDatepicker]="pickerDate1" placeholder="From Date">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerDate1"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerDate1></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div> -->
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Types Of Warning</label>
+                                <mat-form-field>
+                                    <mat-select formControlName="EditwarningType" placeholder="Select Warning">
+                                        <mat-option *ngFor="let list of WarningTypeList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Types Of Offenses</label>
+                                <mat-form-field>
+                                    <mat-select formControlName="EditoffensesType" placeholder="Select Offense"
+                                        (selectionChange)="selectChangeHandlerEdit($event.value)">
+                                        <mat-option *ngFor="let list of OffenseTypeList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="isShownOther">
+                        <div class="col-md-12">
+                            <div class="form-group input-textarea">
+                                <label class="field-label">Other Offenses</label>
+                                <mat-form-field>
+                                    <textarea matInput autofocus autocomplete="off" formControlName="Editotheroffenses"
+                                        placeholder="Enter Other Offenses"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group input-textarea">
+                                <label class="field-label">Description Of Warnings</label>
+                                <mat-form-field>
+                                    <textarea matInput autofocus autocomplete="off" formControlName="Editdescription"
+                                        placeholder="Write Your Message Here..."></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group input-textarea">
+                                <label class="field-label">Plan For Improvement</label>
+                                <mat-form-field>
+                                    <textarea matInput autofocus autocomplete="off"
+                                        formControlName="EditimprovementPlan"
+                                        placeholder="Write Your Message Here..."></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-action-sm" (click)="UpdateStaffWarning()">Update</button>
+                    <button type="button" #btnEditStaffwaringCancel class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
