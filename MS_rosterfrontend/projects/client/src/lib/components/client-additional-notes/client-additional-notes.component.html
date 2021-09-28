@@ -1,0 +1,75 @@
+
+   
+            <div class="section-title">
+                <h2>Additional Info</h2>
+                <a (click)="editAdditionalDetails()" href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editAdditionalNotesPopup">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                        <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="section-content" *ngIf="Clientadditionalnotes">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Private Notes</h3>
+                        <!-- <p>{{Clientadditionalnotes.PublicNote}}</p> -->
+                        <p>{{Clientadditionalnotes.privateNote}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Public Info</h3>
+                        <p class="mb-0">{{Clientadditionalnotes.publicNote}}</p>
+                    </div>
+                </div>
+            </div>
+     
+   
+ <!-- Additional Notes Start Here -->
+ <div class="modal popup-default" id="editAdditionalNotesPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rForm" (ngSubmit)="UpdateAdditionalnotes()" >
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Additional Notes</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group input-textarea">
+                            <label class="field-label">Private Notes</label>
+                            <mat-form-field>
+                                <textarea matInput placeholder="Enter Private Notes" formControlName="PrivateNote"></textarea>
+                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group input-textarea">
+                            <label class="field-label">Public Info</label>
+                            <mat-form-field>
+                                <textarea matInput placeholder="Enter Public Info" formControlName="PublicNote"></textarea>                            <mat-error>{{getErrorMessage}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-action-sm">Update</button>
+                <button type="button" #btnadditionalInfoCancel class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
+        </div>
+    
+    </div>
+</div><!-- /Additional Notes Popup End -->

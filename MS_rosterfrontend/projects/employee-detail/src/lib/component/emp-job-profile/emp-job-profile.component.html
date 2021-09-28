@@ -1,0 +1,206 @@
+<div class="section-title">
+    <h2>Job Profile</h2>
+    <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editJpbProfilePopup">
+        <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+            <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+        </svg>
+    </a>
+</div>
+<div class="section-content">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Job Description</h3>
+            <p>{{empJobProfile.jobDesc}}</p>
+        </div>
+        <div class="col-sm-6">
+            <h3>Department</h3>
+            <p>{{empJobProfile.departmentName}}</p>
+        </div>
+    </div>
+    <div class="row">
+      
+        <div class="col-sm-6">
+            <h3>Date Of Employment</h3>
+            <p>{{empJobProfile.dateOfJoining | date :'dd/MM/yyyy'  }}</p>
+        </div>
+        <div class="col-sm-6">
+            <h3>Reporting To</h3>
+            <p>{{empJobProfile.reportingToName}}</p>
+        </div>
+        <!-- <div class="col-6">
+            <h3>Location Type</h3>
+            <p>{{empJobProfile.locationTypeName}}</p>
+        </div> -->
+       
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Source Of Hire</h3>
+            <p>{{empJobProfile.sourceName}}</p>
+        </div>
+        <div class="col-sm-6">
+            <h3>Hours per Fortnight</h3>
+            <p class="mb-0">{{empJobProfile.workingHoursWeekly}} Hrs</p>
+        </div> 
+       
+    </div>
+    <div class="row"></div>
+    
+    
+<!-- Kin Info Popup Start Here -->
+<div class="modal popup-default" id="editJpbProfilePopup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form [formGroup]="rForm" (ngSubmit)="UpdateJobProfile()" #formDirective="ngForm">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Edit Job Profile Details</h4>
+            <button type="button" class="close" data-dismiss="modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                    <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                </svg>  
+            </button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-jobDesc" class="field-label">Job Description</label>
+                        <!-- <input type="textarea" class="form-control" formControlName="jobDesc" id="ki-jobDesc" aria-describedby="emailHelp" placeholder="Enter Job Description"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Job Description" formControlName="jobDesc"
+                                value="" required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field> 
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-departmentId" class="field-label">Department</label>
+                    
+                        <mat-form-field>
+                            <mat-select placeholder="Select" formControlName="departmentId">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Department'" [formControl]="control" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>                         
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 col-sm-12" >
+                    <div class="form-group">
+                        <label class="field-label">Location Type</label>
+                        <mat-form-field>
+                            <mat-select formControlName="locationtype" placeholder="Select Location Type" (selectionChange)="selectChangeHandler($event.value)">
+                                <mat-option *ngFor="let list of LocationTypeList" [value]="list.value">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" *ngIf="isShownLocatiodropdown">
+                    <div class="form-group">
+                        <label for="ki-departmentId" class="field-label">Location</label>
+                     
+                        <mat-form-field>
+                            <mat-select placeholder="Select"  formControlName="locationId">
+                                <mat-option *ngFor="let list of LocationList" [value]="list.locationId">
+                                    {{list.name}}
+                                </mat-option>                      
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" *ngIf="isShownOtherLocation">
+                    <div class="form-group">
+                        <label class="field-label">Other Location</label>
+                        <mat-form-field>
+                            <input  formControlName="otherlocation"  matInput placeholder="Enter Other Location">
+                        </mat-form-field> 
+                    </div>
+                </div> -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="reportingToId"  class="field-label">Reporting To</label>
+                   
+                        <mat-form-field>
+                            <mat-select placeholder="Select"  formControlName="reportingToId">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Reported To'" [formControl]="searchcontrol" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredRecordsreport | async" [value]="list.id">
+                                    {{list.fullName}}
+                                </mat-option>                                                               
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-source" class="field-label">Source of Hire</label>
+                    
+                        <mat-form-field>
+                            <mat-select placeholder="Select"  formControlName="source">
+                                <mat-option *ngFor="let item of sourceOfHireList" [value]="item.id">
+                                    {{item.codeDescription}}
+                                </mat-option>                                                                  
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="doj" class="field-label">Date Of Employment</label>
+                        <!-- <input type="date" class="form-control" formControlName="dateOfJoining" id="doj" placeholder="Select Date"> -->
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="off" formControlName="dateOfJoining" [matDatepicker]="picker1" placeholder="Select Date">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+             
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-workingHoursWeekly" class="field-label">Hours Per Fortnight</label>
+                        <!-- <input type="text" formControlName="workingHoursWeekly" class="form-control" id="ki-workingHoursWeekly" aria-describedby="emailHelp" placeholder="Enter Working Hours Weekly"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Hours per Fortnight" formControlName="workingHoursWeekly"
+                                value="" required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field> 
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-distanceTravel" class="field-label">Distance Willing to Travel (Km.)</label>
+                        <!-- <input type="text" formControlName="distanceTravel" class="form-control" id="ki-distanceTravel" aria-describedby="emailHelp" placeholder="Enter Distance To Travel"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Distance to Travel" formControlName="distanceTravel"
+                                value="" required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field> 
+                    </div>
+                </div>
+           
+            
+            </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-action-sm">Update</button>
+            <button type="button" #btnJobProfileCancel class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+        </form>
+      </div>
+    </div>
+ </div><!-- /Kin Info Popup end -->

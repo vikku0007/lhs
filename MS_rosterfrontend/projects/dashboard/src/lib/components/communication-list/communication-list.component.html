@@ -1,0 +1,121 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Employee - Communication List</h1>
+        </div>
+        <div class="table-wrap">
+           
+            <div class="table-content">
+                <div class="tbl-search-bx">
+                    <form class="form-inline" action="javascript:void(0);">
+                        <mat-form-field appearance="fill">
+                            <input matInput #empName placeholder="Recepient Name" value=""
+                                required>
+                       </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <input matInput #subject placeholder="Subject" value=""
+                                required>
+                        </mat-form-field>
+                        <input type="button" value="Search" class="btn btn-action-sm" (click)="Search()">
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table mat-table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="sr">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#</th>
+                            <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                        </ng-container>
+                          
+                        <ng-container matColumnDef="subject">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Subject</th>
+                            <td mat-cell *matCellDef="let element">{{element.subject}}</td>
+                        </ng-container>
+                        <!-- <ng-container matColumnDef="employeeName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block">
+                                    <a href="javascript:void(0);"
+                                    routerLink="/employee/emp-detail"
+                                        [queryParams]="{Id: element.employeeId}">{{element.fullName}}</a><br>
+                                </div>
+                            </td>
+                        </ng-container> -->
+                        <ng-container matColumnDef="assignedToName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Recepient</th>
+                            <td mat-cell *matCellDef="let element"><div *ngFor="let item of element.communicationRecepientmodel"> 
+                                <p>{{item.assignedToName}}</p>
+                                </div>
+                                </td>
+                        </ng-container>
+                        <ng-container matColumnDef="createdDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Time</th>
+                            <td mat-cell *matCellDef="let element">{{element.createdDate|date:'dd/MM/yyyy-h:mm' }}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Details</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a href="javascript:void(0);" (click)="OpenEditmodal(element.employeeId,element.id, $event)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21.333" height="16" viewBox="0 0 21.333 16">
+                                        <path id="iconfinder_view_126581_2_" data-name="iconfinder_view_126581 (2)" d="M10.667,7.333A2.668,2.668,0,0,1,8,10a2.667,2.667,0,1,0,2.667-2.667Zm0-5.333C5.2,2,0,8.2,0,10s5.2,8,10.667,8,10.667-6.2,10.667-8S16.136,2,10.667,2Zm0,13.333A5.333,5.333,0,1,1,16,10,5.334,5.334,0,0,1,10.667,15.333Z" transform="translate(0 -2)" fill="#7b7b7b"/>
+                                      </svg>
+                                </a>
+                                <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" (click)="DeleteModal(element.id, $event)">
+                                    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071"
+                                        viewBox="0 0 15 18.071">
+                                        <g id="Group_66039" data-name="Group 66039">
+                                            <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                <path id="Path_304" data-name="Path 304"
+                                                    d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z"
+                                                    transform="translate(-79.61 -43.5)" fill="#7b7b7b" />
+                                            </g>
+                                            <g id="Group_66038" data-name="Group 66038"
+                                                transform="translate(1.716 7.819)">
+                                                <path id="Path_305" data-name="Path 305"
+                                                    d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z"
+                                                    transform="translate(-119.27 -231.53)" fill="#7b7b7b" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </a> -->
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                    </mat-paginator>
+                    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <lhs-sidebar></lhs-sidebar>
+</div>
+<div class="modal custom-popup " id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <button type="button" class="close header-close" data-dismiss="modal">
+            &times;
+          </button>
+          <p>Are you sure you want to delete record?</p>
+          <br/>
+          <div class="modal-btn">
+            <button mat-button class="project-btn-1-db project-btn-1-db-gray" data-dismiss="modal">Cancel</button>
+            &nbsp;&nbsp;
+            <button
+    
+            mat-button class="project-btn-1-db"
+              data-dismiss="modal"
+    
+              (click)="DeleteCommunicationInfo($event)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>

@@ -1,0 +1,227 @@
+<section class="section-info-bx">
+    <div class="section-title">
+        <h2>Pay Rate - <span> Level: {{empPayRates.level}}</span></h2>
+        <!-- <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editpayrateopup">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+            </svg>
+        </a> -->
+    </div>
+    <div class="section-content">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Monday - Friday From 6Am To 12Am</h3>
+                <p>$ {{empPayRates.monToFri6To12AM}}</p>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Saturday From 6Am To 12Am</h3>
+                <p>$ {{empPayRates.sat6To12AM}}</p>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Sunday From 6Am To 12Am</h3>
+                <p>$ {{empPayRates.sun6To12AM}}</p>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Public Holiday From 6Am To 12Am</h3>
+                <p>$ {{empPayRates.holiday6To12AM}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Monday - Friday From 12Am To 6Am</h3>
+                <p class="mb-0">$ {{empPayRates.monToFri12To6AM}}</p>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Saturday From 12Am To 6Am</h3>
+                <p class="mb-0">$ {{empPayRates.sat12To6AM}}</p>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Sunday From 12Am To 6Am</h3>
+                <p class="mb-0">$ {{empPayRates.sun12To6AM}}</p>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Public Holiday From 12Am To 6Am</h3>
+                <p class="mb-0">$ {{empPayRates.holiday12To6AM}}</p>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Sleepover</h3>
+                <p class="mb-0">$ {{empPayRates.activeNightsAndSleep}}</p>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>House Cleaning</h3>
+                <p class="mb-0">$ {{empPayRates.houseCleaning}}</p>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                <h3>Transport – Petrol Reimbursement</h3>
+                <p class="mb-0">$ {{empPayRates.transportPetrol}}</p>
+            </div>
+        </div>
+    </div>
+<!-- payrate Info Popup Start Here -->
+<div class="modal popup-default" id="editpayrateopup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form [formGroup]="rForm" (ngSubmit)="UpdateEmpPayrate()" #formDirective="ngForm">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Edit Pay Rates Details</h4>
+            <button type="button" class="close" data-dismiss="modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                    <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                </svg>  
+            </button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-level" class="field-label">Level</label>
+                        <!-- <input type="text" formControlName="level" class="form-control" id="ki-level" aria-describedby="emailHelp" placeholder="Enter Location"> -->
+                        <mat-form-field>
+                            <mat-select placeholder="Select" (selectionChange)="selected()" formControlName="level">
+                                <mat-option *ngFor="let item of levelList" [value]="item.id">
+                                    {{item.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-monToFri6To12AM" class="field-label">Monday - Friday From 6AM To 12AM</label>
+                        <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Monday - Friday From 6AM To 12AM Rate" formControlName="monToFri6To12AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+
+                    </div>
+                </div>
+                   
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-sat6To12AM"  class="field-label">Saturday From 6AM To 12AM</label>
+                            <!-- <input type="text" formControlName="sat6To12AM" class="form-control" id="ki-sat6To12AM" aria-describedby="emailHelp" placeholder="Enter Saturday From 6AM To 12AM Rate"> -->
+                            <mat-form-field appearance="fill">
+                                <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Saturday From 6AM To 12AM Rate" formControlName="sat6To12AM" value=""
+                                    required>
+                                <mat-error>{{getErrorMessage}}</mat-error>
+                            </mat-form-field>    
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-sun6To12AM" class="field-label">Sunday From 6AM To 12AM</label>
+                        <!-- <input type="text" formControlName="sun6To12AM" class="form-control" id="ki-sun6To12AM" aria-describedby="emailHelp" placeholder="Enter Sunday From 6AM To 12AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Sunday From 6AM To 12AM Rate" formControlName="sun6To12AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="holiday6To12AM" class="field-label">Public Holiday From 6AM To 12AM</label>
+                        <!-- <input type="text" formControlName="holiday6To12AM" class="form-control" id="ki-holiday6To12AM" aria-describedby="emailHelp" placeholder="Enter Holiday From 6AM To 12AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Holiday From 6AM To 12AM Rate" formControlName="holiday6To12AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-monToFri12To6AM" class="field-label">Monday - Friday From 12AM To 6AM</label>
+                        <!-- <input type="text" formControlName="monToFri12To6AM" class="form-control" id="ki-monToFri12To6AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Monday - Friday From 12AM To 6AM Rate" formControlName="monToFri12To6AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-sat12To6AM" class="field-label">Saturday From 12AM To 6AM</label>
+                        <!-- <input type="text" formControlName="sat12To6AM" class="form-control" id="ki-sat12To6AM" aria-describedby="emailHelp" placeholder="Enter Saturday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Saturday From 12AM To 6AM Rate" formControlName="sat12To6AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-sun12To6AM" class="field-label">Sunday From 12AM To 6AM</label>
+                        <!-- <input type="text" formControlName="sun12To6AM" class="form-control" id="ki-sun12To6AM" aria-describedby="emailHelp" placeholder="Enter Sunday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Sunday From 12AM To 6AM Rate" formControlName="sun12To6AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-holiday12To6AM" class="field-label">Public Holiday From 12AM To 6AM</label>
+                        <!-- <input type="text" formControlName="holiday12To6AM" class="form-control" id="ki-holiday12To6AM" aria-describedby="emailHelp" placeholder="Enter Holiday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Holiday From 12AM To 6AM Rate" formControlName="holiday12To6AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-holiday12To6AM" class="field-label">Sleepover </label>
+                        <!-- <input type="text" formControlName="holiday12To6AM" class="form-control" id="ki-holiday12To6AM" aria-describedby="emailHelp" placeholder="Enter Holiday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Sleepover" formControlName="activenights" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-housecleaning" class="field-label">House Cleaning</label>
+                              <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter House Cleaning" formControlName="housecleaning" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-transportpetrol" class="field-label">Transport – Petrol Reimbursement </label>
+                         <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Transport – Petrol Reimbursement" formControlName="transportpetrol" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-action-sm">Update</button>
+            <button type="button" #btnPayRatesCancel class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+        </form>
+      </div>
+    </div>
+ </div><!-- /payrate Popup end -->

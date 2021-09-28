@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.App" Version="2.2.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LHSAPI.Common\LHSAPI.Common.csproj" />
+    <ProjectReference Include="..\LHSAPI.Domain\LHSAPI.Domain.csproj" />
+    <ProjectReference Include="..\LHSAPI.Persistence\LHSAPI.Persistence.csproj" />
+  </ItemGroup>
+
+  
+</Project>

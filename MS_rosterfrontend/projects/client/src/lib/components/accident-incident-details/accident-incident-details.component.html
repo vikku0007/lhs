@@ -1,0 +1,2282 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+<div class="container-fluid page-wrap">
+    <div class="page-title page-tile-with-tabs">
+        <h1>Client Details 
+            <lib-page-submenu></lib-page-submenu>
+        </h1>
+    </div>
+    <div class="page-inner-wrap">
+        <div class="page-sub-inner-wrap">
+            <div class="row">
+                <div class="col-sm-12 psiw-lft">
+                    <lib-user-card></lib-user-card>
+                </div>
+                <div class="col-sm-12">
+                    <div class="psiw-rgt">
+                        <div class="psiw-bx-title">
+                            <h2>Accident/Incidents
+                                <a href="javascript:void(0);" (click)="ShowAccidentDetails()" class="btn btn-action-xs popup-link" data-toggle="modal" data-target="#viewAccidentIncidentPopup">View</a>
+                            </h2>
+                        </div>
+                        <div class="vertical-tab-wrap">
+                            
+                            <ul id="tabs" class="nav nav-tabs" role="tablist">
+                                <li class="nav-item"><a href="javascript:void(0);" routerLink="/client/client-shift-list" [queryParams]="{Id: clientId}" class="btn btn-action-xs popup-link" style="width: auto;">View Shift List</a></li>
+                                <li class="nav-item">
+                                    <a id="tab-scheduled" href="#provider-details" class="nav-link active" data-toggle="tab" role="tab">Provider Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-onshift" href="#primary-contact-person" class="nav-link" data-toggle="tab" role="tab">Primary Contact Person</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-finished" href="#incident-category" class="nav-link" data-toggle="tab" role="tab">Incident Category</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-finished" href="#incident-details" class="nav-link" data-toggle="tab" role="tab">Incident Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-finished" href="#impacted-person" class="nav-link" data-toggle="tab" role="tab">Impacted Person</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-finished" href="#subject-of-allegation" class="nav-link" data-toggle="tab" role="tab">Subject of Allegation</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-finished" href="#immediate-action-taken" class="nav-link" data-toggle="tab" role="tab">Immediate Action Taken</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-finished" href="#risk-assessment" class="nav-link" data-toggle="tab" role="tab">Risk Assessment</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-finished" href="#attachments" class="nav-link" data-toggle="tab" role="tab">Attachments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-finished" href="#declaration" class="nav-link" data-toggle="tab" role="tab">Declaration</a>
+                                </li >
+
+                            </ul>
+                           
+                            <div id="content" class="tab-content" role="tablist">
+                                <div id="provider-details" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-scheduled">
+                                    <form [formGroup]="rFormProvider" (ngSubmit)="AddProviderInfo()">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Provider Details</h5>
+                                    </div>
+                         
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Provider Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" readonly placeholder="Provider Name"   formControlName="ProviderName" value="" >
+                                                           
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Provider Registration ID</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" readonly placeholder="Provider Registration ID" value="" formControlName="RegistrationId">
+                                                            
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Provider ABN</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" readonly placeholder="Provider ABN" value="" formControlName="ProviderABN">
+                                                           
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Report Completed By</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Report Completed By" formControlName="ReportedBy" value="" >
+                                                           
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Outlet Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Outlet Name" value="" formControlName="OutletName">
+                                                            
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Registration Group</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Registration Group" value="" formControlName="RegistrationGroup">
+                                                            
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">State</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Select" formControlName="State">
+                                 
+                                                                <mat-option *ngFor="let list of StateList" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                            <button type="submit" class="btn btn-action-sm">{{textProvider}}</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                        
+                                <div id="primary-contact-person" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-onshift">
+                                    <form [formGroup]="rFormcontact" (ngSubmit)="AddcontactInfo()">
+                                    <div class="card-header" role="tab" id="heading-onshift">
+                                        <h5 class="mb-0">Primary Contact Person</h5>
+                                    </div>
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Title</label>
+                                                        <mat-form-field >
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Title" value="" formControlName="ContactTitle">
+                                                           
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">First Name</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="ContactFirstName">
+                                                           
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Middle Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Middle Name" value="" formControlName="ContactMiddleName">
+                                                           
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Last Name</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Last Name" value="" formControlName="ContactLastName">
+                                                            
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Postion at Provider</label>
+                                                        <mat-form-field >
+                                                            <input matInput autofocus autocomplete="off" placeholder="Postion at Provider" value="" formControlName="ContactProvider">
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Phone Number</label>
+                                                        <mat-form-field>
+                                                            <input type="number" matInput placeholder="Enter Phone No." 
+                                                            formControlName="ContactPhoneNo"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            maxlength = "11" >
+                                                         
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Email Address</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email Address" value="" formControlName="ContactEmail">
+                                                           
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Preferred Method of Contact </label>
+                                                        <mat-form-field appearance="fill">
+                                                        <input matInput autofocus autocomplete="off" placeholder="Enter Preferred Method of Contact" value="" formControlName="ContactMethod">
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-action-sm">{{textContact}}</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                        
+                                <div id="incident-category" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                                    <form [formGroup]="rFormCategory" (ngSubmit)="AddIncidentCategory()">
+                                    <div class="card-header" role="tab" id="heading-finished">
+                                        <h5 class="mb-0">Incident Category</h5>
+                                    </div>
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Primary Category</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Select Primary Category" multiple formControlName="PrimaryCategory">
+                                                                <mat-option>
+                                                                <ngx-mat-select-search [placeholderLabel]="'Search Primary Category'" [formControl]="controlPrimary" 
+                                                                ngDefaultControl></ngx-mat-select-search>
+                                                              </mat-option>
+                                                             <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                                                {{list.codeDescription}}
+                                                            </mat-option> 
+                                                               
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Secondary Category</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Select Secondary Category" multiple formControlName="SecondaryCategory">
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search Secondary Category'" [formControl]="controlSecondary" 
+                                                                    ngDefaultControl></ngx-mat-select-search>
+                                                                  </mat-option>
+                                                                 <mat-option *ngFor="let list of filteredRecordsSecondary | async" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option> 
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">If the incident is a death of a person with disability, was the death anticipated?</label>
+                                                        <mat-radio-group aria-label="Select an option" formControlName="IsIncidentAnticipated">
+                                                            <mat-radio-button value="1">Yes</mat-radio-button>
+                                                            <mat-radio-button value="2">No</mat-radio-button>
+                                                            <mat-radio-button value="3">Unknown</mat-radio-button>
+                                                        </mat-radio-group>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-action-sm">{{textCategory}}</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div id="incident-details" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                                    <form [formGroup]="rFormIncidentInfo" (ngSubmit)="AddIncidentDetails()">
+                                    <div class="card-header" role="tab" id="heading-finished">
+                                        <h5 class="mb-0">Incident Details</h5>
+                                    </div>
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12" >
+                                                    <div class="form-group">
+                                                        <label class="field-label">Location Type</label>
+                                                        <mat-form-field>
+                                                            <mat-select formControlName="locationtype" placeholder="Select Location Type" (selectionChange)="selectChangeHandler($event.value)">
+                                                                <mat-option *ngFor="let list of LocationTypeList" [value]="list.value">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6 col-sm-12" *ngIf="isShownLocatiodropdown">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Location</label>
+                                                        <mat-form-field>
+                                                            <mat-select formControlName="locationId" placeholder="Select Location" (selectionChange)="SelectOtherLocation($event.value)">
+                                                                <mat-option *ngFor="let list of LocationList" [value]="list.locationId">
+                                                                    {{list.name}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12" *ngIf="isShownLocation">
+                                                    <div class="form-group input-textarea">
+                                                        <label class="field-label">Other Location</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="off" formControlName="Location"  matInput placeholder="Enter Location">
+                                                        </mat-form-field> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12" *ngIf="isShownOtherLocation">
+                                                    <div class="form-group input-textarea">
+                                                        <label class="field-label">Address</label>
+                                                        <lib-googleaddress autofocus autocomplete="disabled"  [control]="otherlocation"  (onAddressChange)="handleAddressChange($event)">
+                                                        </lib-googleaddress> 
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Date of Incident/Allegation</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="off" [matDatepicker]="incidentdate" placeholder="Select Date" formControlName="Incidentdate">
+                                                            <mat-datepicker-toggle matSuffix [for]="incidentdate"></mat-datepicker-toggle>
+                                                            <mat-datepicker #incidentdate></mat-datepicker>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">If Date Unknown, Reason Why</label>
+                                                        <mat-form-field >
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Reason" value="" formControlName="Reason">
+                                                            
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Time the NDIS provider became aware of the incident</label>
+                                                        <mat-form-field>
+                                                            <mat-select formControlName="NdisProviderTime" placeholder="Select  Time">
+                                                                <mat-option *ngFor="let list of TimeDropdownList" [value]="list.id">
+                                                                    {{list.text}}
+                                                                </mat-option>    
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                     </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Date the NDIS provider became aware of the incident</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="off" [matDatepicker]="providerdate" placeholder="Select Date" formControlName="NdisProviderDate">
+                                                            <mat-datepicker-toggle matSuffix [for]="providerdate"></mat-datepicker-toggle>
+                                                            <mat-datepicker #providerdate></mat-datepicker>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group input-textarea">
+                                                        <label class="field-label">Describe the Incident/Allegation</label>
+                                                        <mat-form-field>
+                                                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="DescribeIncident"></textarea>
+                                                        </mat-form-field> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group input-textarea">
+                                                        <label class="field-label">What were the circumstances leading up to the Incident/Allegation?</label>
+                                                        <mat-form-field>
+                                                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="circumstanceIncident"></textarea>
+                                                        </mat-form-field> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-action-sm">{{textIncident}}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                                <div id="impacted-person" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                                    <form [formGroup]="rFormImpacted" (ngSubmit)="AddImpactedPerson()">
+                                    <div class="card-header" role="tab" id="heading-finished">
+                                        <h5 class="mb-0">Impacted Person</h5>
+                                    </div>
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Title</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Title" value="" formControlName="ImpactedTitle">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">First Name</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="ImpactedFirstName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Middle Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Middle Name" value="" formControlName="ImpactedMiddleName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Last Name</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Last Name" value="" formControlName="ImpactedLastName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">NDIS Participant Number</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="NDIS Participant Number" value="" formControlName="ImpactedNdisNo">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Gender</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Gender" formControlName="ImpactedGender">
+                                                                <mat-option *ngFor="let list of genderList" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Date of Birth</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="off" [matDatepicker]="impactedPersonDOB" placeholder="Select Date" formControlName="ImpactedDOB" [max]="todayDatemax">
+                                                            <mat-datepicker-toggle matSuffix [for]="impactedPersonDOB"></mat-datepicker-toggle>
+                                                            <mat-datepicker #impactedPersonDOB></mat-datepicker>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Primary Disability</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Primary Disability" formControlName="ImpactedPrimaryDisbility" multiple>
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search Primary Disability'" [formControl]="controlPrimarydis" 
+                                                                    ngDefaultControl></ngx-mat-select-search>
+                                                                  </mat-option>
+                                                                 <mat-option *ngFor="let list of filteredPrimarydisRecords | async" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option> 
+                                                              
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Other Disability</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Other Disability" formControlName="ImpactedSecondaryDisbility" multiple>
+                                                               <mat-option>
+                                                                <ngx-mat-select-search [placeholderLabel]="'Search Other Disability'" [formControl]="controlotherdis" 
+                                                                ngDefaultControl></ngx-mat-select-search>
+                                                              </mat-option>
+                                                             <mat-option *ngFor="let list of filteredotherdisRecords | async" [value]="list.id">
+                                                                {{list.codeDescription}}
+                                                            </mat-option> 
+                                                              
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Does the person have any behaviours of concern?</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Behaviours of concern" formControlName="ImpactedBehaviour" multiple>
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search Behaviours of concern'" [formControl]="controlBehaviourconcern" 
+                                                                    ngDefaultControl></ngx-mat-select-search>
+                                                                  </mat-option>
+                                                                 <mat-option *ngFor="let list of filteredbehaviourRecords | async" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option> 
+                                                               
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">How does the person communicate?</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Communication" formControlName="ImpactedCommunication" multiple>
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search Communication'" [formControl]="controlCommunication" 
+                                                                    ngDefaultControl></ngx-mat-select-search>
+                                                                  </mat-option>
+                                                                 <mat-option *ngFor="let list of filteredcommunicationRecords | async" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option> 
+                                                             
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Phone Number</label>
+                                                        <mat-form-field>
+                                                            <input type="number" matInput placeholder="Enter Phone No." 
+                                                            formControlName="ImpactedPhoneNo"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            maxlength = "12" >
+                                                          
+                                                           
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Email Address</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email Address" value="" formControlName="ImpactedEmail">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Other Details</label>
+                                                        <mat-form-field>
+                                                            <textarea matInput autofocus autocomplete="disabled" placeholder="Enter Other Details" value="" formControlName="OtherDetail"></textarea>
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-action-sm">{{textImpacted}}</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div id="subject-of-allegation" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                                    <form [formGroup]="rFormAllegation" (ngSubmit)="AddSubjectAllegation()">
+                                    <div class="card-header" role="tab" id="heading-finished">
+                                        <h5 class="mb-0">Subject of Allegation</h5>
+                                    </div>
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">If the incident is a death of a person with disability, was the death anticipated?</label>
+                                                        <mat-radio-group aria-label="Select an option" formControlName="IsSubjectAllegation">
+                                                            <mat-radio-button value="1">Yes</mat-radio-button>
+                                                            <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                                            <mat-radio-button value="3">Unknown</mat-radio-button>
+                                                        </mat-radio-group>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h6>Subject of Allegation - Worker</h6>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Title</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Title" value="" formControlName="WorkerTitle">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">First Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput  autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="WorkerFirstName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Last Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Last Name" value="" formControlName="WorkerLastName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Position at time of allegation</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Position" value="" formControlName="WorkerPosition">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Gender</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Gender" formControlName="WorkerGender">
+                                                                <mat-option *ngFor="let list of genderList" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Date of Birth</label>
+                                                        <mat-form-field appearance="fill">
+                                                            
+                                                            <input matInput autofocus autocomplete="disabled" [matDatepicker]="WorkerDOB1" placeholder="Select Date" formControlName="WorkerDOB" [max]="todayDatemax">
+                                                            <mat-datepicker-toggle matSuffix [for]="WorkerDOB1"></mat-datepicker-toggle>
+                                                            <mat-datepicker #WorkerDOB1></mat-datepicker>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Phone Number</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input type="number" matInput placeholder="Enter Phone No." 
+                                                            formControlName="WorkerPhoneNo"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            maxlength = "12" >
+                                                            <!-- <input matInput autofocus autocomplete="disabled" appPhoneNumber  
+                                                             placeholder="Enter Phone Number"  value="" formControlName="WorkerPhoneNo">
+                                                            <mat-error>{{getErrorMessage}}</mat-error> -->
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Email</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email" value="" formControlName="WorkerEmail">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h6>Subject of Allegation - Person with disability</h6>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Title</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Title" value="" formControlName="DisableTitle">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">First Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="DisableFirstName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Last Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Last Name" value="" formControlName="DisableLastName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">NDIS Participant Number</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter NDIS Participant Number" value="" formControlName="DisableNdisNo">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Gender</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Gender" formControlName="DisableGender">
+                                                                <mat-option *ngFor="let list of genderList" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Date of Birth</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" formControlName="DisableDOBirth" [matDatepicker]="WorkerDOB3" placeholder="Select Date" [max]="todayDatemax">
+                                                            <mat-datepicker-toggle matSuffix [for]="WorkerDOB3"></mat-datepicker-toggle>
+                                                            <mat-datepicker #WorkerDOB3></mat-datepicker>
+                                                        </mat-form-field>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Primary Disability</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Primary Disability" multiple formControlName="DisablePrimaryDisability">
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search Primary Disability'" [formControl]="controlPrimarydis" 
+                                                                    ngDefaultControl></ngx-mat-select-search>
+                                                                  </mat-option>
+                                                                 <mat-option *ngFor="let list of filteredPrimarydisRecords | async" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option> 
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Other Disability</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Other Disability" multiple formControlName="DisableOtherDisability">
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search Other Disability'" [formControl]="controlotherdis" 
+                                                                    ngDefaultControl></ngx-mat-select-search>
+                                                                  </mat-option>
+                                                                 <mat-option *ngFor="let list of filteredotherdisRecords | async" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Does the person have any behaviours of concern?</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Behaviuor Of Concern" multiple formControlName="DisableBehaviour">
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search Behaviours of concern'" [formControl]="controlBehaviourconcern" 
+                                                                    ngDefaultControl></ngx-mat-select-search>
+                                                                  </mat-option>
+                                                                 <mat-option *ngFor="let list of filteredbehaviourRecords | async" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option> 
+                                                                      </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">How does the person communicate?</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Communication" multiple formControlName="DisableCommunication">
+                                                                <mat-option>
+                                                                    <ngx-mat-select-search [placeholderLabel]="'Search Communication'" [formControl]="controlCommunication" 
+                                                                    ngDefaultControl></ngx-mat-select-search>
+                                                                  </mat-option>
+                                                                 <mat-option *ngFor="let list of filteredcommunicationRecords | async" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option> 
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Phone Number</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input type="number" matInput placeholder="Enter Phone No." 
+                                                            formControlName="DisablePhoneNo"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            maxlength = "12" >
+                                                          
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Email Address</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email Address" value="" formControlName="DisableEmail">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h6>Subject of Allegation - Other</h6>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Title</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Title" value="" formControlName="OtherTitle">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">First Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="OtherFirstName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Last Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Last Name" value="" formControlName="OtherLastName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Relationship to Impacted Person</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Relationship" value="" formControlName="OtherRelationShip">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Gender</label>
+                                                        <mat-form-field>
+                                                            <mat-select placeholder="Gender" formControlName="OtherGender">
+                                                                <mat-option *ngFor="let list of genderList" [value]="list.id">
+                                                                    {{list.codeDescription}}
+                                                                </mat-option>
+
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Date of Birth</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="disabled" [matDatepicker]="SOAOtherDOB" placeholder="Select Date" formControlName="OtherDOB" [max]="todayDatemax">
+                                                            <mat-datepicker-toggle matSuffix [for]="SOAOtherDOB"></mat-datepicker-toggle>
+                                                            <mat-datepicker #SOAOtherDOB></mat-datepicker>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Phone Number</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input type="number" matInput placeholder="Enter Phone No." formControlName="OtherPhoneNo"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            maxlength = "12" >
+                                                            
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Email Address</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email Address" value="" formControlName="OtherEmail">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Other Details</label>
+                                                        <mat-form-field>
+                                                            <textarea matInput placeholder="Enter Other Details" value="" formControlName="AllegationOtherDetail"></textarea>
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-action-sm">{{textSubject}}</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div id="immediate-action-taken" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                                    <form [formGroup]="rFormAction" (ngSubmit)="AddActionTaken()">
+                                    <div class="card-header" role="tab" id="heading-finished">
+                                        <h5 class="mb-0">Immediate Action Taken</h5>
+                                    </div>
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Have the police been informed of the incident?</label>
+                                                        <mat-radio-group aria-label="Select an option" formControlName="IsPoliceInformed">
+                                                            <mat-radio-button value="1">Yes</mat-radio-button>
+                                                            <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                                        </mat-radio-group>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Officer's Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Officer's Name" value="" formControlName="OfficerName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Police Station</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Police Station" value="" formControlName="PoliceStation">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Police Event Number</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Police Event Number" value="" formControlName="PoliceNumber">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">If the police have not been informed of the incident/allegation, why not?</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="PoliceNotInform">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Are the impacted person's family or guardian aware of the incident?</label>
+                                                        <mat-radio-group aria-label="Select an option" formControlName="IsFamilyAware">
+                                                            <mat-radio-button value="1">Yes</mat-radio-button>
+                                                            <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                                            <mat-radio-button value="3">Unsure</mat-radio-button>
+                                                        </mat-radio-group>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">If not, why hasn't the impacted person's family or guardian been contacted?</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="Guardian">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">If the impacted person is under 18, has the relevant child protection agency been contacted?</label>
+                                                        <mat-radio-group aria-label="Select an option" formControlName="IsUnder18">
+                                                            <mat-radio-button value="1">Yes</mat-radio-button>
+                                                            <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                                            <mat-radio-button value="3">Unknown</mat-radio-button>
+                                                            <mat-radio-button value="4">Not Applicable</mat-radio-button>
+                                                        </mat-radio-group>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">If not, why hasn't the child protection agency been contacted?</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="ChildContacted">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h6>Impacted</h6>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group input-textarea">
+                                                        <label class="field-label">Describe any immediate support that has been offered/provided to the person with disability impacted by the incident</label>
+                                                        <mat-form-field>
+                                                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="DescribeImmediate"></textarea>
+                                                        </mat-form-field> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h6>Subject of Allegation - Worker</h6>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group input-textarea">
+                                                        <label class="field-label">Describe any immediate action that has been taken in respect to the worker who is the subject of the allegation</label>
+                                                        <mat-form-field>
+                                                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="WorkerDescribe"></textarea>
+                                                        </mat-form-field> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h6>Subject of Allegation - Person with Disability</h6>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group input-textarea">
+                                                        <label class="field-label">Describe any immediate action that has been taken or Commenced in respect to the person with disability</label>
+                                                        <mat-form-field>
+                                                            <textarea matInput autofocus autocomplete="disabled" placeholder="Write Your Message Here..." formControlName="DescribeDisability"></textarea>
+                                                        </mat-form-field> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-action-sm">{{textImmediate}}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                                <div id="risk-assessment" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                                    <form [formGroup]="rFormRisk" (ngSubmit)="AddRiskAssesment()">
+                                    <div class="card-header" role="tab" id="heading-finished">
+                                        <h5 class="mb-0">Risk Assessment</h5>
+                                    </div>
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Have you undertaken a risk assessment in response to this incident?</label>
+                                                        <mat-radio-group aria-label="Select an option" formControlName="IsRiskAssesment">
+                                                            <mat-radio-button value="1">Yes</mat-radio-button>
+                                                            <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                                                            <mat-radio-button value="3">In-Progress</mat-radio-button>
+                                                        </mat-radio-group>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">If yes, date risk assessment was complete</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" [matDatepicker]="declarationDate1" placeholder="Select Date" formControlName="RiskAssesmentDate">
+                                                            <mat-datepicker-toggle matSuffix [for]="declarationDate1"></mat-datepicker-toggle>
+                                                            <mat-datepicker #declarationDate1></mat-datepicker>
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Details of risk assessment</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Details" value="" formControlName="RiskDetails">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group input-textarea">
+                                                        <label class="field-label">If no risk assessment has been undertaken, what is the reason for not undertaking a risk assessment?</label>
+                                                        <mat-form-field>
+                                                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="NoRiskAssesmentInfo"></textarea>
+                                                        </mat-form-field> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">If you have a risk assessment in progress, when was it started?</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="InProgressRisk">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">When do you expect to be finished?</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="TobeFinished">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-action-sm">{{textRisk}}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                                <div id="attachments" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                                    <form [formGroup]="rFormattach"  #formDirective="ngForm">
+                                    <div class="card-header" role="tab" id="heading-finished">
+                                        <h5 class="mb-0">Attachments</h5>
+                                    </div>
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Document Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Document Name" value="" formControlName="AddDocument">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                               
+                                                    
+                                                </div>
+                                             
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                    <div class="upload-img-wrap" *ngIf="isShownBrowse">
+                                                        <div class="col-md-12 col-sm-12"><label class="field-label">Upload Document</label></div>
+                                                        <div class="uiw-uploader">
+                                                             <div class="file-wrap">
+                                                               <input #fileInput (change)="uploadDocument($event)"  type="file" class="btn btn-action-sm" >
+                                                                <span class="btn btn-action-sm">Browse File</span>
+                                                               
+                                                            </div>
+                                                            <div *ngIf="ImageName" class="uiw-view-img">
+                                                                <!-- <img src="../../../../assets/img/profile-pic.jpg" alt="" > -->
+                                                                <div class="img-details">
+                                                                    <p>{{ImageName}}</p>
+                                                                    <small>{{ImageSize}}</small>
+                                                                </div>
+                                                                <a href="javascript:void(0);" (click)="BrowseImageDelete()" class="delete-img">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                                        <path id="iconfinder_Close_5416278" d="M21,11A10,10,0,1,0,31,21,10,10,0,0,0,21,11Zm2.851,11.764a.769.769,0,0,1-1.087,1.087L21,22.087l-1.764,1.764a.769.769,0,1,1-1.087-1.087L19.913,21l-1.764-1.764a.769.769,0,0,1,1.087-1.087L21,19.913l1.764-1.764a.769.769,0,0,1,1.087,1.087L22.087,21Z" transform="translate(-11 -11)" fill="#ef5257" opacity="0.75"/>
+                                                                    </svg>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="row" *ngIf="isShownUrl">
+                                                        <div class="col-md-12 col-sm-12">
+                                                            <div class="form-group">
+                                                                <div class="row" >
+                                                                    <div class="col-md-11"> 
+                                                                        <a href="javascript:void(0)" (click)="downloadPdf(Imageurl)">
+                                                                         Download Document</a>
+                                                                    </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-11"> </div>
+                                                            <div class="col-md-1">
+                                                               <a href="javascript:void(0);" (click)="ImageDelete()" class="delete-img">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                                                        <path id="iconfinder_Close_5416278" d="M21,11A10,10,0,1,0,31,21,10,10,0,0,0,21,11Zm2.851,11.764a.769.769,0,0,1-1.087,1.087L21,22.087l-1.764,1.764a.769.769,0,1,1-1.087-1.087L19.913,21l-1.764-1.764a.769.769,0,0,1,1.087-1.087L21,19.913l1.764-1.764a.769.769,0,0,1,1.087,1.087L22.087,21Z" transform="translate(-11 -11)" fill="#ef5257" opacity="0.75"/>
+                                                                    </svg>
+                                                                </a>
+                                                                </div>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                             </div>
+                                            <br/>
+                                                <button type="submit" (click)="SaveAttachment()" class="btn btn-action-sm">{{txtAttachButton}}</button>
+                                            
+                                        </div>
+                                    </div>
+                                    </form>
+                                    <div class="col-sm-12">
+                                        <div class="psiw-rgt">
+                                            <div class="psiw-bx-title">
+                                                <h2>Attachments</h2>
+                                               
+                                            </div>
+                                            <div class="psiw-bx-content mb-5">
+                                                <div class="table-wrap table-wrap-inner">
+                                                    <div class="table-content">
+                                                        <div class="table-responsive">
+                                                            <table mat-table [dataSource]="dataSourceRequired" class="center-content"
+                                                                matSort>
+                                                                <ng-container matColumnDef="documentName">
+                                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Document Name
+                                                                    </th>
+                                                                    <td mat-cell *matCellDef="let element">{{element.documentName}}</td>
+                                                                </ng-container>
+                                                                 <ng-container matColumnDef="action">
+                                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                                                    <td mat-cell *matCellDef="let element">
+                                                                        <a (click)="EditCompliance(element)" 
+                                                                            >
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                                height="16" viewBox="0 0 16 16">
+                                                                                <path id="iconfinder_write_126582_1_"
+                                                                                    data-name="iconfinder_write_126582 (1)"
+                                                                                    d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z"
+                                                                                    transform="translate(-1 -1)" fill="#7b7b7b" />
+                                                                            </svg>
+                                                                        </a>
+                                                                        <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#myModalRequire" (click)="DeleteModalRequire(element.id, $event)">
+                                                                            <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071" viewBox="0 0 15 18.071">
+                                                                                <g id="Group_66039" data-name="Group 66039">
+                                                                                    <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                                                        <path id="Path_304" data-name="Path 304" d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z" transform="translate(-79.61 -43.5)" fill="#7b7b7b"/>
+                                                                                    </g>
+                                                                                    <g id="Group_66038" data-name="Group 66038" transform="translate(1.716 7.819)">
+                                                                                        <path id="Path_305" data-name="Path 305" d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z" transform="translate(-119.27 -231.53)" fill="#7b7b7b"/>
+                                                                                    </g>
+                                                                                </g>
+                                                                            </svg>
+                                                                        </a> -->
+                                                                        <a href="{{baseUrl + element.fileName}}" target="_blank" *ngIf="element.fileName?true:false">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="21.333" height="16" viewBox="0 0 21.333 16">
+                                                                                <path id="iconfinder_view_126581_2_" data-name="iconfinder_view_126581 (2)" d="M10.667,7.333A2.668,2.668,0,0,1,8,10a2.667,2.667,0,1,0,2.667-2.667Zm0-5.333C5.2,2,0,8.2,0,10s5.2,8,10.667,8,10.667-6.2,10.667-8S16.136,2,10.667,2Zm0,13.333A5.333,5.333,0,1,1,16,10,5.334,5.334,0,0,1,10.667,15.333Z" transform="translate(0 -2)" fill="#7b7b7b"/>
+                                                                              </svg>
+                                                                        </a>
+                                                                        <a href="javascript:void(0)"  *ngIf="element.fileName?true:false"  (click)="downloadPdf(baseUrl + element.fileName)">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                                 height="16" viewBox="0 0 16 16">
+                                                                                 <path id="iconfinder_write_126582_1_"
+                                                                                     data-name="iconfinder_write_126582 (1)"
+                                                                                     d="M15.608,6.262h-2.338v0.935h2.338c0.516,0,0.934,0.418,0.934,0.935v8.879c0,0.517-0.418,0.935-0.934,0.935H4.392c-0.516,0-0.935-0.418-0.935-0.935V8.131c0-0.516,0.419-0.935,0.935-0.935h2.336V6.262H4.392c-1.032,0-1.869,0.837-1.869,1.869v8.879c0,1.031,0.837,1.869,1.869,1.869h11.216c1.031,0,1.869-0.838,1.869-1.869V8.131C17.478,7.099,16.64,6.262,15.608,6.262z M9.513,11.973c0.017,0.082,0.047,0.162,0.109,0.226c0.104,0.106,0.243,0.143,0.378,0.126c0.135,0.017,0.274-0.02,0.377-0.126c0.064-0.065,0.097-0.147,0.115-0.231l1.708-1.751c0.178-0.183,0.178-0.479,0-0.662c-0.178-0.182-0.467-0.182-0.645,0l-1.101,1.129V1.588c0-0.258-0.204-0.467-0.456-0.467c-0.252,0-0.456,0.209-0.456,0.467v9.094L8.443,9.553c-0.178-0.182-0.467-0.182-0.645,0c-0.178,0.184-0.178,0.479,0,0.662L9.513,11.973z"
+                                                                                     transform="translate(-1 -1)" fill="#7b7b7b" />
+                                                                             </svg>
+                                                                     </a>  
+                                                                    </td>
+                                                                </ng-container>
+                                                                
+                                                                <tr mat-header-row *matHeaderRowDef="displayedColumnsRequired"></tr>
+                                                                <tr mat-row *matRowDef="let row; columns: displayedColumnsRequired;">
+                                                                </tr>
+                                                            </table>
+                                                            <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                                                            </mat-paginator>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="declaration" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-finished">
+                                    <form [formGroup]="rFormDeclaration" (ngSubmit)="AddDeclaration()">
+                                    <div class="card-header" role="tab" id="heading-finished">
+                                        <h5 class="mb-0">Declaration</h5>
+                                    </div>
+                                    <div class="collapse show p-0">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 mb-3">
+                                                    <mat-checkbox class="mr-1" value="1" formControlName="IsDeclaration"></mat-checkbox>
+                                                    I understand I need to submit another notification about this incident to the NDIS Commission within <strong>5 Business Days</strong>.
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Full Name</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Full Name" value="" formControlName="DeclarationName">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Position at Oranisation</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <input matInput autofocus autocomplete="off" placeholder="Enter Position" value="" formControlName="DeclarationPosition">
+                                                            <mat-error>{{getErrorMessage}}</mat-error>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="field-label">Date</label>
+                                                        <mat-form-field>
+                                                            <input matInput autofocus autocomplete="off" [matDatepicker]="declarationDate" placeholder="Select Date" formControlName="DeclarationDate">
+                                                            <mat-datepicker-toggle matSuffix [for]="declarationDate"></mat-datepicker-toggle>
+                                                            <mat-datepicker #declarationDate></mat-datepicker>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-action-sm">{{textDeclaration}}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<lhs-sidebar></lhs-sidebar>
+</div>
+<div class="modal popup-default" id="viewAccidentIncidentPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+  
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <!-- <h4 class="modal-title">View Accident/Incident Details</h4> -->
+                <button type="submit" printSectionId="print-section" ngxPrint class="print" title="Print">
+                    <svg id="Layer_1" style="enable-background:new 0 0 30 30;" width="25" height="25" version="1.1" viewBox="0 0 30 30" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path d="M26,9H4c-1.105,0-2,0.895-2,2v9c0,1.105,0.895,2,2,2h3v-8h16v8h3c1.105,0,2-0.895,2-2v-9C28,9.895,27.105,9,26,9z"/>
+                        <rect height="12" style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;" width="16" x="7" y="14"/>
+                        <path d="M24,7H6V5c0-0.552,0.448-1,1-1h16c0.552,0,1,0.448,1,1V7z"/>
+                    </svg>
+                </button>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body" id="print-section">
+                <h5 class="default-title mb-3" style="text-align: center;">Incident Report</h5>
+                <div class="section-box mb-3">
+                <h5 class="default-title mb-3">Provider Details</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Report Completed By</dt>
+                            <dd>{{ReportedBy}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Provider Name</dt>
+                            <dd>{{ProviderName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Provider Registration ID</dt>
+                            <dd>{{RegistrationId}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Provider ABN</dt>
+                            <dd>{{ProviderABN}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Outlet Name</dt>
+                            <dd>{{OutletName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Registration Group</dt>
+                            <dd>{{RegistrationGroup}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>State</dt>
+                            <dd>{{State}}</dd>
+                        </div>
+                       
+                    </div>
+                </dl>
+            </div>
+            <div class="section-box mb-3">
+                <h5 class="default-title mb-3">Primary Contact Person</h5>
+                <dl class="default-list-wrap mb-0">
+                  
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{ContactTitle}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Name</dt>
+                            <dd>{{ContactFirstName}}</dd>
+                        </div>
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Position at Provider</dt>
+                            <dd>{{ContactProvider}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{ContactPhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{ContactEmail}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Preferred Method of Contact</dt>
+                            <dd>{{ContactMethod}}</dd>
+                        </div>
+                    </div>
+                </dl>
+            </div>
+            <div class="section-box mb-3">
+                <h5 class="default-title mb-3">Incident Category</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Primary Category</dt>
+                            <p class="mb-3">{{PrimaryCategoryName}}</p>
+                            
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Secondary Category</dt>
+                            <dd>{{SecondaryCategoryName}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If the incident is a death of a person with disability, was the death anticipated?</dt>
+                            <dd>{{IsIncidentAnticipatedInfo}}</dd>
+                        </div>
+                    </div>
+                </dl>
+            </div>
+            <div class="section-box mb-3">
+                <h5 class="default-title mb-3">Incident Details</h5>
+                <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Incident Location</dt>
+                            <dd>{{locationName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Location Type</dt>
+                            <dd>{{locationtypeinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Time and Date of Incident/Allegation</dt>
+                            <dd>{{Incidentdateinfo| date: 'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>If date unknown, reason why?</dt>
+                            <dd>{{Reasoninfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Time the NDIS provider became aware of the incident</dt>
+                            <dd>{{NdisProviderTimeinfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Date the NDIS provider became aware of the incident</dt>
+                            <dd>{{NdisProviderDateinfo| date: 'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Describe the incident/Allegation</dt>
+                            <dd>{{DescribeIncidentinfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>What were the circumstances leading up to the incident/Allegation?</dt>
+                            <dd>{{circumstanceIncidentinfo}}</dd>
+                        </div>
+                    </div>
+                </dl>
+            </div>
+
+                 <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Impacted Person</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{ImpactedTitleinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Name</dt>
+                            <dd>{{ImpactedName}}</dd>
+                        </div>
+                       
+                        <div class="col-md-6 col-sm-12">
+                            <dt>NDIS Participant Number</dt>
+                            <dd>{{ImpactedNdisNoinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Gender</dt>
+                            <dd>{{ImpactedGenderinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date of Birth</dt>
+                            <dd>{{ImpactedDOBinfo|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Primary Disability</dt>
+                            <dd>{{ImpactedPrimaryDisbilityinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Other Disability</dt>
+                            <dd>{{ImpactedSecondaryDisabilityinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Does the person have any behaviours of concern?</dt>
+                            <dd>{{ImpactedCommunicationinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>How does the person communicate?</dt>
+                            <dd>{{ImpactedBehaviourinfo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{ImpactedPhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{ImpactedEmail}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Other Detail</dt>
+                            <dd>{{OtherDetail}}</dd>
+                        </div>
+                    </div>
+                </dl>
+                 </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Subject of Allegation</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If the incident is a death of a person with disability, was the death anticipated?</dt>
+                            <dd>{{IsSubjectAllegationInfo}}</dd>
+                        </div>
+                       
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{WorkerTitle}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Name</dt>
+                            <dd>{{WorkerName}}</dd>
+                        </div>
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Position at time of allegation</dt>
+                            <dd>{{WorkerPosition}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Gender</dt>
+                            <dd>{{WorkerGender}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date of Birth</dt>
+                            <dd>{{WorkerDOB|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{WorkerPhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{WorkerEmail}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt></dt>
+                            <dd></dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Subject of Allegation - Person with disability</dt>
+                            <dd></dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{DisableTitle}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Name</dt>
+                            <dd>{{DisableName}}</dd>
+                        </div>
+                       
+                        <div class="col-md-6 col-sm-12">
+                            <dt>NDIS Participant Number</dt>
+                            <dd>{{DisableNdisNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Gender</dt>
+                            <dd>{{DisableGender}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date of Birth</dt>
+                            <dd>{{DisableDOBirth|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Primary Disability</dt>
+                            <dd>{{DisablePrimaryDisability}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Other Disability</dt>
+                            <dd>{{DisableOtherDisability}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Does the person have any behaviours of concern?</dt>
+                            <dd>{{DisableBehaviour}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>How does the person communicate?</dt>
+                            <dd>{{DisableCommunication}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{DisablePhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{DisableEmail}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Other Detail</dt>
+                            <dd>{{DisableEmail}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Subject of Allegation - Other</dt>
+                            <dd>{{AllegationOtherDetail}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Title</dt>
+                            <dd>{{OtherTitle}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt> Name</dt>
+                            <dd>{{OtherName}}</dd>
+                        </div>
+                       
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Relationship to Impacted Person</dt>
+                            <dd>{{OtherRelationShip}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Gender</dt>
+                            <dd>{{OtherGender}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date of Birth</dt>
+                            <dd>{{OtherDOB|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Phone Number</dt>
+                            <dd>{{OtherPhoneNo}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Email Address</dt>
+                            <dd>{{OtherEmail}}</dd>
+                        </div>
+
+                    </div>
+                </dl>
+            </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Immediate Action Taken</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Have the police been informed of the incident?</dt>
+                            <dd>{{IsPoliceInformed}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Offfcer's Name</dt>
+                            <dd>{{OfficerName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Police Station</dt>
+                            <dd>{{PoliceStation}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Police Event Number</dt>
+                            <dd>{{PoliceNumber}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If the police have not been informed of the incident/allegation, why not?</dt>
+                            <dd>{{PoliceNotInform}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Are the impacted person's family or guardian aware of the incident?</dt>
+                            <dd>{{IsFamilyAwareInfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If not, why hasn't the impacted person's family or guardian been contacted?</dt>
+                            <dd>{{Guardian}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If the impacted person is under 18, has the relevant child protection agency been contacted?</dt>
+                            <dd>{{IsUnder18Info}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If not, why hasn't the child protection agency been contacted?</dt>
+                            <dd>{{ChildContacted}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Describe any immediate support that has been offered/provided to the person with disability impacted by the incident</dt>
+                            <dd>{{DescribeImmediate}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Describe any immediate action that has been taken in respect to the worker who is the subject of the allegation</dt>
+                            <dd>{{WorkerDescribe}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Describe any immediate action that has been taken or Commenced in respect to the person with disability who is the subject of the allegation</dt>
+                            <dd>{{DescribeDisability}}</dd>
+                        </div>
+                    </div>
+                </dl>
+                </div>
+
+                <div class="section-box mb-3">
+                    <h5 class="default-title mb-3">Risk Assessment</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Have you undertaken a risk assessment in response to this incident?</dt>
+                            <dd>{{IsRiskAssesmentInfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If yes, date risk assessment was complete</dt>
+                            <dd>{{RiskAssesmentDate|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>Details of risk assessment</dt>
+                            <dd>{{RiskDetails}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If no risk assessment has been undertaken, what is the reason for not undertaking a risk assessment?</dt>
+                            <dd>{{NoRiskAssesmentInfo}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>If you have a risk assessment in progress, when was it started?</dt>
+                            <dd>{{InProgressRisk}}</dd>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <dt>When do you expect to be finished?</dt>
+                            <dd>{{TobeFinished}}</dd>
+                        </div>
+                    </div>
+                </dl>
+                </div>
+                <!-- <h5 class="mb-3">Attachments</h5>
+                <dl class="default-list-wrap mb-3">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 1</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 2</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 3</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 4</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 5</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 6</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 7</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 8</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 9</dt>
+                            <dd>-</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Attachment 10</dt>
+                            <dd>-</dd>
+                        </div>
+                    </div>
+                </dl> -->
+                <div class="section-box">
+                    <h5 class="default-title mb-3">Declaration</h5>
+                    <dl class="default-list-wrap mb-0">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Full Name</dt>
+                            <dd>{{DeclarationName}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Position of Oranisation</dt>
+                            <dd>{{DeclarationPosition}}</dd>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <dt>Date</dt>
+                            <dd>{{DeclarationDate|date:'dd/MM/yyyy'}}</dd>
+                        </div>
+                    </div>
+                </dl>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit"  printSectionId="print-section" ngxPrint class="btn btn-action-sm">Print</button>
+                <button type="button" class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="page-wrapper">
+    <lhs-header></lhs-header>
+<div class="container-fluid page-wrap">
+    <div class="page-title">
+        <h1>Client Details
+            <lib-page-submenu></lib-page-submenu>
+        </h1>
+    </div>
+    <div class="page-inner-wrap">
+        <div class="page-sub-inner-wrap">
+            <div class="row">
+                <div class="col-sm-12 psiw-lft">
+                    <lib-user-card></lib-user-card>
+                </div>
+                <div class="col-sm-12">
+                    <div class="psiw-rgt">
+                        <div class="psiw-bx-title">
+                            <h2>Accident/Incident</h2>
+                            <button id="openEditModalButton" hidden data-toggle="modal" data-target="#editLeavePopup"></button>
+                        </div>
+                        <form [formGroup]="rForm" (ngSubmit)="AddAccidentIncidentInfo()" #formDirective="ngForm">
+                        <div class="psiw-bx-content mb-5">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Employee</label>
+                                        <mat-form-field>
+                                            <mat-select formControlName="EmployeeId" (selectionChange)="selected($event)" placeholder="Select Reported To">
+                                                <mat-option *ngFor="let list of ReportedToList"  [value]="list.id">
+                                                    {{list.fullName}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="ki-departmentId" class="field-label">Department</label>
+                                    
+                                        <mat-form-field>
+                                            <mat-select placeholder="Select" formControlName="departmentId">
+                                                <mat-option *ngFor="let item of departmentList" [value]="item.id">
+                                                    {{item.codeDescription}}
+                                                </mat-option>                         
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="ki-departmentId" class="field-label">Reported By</label>
+                                    
+                                        <mat-form-field>
+                                            <mat-select placeholder="Select" formControlName="reportedTo">
+                                                <mat-option *ngFor="let item of ReportedList" [value]="item.id">
+                                                    {{item.fullName}}
+                                                </mat-option>                         
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Phone No</label>
+                                        <mat-form-field>
+                                          
+                                             <input matInput appPhoneNumber autofocus placeholder="Phone Number"
+                                            formControlName="phoneNo" autocomplete="off"
+                                            
+                                             />
+                                         </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Incident Date</label>
+                                        <mat-form-field>
+                                            <input class="filter-date" matInput [matDatepicker]="pickerDate" placeholder="Select Date" formControlName="accidentDate">
+                                            <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+                                            <mat-datepicker #pickerDate></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Incident Type</label>
+                                        <mat-form-field>
+                                            <mat-select  formControlName="eventType"  placeholder="Select Incident Type">
+                                                <mat-option *ngFor="let list of EventTypeList" [value]="list.id">
+                                                    {{list.codeDescription}}
+                                                </mat-option>
+                                                
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12" >
+                                    <div class="form-group">
+                                        <label class="field-label">Location Type</label>
+                                        <mat-form-field>
+                                            <mat-select formControlName="locationtype" placeholder="Select Location Type" (selectionChange)="selectChangeHandler($event.value)">
+                                                <mat-option *ngFor="let list of LocationTypeList" [value]="list.value">
+                                                    {{list.codeDescription}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-sm-12" *ngIf="isShownLocatiodropdown">
+                                    <div class="form-group">
+                                        <label class="field-label">Location</label>
+                                        <mat-form-field>
+                                            <mat-select formControlName="locationId" placeholder="Select Location">
+                                                <mat-option *ngFor="let list of LocationList" [value]="list.locationId">
+                                                    {{list.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Police Notified</label>
+                                        <mat-radio-group aria-label="Select an option" formControlName="policeNotified">
+                                            <mat-radio-button value="1">Yes</mat-radio-button>
+                                            <mat-radio-button value="2">No</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12" *ngIf="isShownOtherLocation">
+                                    <div class="form-group input-textarea">
+                                        <label class="field-label">Address</label>
+                                        <mat-form-field>
+                                            <textarea  formControlName="otherlocation"  matInput placeholder="Enter Address"></textarea>
+                                        </mat-form-field> 
+                                    </div>
+                                </div>
+                              
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group input-textarea">
+                                        <label class="field-label">Incident Cause</label>
+                                        <mat-form-field>
+                                            <textarea  formControlName="briefDescription"  matInput placeholder="Write Your Message Here..."></textarea>
+                                        </mat-form-field> 
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group input-textarea">
+                                        <label class="field-label">Follow Up Recommendation</label>
+                                        <mat-form-field>
+                                            <textarea matInput formControlName="detailedDescription" placeholder="Write Your Message Here..."></textarea>
+                                        </mat-form-field> 
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-action-sm">Submit</button>
+                        </div>
+                        </form>
+                        <div class="psiw-bx-title">
+                            <h2>Accident & Incident List</h2>
+                            
+                        </div>
+                        <div class="psiw-bx-content">
+                            <div class="table-wrap table-wrap-inner">
+                                <div class="table-content">
+                                    <div class="table-responsive">
+                                        <table name="tbl2" mat-table [dataSource]="dataSourceAccidentIncident" matSort>
+                                            <ng-container matColumnDef="sr">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header># SR</th>
+                                                <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="employeeName">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                                                <td mat-cell *matCellDef="let element">{{element.employeeName}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="eventTypeName">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Event Type</th>
+                                                <td mat-cell *matCellDef="let element">{{element.eventTypeName}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="locationtype">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Location Type</th>
+                                                <td mat-cell *matCellDef="let element">{{element.locationTypeName}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="locationName">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+                                                <td mat-cell *matCellDef="let element">{{element.locationName}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="departmentName">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+                                                <td mat-cell *matCellDef="let element">{{element.departmentName}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="reportedbyName">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Reported By</th>
+                                                <td mat-cell *matCellDef="let element">{{element.reportedbyName}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="accidentDate">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Accident Date</th>
+                                                <td mat-cell *matCellDef="let element">{{element.accidentDate| date: 'dd/MM/yyyy'}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="createdDate">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</th>
+                                                <td mat-cell *matCellDef="let element">{{element.createdDate| date: 'dd/MM/yyyy'}}</td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="action">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    <a href="javascript:void(0);" (click)=openEditDetails(element)>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                                            <path id="iconfinder_write_126582_1_" data-name="iconfinder_write_126582 (1)" d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z" transform="translate(-1 -1)" fill="#7b7b7b"/>
+                                                        </svg>
+                                                    </a>
+                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                    data-target="#myModal" (click)="DeleteModal(element.Id, $event)">
+                                                        <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071" viewBox="0 0 15 18.071">
+                                                            <g id="Group_66039" data-name="Group 66039">
+                                                                <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                                    <path id="Path_304" data-name="Path 304" d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z" transform="translate(-79.61 -43.5)" fill="#7b7b7b"/>
+                                                                </g>
+                                                                <g id="Group_66038" data-name="Group 66038" transform="translate(1.716 7.819)">
+                                                                    <path id="Path_305" data-name="Path 305" d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z" transform="translate(-119.27 -231.53)" fill="#7b7b7b"/>
+                                                                </g>
+                                                            </g>
+                                                        </svg>
+                                                    </a>
+                                                </td>
+                                            </ng-container>
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumnsAccidentIncident"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumnsAccidentIncident;"></tr>
+                                        </table>
+                                        <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                                        </mat-paginator>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<lhs-sidebar></lhs-sidebar>
+</div> -->
+<!-- <div class="modal custom-popup " id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <div class="modal-body">
+          <button type="button" class="close header-close" data-dismiss="modal">
+            &times;
+          </button>
+          <p>Are you sure you want to delete record?</p>
+          <br/>
+          <div class="modal-btn">
+            <button mat-button class="project-btn-1-db project-btn-1-db-gray" data-dismiss="modal">Cancel</button>
+            &nbsp;&nbsp;
+            <button
+    
+            mat-button class="project-btn-1-db"
+              data-dismiss="modal"
+    
+              (click)="DeleteAccidentInfo($event)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="modal popup-default" id="editLeavePopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form [formGroup]="rForm1" (ngSubmit)="updateaccidentinfo()">
+                  
+                    <div class="modal-header">
+                        <h4 class="modal-title">Update Accident/Incident Details</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                <path id="iconfinder_Close_5416278"
+                                    d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                    transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                            </svg>
+                        </button>
+                    </div>
+    
+                    <!-- Modal body -->
+                    <!-- <div class="modal-body">
+                       
+                        <div class="psiw-bx-content mb-5">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Employee</label>
+                                        <mat-form-field>
+                                            <mat-select formControlName="EditEmployeeId" (selectionChange)="selected($event)" placeholder="Select Reported To">
+                                                <mat-option *ngFor="let list of ReportedToList"  [value]="list.id">
+                                                    {{list.fullName}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="ki-departmentId" class="field-label">Department</label>
+                                    
+                                        <mat-form-field>
+                                            <mat-select placeholder="Select" formControlName="EditdepartmentId">
+                                                <mat-option *ngFor="let item of departmentList" [value]="item.id">
+                                                    {{item.codeDescription}}
+                                                </mat-option>                         
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="ki-departmentId" class="field-label">Reported By</label>
+                                    
+                                        <mat-form-field>
+                                            <mat-select placeholder="Select" formControlName="EditreportedTo">
+                                                <mat-option *ngFor="let item of ReportedList" [value]="item.id">
+                                                    {{item.fullName}}
+                                                </mat-option>                         
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Phone No</label>
+                                        <mat-form-field>
+                                          
+                                            <input matInput appPhoneNumber autofocus placeholder="Phone Number"
+                                            formControlName="EditphoneNo" autocomplete="off"
+                                            
+                                             />
+                                         </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Incident Date</label>
+                                        <mat-form-field>
+                                            <input class="filter-date" matInput [matDatepicker]="pickerDate1" placeholder="Select Date" formControlName="EditaccidentDate">
+                                            <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+                                            <mat-datepicker #pickerDate1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Incident Type</label>
+                                        <mat-form-field>
+                                            <mat-select  formControlName="EditeventType"  placeholder="Select Incident Type">
+                                                <mat-option *ngFor="let list of EventTypeList" [value]="list.id">
+                                                    {{list.codeDescription}}
+                                                </mat-option>
+                                                
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12" >
+                                    <div class="form-group">
+                                        <label class="field-label">Location Type</label>
+                                        <mat-form-field>
+                                            <mat-select formControlName="locationtypeEdit" placeholder="Select Location Type" (selectionChange)="selectChangeHandlerEdit($event.value)">
+                                                <mat-option *ngFor="let list of LocationTypeList" [value]="list.value">
+                                                    {{list.codeDescription}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12" *ngIf="isShownLocatiodropdown">
+                                    <div class="form-group">
+                                        <label class="field-label">Location</label>
+                                        <mat-form-field>
+                                            <mat-select formControlName="EditlocationId" placeholder="Select Location">
+                                                <mat-option *ngFor="let list of LocationList" [value]="list.locationId">
+                                                    {{list.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="field-label">Police Notified</label>
+                                        <mat-radio-group aria-label="Select an option" formControlName="EditpoliceNotified">
+                                            <mat-radio-button value="1">Yes</mat-radio-button>
+                                            <mat-radio-button value="2">No</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12" *ngIf="isShownOtherLocation">
+                                    <div class="form-group input-textarea">
+                                        <label class="field-label">Address</label>
+                                        <mat-form-field>
+                                            <textarea  formControlName="otherlocationEdit"  matInput placeholder="Enter Address"></textarea>
+                                        </mat-form-field> 
+                                    </div>
+                                </div>
+                               
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group input-textarea">
+                                        <label class="field-label">Incident Cause</label>
+                                        <mat-form-field>
+                                            <textarea  formControlName="EditIncidentCause"  matInput placeholder="Write Your Message Here..."></textarea>
+                                        </mat-form-field> 
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group input-textarea">
+                                        <label class="field-label">Follow Up Recommendation</label>
+                                        <mat-form-field>
+                                            <textarea matInput formControlName="EditFollowUp" placeholder="Write Your Message Here..."></textarea>
+                                        </mat-form-field> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-action-sm">Update</button>
+                                <button type="button" #btnEditaccidentCancel class="btn btn-action-sm btn-action-secondary"
+                                    data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                            <!-- Modal footer -->
+                   
+                        <!-- </div>
+                       
+                    
+                </form>
+            </div>
+        </div>
+    </div> -->

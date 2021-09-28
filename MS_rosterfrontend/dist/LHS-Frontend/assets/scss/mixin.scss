@@ -1,0 +1,75 @@
+@mixin default-title {
+    color:$primary-color;
+    font-size:1.5rem;
+    font-weight:$fw-medium;
+    &:after {
+        content:'';
+        display:block;
+        height:2px;
+        background-color:$primary-color;
+        margin:12px 0 20px;
+    }
+}
+
+@mixin row-col-spacing {
+    .row {
+        margin:0 -0.781rem;
+        [class^="col"] {
+            padding:0 0.781rem;
+        }
+    }
+}
+
+@mixin row-col-spacing-20 {
+    .row {
+        margin:0 -0.625rem;
+        [class^="col"] {
+            padding:0 0.625rem;
+        }
+    }
+}
+
+@mixin input-placeholder-value {
+    color:lighten($default-txtColor, 100%);
+    font-size:1rem;
+    font-weight:$fw-medium;
+}
+
+@mixin input-placeholder {
+    &::-webkit-input-placeholder {
+        @include input-placeholder-value;
+    }
+    &::-moz-placeholder {
+        @include input-placeholder-value;
+    }
+    &::-ms-input-placeholder {
+        @include input-placeholder-value;
+    }
+}
+
+@mixin popup-action-link {
+    position:absolute;
+    width:20px;
+    height:20px;
+    right:0;
+    top:0;
+    border-radius:4px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+@mixin default-form-group {
+    position:relative;
+    margin-bottom:25px;
+    border:1px solid #D6D6D6;
+    border-radius:0.313rem;
+    height:calc(3.5em + .75rem + 2px);
+    padding:1rem 0.9375rem 0.9375rem;
+}
+
+@mixin default-transition {
+    -webkit-transition:all 0.3s;
+    -moz-transition:all 0.3s;
+    -ms-transition:all 0.3s;
+}

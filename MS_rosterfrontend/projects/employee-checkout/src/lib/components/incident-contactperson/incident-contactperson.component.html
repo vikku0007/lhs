@@ -1,0 +1,85 @@
+<form [formGroup]="rFormcontact" (ngSubmit)="AddcontactInfo()">
+    <div class="card-header" role="tab" id="heading-onshift">
+        <h5 class="mb-0">Primary Contact Person</h5>
+    </div>
+    <div class="collapse show p-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Title</label>
+                        <mat-form-field >
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Title" value="" formControlName="ContactTitle">
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">First Name</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="ContactFirstName">
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Middle Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Middle Name" value="" formControlName="ContactMiddleName">
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Last Name</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Last Name" value="" formControlName="ContactLastName">
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Postion at Provider</label>
+                        <mat-form-field >
+                            <input matInput autofocus autocomplete="off" placeholder="Postion at Provider" value="" formControlName="ContactProvider">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Phone Number</label>
+                        <mat-form-field>
+                            <input matInput  autofocus placeholder="Enter Mobile Number"
+                            formControlName="ContactPhoneNo" autocomplete="off" maxlength="12"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type = "number" />
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Email Address</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email Address" value="" formControlName="ContactEmail">
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Preferred Method of Contact </label>
+                        <mat-form-field appearance="fill">
+                        <input matInput autofocus autocomplete="off" placeholder="Enter Preferred Method of Contact" value="" formControlName="ContactMethod">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-action-sm">{{textContact}}</button>
+        </div>
+    </div>
+    </form>

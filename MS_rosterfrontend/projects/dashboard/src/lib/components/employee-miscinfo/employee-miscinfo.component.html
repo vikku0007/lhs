@@ -1,0 +1,166 @@
+<!-- Miscellaneous Section Starts Here -->
+<section class="section-info-bx">
+    <div class="section-title">
+        <h2>Miscellaneous</h2>
+        <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editMistInfoPopup">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)"
+                    d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z"
+                    transform="translate(-1 -1)" fill="#fff" />
+            </svg>
+        </a>
+    </div>
+    <div class="section-content">
+        <div class="row">
+            <div class="col-6">
+                <h3>Weight</h3>
+                <p>{{empMiscInfo.weight}} Kg</p>
+            </div>
+            <div class="col-6">
+                <h3>Height</h3>
+                <p>{{empMiscInfo.height}} Ft/Inc</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h3>Ethnicity</h3>
+                <p>{{empMiscInfo.ethnicityName}}</p>
+            </div>
+            <div class="col-6">
+                <h3>Religion</h3>
+                <p>{{empMiscInfo.religionName}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h3>Smoker</h3>
+                <p class="mb-0">{{empMiscInfo.smoker ==true?'Yes':'No'}}</p>
+            </div>
+            <!-- <div class="col-6">
+                <h3>Car Drive</h3>
+                <p class="mb-0">{{empMiscInfo.canDrive==true?'Yes':'No'}}</p>
+            </div> -->
+        </div>
+    </div>
+</section><!-- /Miscellaneous Section End -->
+<!-- Kin Info Popup Start Here -->
+<div class="modal popup-default" id="editMistInfoPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rForm" (ngSubmit)="UpdateMiscInfo()" #formDirective="ngForm">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Miscellaneous Info</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-weight" class="field-label">Weight (Kg.)</label>
+                                <!-- <input type="text" class="form-control" formControlName="weight" id="ki-weight" aria-describedby="emailHelp" placeholder="Enter Weight"> -->
+                                <mat-form-field appearance="fill">
+                                    <input matInput type="number" placeholder="Enter Weight" formControlName="weight" value=""
+                                        required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-height" class="field-label">Height (Ft. & Inch)</label>
+                                <!-- <input type="text" class="form-control" id="ki-height" formControlName="height" aria-describedby="emailHelp" placeholder="Enter Height"> -->
+                                <mat-form-field appearance="fill">
+                                    <input matInput type="number" placeholder="Enter Height" formControlName="height" value=""
+                                        required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-ethnicity" class="field-label">Ethnicity</label>
+                                <!-- <select class="form-control" formControlName="ethnicity">
+                                    <option value="Australian">Australian</option>
+                                    <option value="Australian1">Australian1</option>
+                                    <option value="Australian2">Australian2</option>
+                                </select> -->
+                                <mat-form-field>
+                                    <mat-select placeholder="Select" formControlName="ethnicity">
+                                        <!-- <mat-option value="Australian">Australian</mat-option>
+                                        <mat-option value="African">African</mat-option>
+                                        <mat-option value="British">British</mat-option>
+                                        <mat-option value="Indian">Indian</mat-option> -->
+                                        <mat-option *ngFor="let list of ethnicityList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="religion" class="field-label">Religion</label>
+                                <!-- <select class="form-control" formControlName="religion">
+                                    <option value="CentralCoast">Central Coast</option>
+                                    <option value="CentralCoast1">Central Coast 1</option>
+                                </select> -->
+                                <mat-form-field>
+                                    <mat-select placeholder="Select" formControlName="religion">
+                                        <mat-option *ngFor="let list of religionList" [value]="list.id">
+                                            {{list.codeDescription}}
+                                        </mat-option>
+                                        <!-- <mat-option value="CentralCoast">Central Coast</mat-option>
+                                        <mat-option value="CentralCoast1">Central Coast 1</mat-option>                                         -->
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-smoker" class="field-label">Smoker</label>
+                                <!-- <select class="form-control" formControlName="smoker">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select> -->
+                                <mat-form-field>
+                                    <mat-select placeholder="Select" formControlName="smoker">
+                                        <mat-option value="1">Yes</mat-option>
+                                        <mat-option value="0">No</mat-option>                                        
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>                                
+                        </div>
+                        <!-- <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-canDrive" class="field-label">Can Drive</label>
+                                <mat-form-field>
+                                    <mat-select placeholder="Select" formControlName="canDrive">
+                                        <mat-option value="1">Yes</mat-option>
+                                        <mat-option value="0">No</mat-option>                                        
+                                    </mat-select>
+                                </mat-form-field>
+                            </div> 
+                                
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-action-sm">Update</button>
+                    <button type="button" #btnMiskInfoCancel class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!-- /Kin Info Popup end -->

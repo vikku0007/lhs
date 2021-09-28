@@ -1,0 +1,100 @@
+@import "../../../../../../src/assets/scss/variable.scss";
+.sidebar-wrap {
+    background-color:#FCFCFC;
+    border-right:1px solid #EEEEEE;
+    position:fixed;
+    top:70px;
+    left:0;
+    bottom:0;
+    width:$sidebar-width;
+    z-index:1000;
+    ul {
+        li {
+            display:block;
+            border-bottom:1px solid #EBEBEB;
+            .dropdown {
+                position:static;
+                .dropdown-menu {
+                    transform:none !important;
+                    background-color:$primary-color;
+                    width:215px;
+                    left:$sidebar-width !important;
+                    margin-left:-1px;
+                    border:none;
+                    padding:0;
+                    bottom:0;
+                    border-radius:0;
+                    overflow:auto;
+                    h2 {
+                        color:#ffffff;
+                        font-size:1rem;
+                        font-weight:$fw-semiBold;
+                        padding:30px 20px;
+                    }
+                    .dropdown-item {
+                        color:#ffffff;
+                        font-size:0.875rem;
+                        font-weight:$fw-medium;
+                        padding:16px;
+                        text-align:left;
+                        &:hover {
+                            background-color:darken($primary-color, 7%);
+                        }
+                        svg {
+                            width:30px;
+                        }
+                    }
+                }
+                &.show {
+                    .nav-link {
+                        background-color:$primary-color;
+                        color:#ffffff;
+                        svg {
+                            path {
+                                fill:#ffffff;
+                            }
+                        }
+                    }
+                }
+            }
+            a.nav-link {
+                color:#646464;
+                display:block;
+                padding:10px;
+                text-align:center;
+                text-decoration:none;
+                svg {
+                    path {
+                        fill:#646464;
+                    }
+                }
+                span {
+                    display:block;
+                    margin-top:12px;
+                    font-size:0.875rem;
+                    font-weight:$fw-semiBold;
+                }
+                &:hover {
+                    background-color:$primary-color;
+                    color:#ffffff;
+                    svg {
+                        path {
+                            fill:#ffffff;
+                        }
+                    }
+                }
+            }
+            &.active {
+                a.nav-link {
+                    background-color:$primary-color;
+                    color:#ffffff;
+                    svg {
+                        path {
+                            fill:#ffffff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

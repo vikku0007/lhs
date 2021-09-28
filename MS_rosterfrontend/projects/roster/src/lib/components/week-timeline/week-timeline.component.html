@@ -1,0 +1,77 @@
+<daypilot-scheduler [config]="configWeek" [events]="events" (viewChange)="schedulerViewChanged($event)" #scheduler></daypilot-scheduler>
+
+<input type="hidden" #btnLoadTemplateWeekly data-toggle="modal" data-target="#showTemplatePopupWeekly" />
+
+<div class="modal popup-default" id="showTemplatePopupWeekly">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Shift Info</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278"
+                            d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                            transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="table-wrap">
+                    <div class="table-content" style="height: 400px; overflow-y: auto;">
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSourceWeekly" matSort>
+                                <ng-container matColumnDef="description">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                                    <td mat-cell *matCellDef="let element">{{element.description}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="fst-block profile-fst-block">
+                                            <span>{{element.date}}</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="time">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Time</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="fst-block profile-fst-block">
+                                            <span>{{element.time}}</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="employeeName">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                                    <td mat-cell *matCellDef="let element">{{element.employeeName}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="action">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="fst-block profile-fst-block">
+                                            <span>{{element.action}}</span>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                            <!-- <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+                                    (page)="PageIndexEvent($event)">
+                                </mat-paginator> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <!-- <button type="submit" class="btn btn-action-sm">Submit</button> -->
+                <button type="button" #btnCancelLoadTemplate class="btn btn-action-sm btn-action-secondary"
+                    data-dismiss="modal">Close</button>                
+                    <!-- <a (click)="redirectToRoster()" class="btn btn-action-sm btn-action-secondary" >Roster</a> -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="section-title">
+    <h2>Awards</h2>
+    <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editAwardsInfoPopup">
+        <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+            <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)"
+                d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z"
+                transform="translate(-1 -1)" fill="#fff" />
+        </svg>
+    </a>
+</div>
+<div class="section-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Awards Group</h3>
+            <p>{{empAward.awardGroupName}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Allowances</h3>
+            <p>{{empAward?.allowances| currency : 'AUD' : true : '1.2-2'}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Standard Daily Hours</h3>
+            <p>{{empAward.dailyhours}} Hrs</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Standard Weekly Hours</h3>
+            <p>{{empAward.weeklyhours}} Hrs</p>
+        </div>
+    </div>
+    
+</div>
+
+<div class="modal popup-default" id="editAwardsInfoPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rForm" (ngSubmit)="UpdateAwardDetails()" #formDirective="ngForm">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Awards Details</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="awardGroup" class="field-label">Award Group</label>
+                                <!-- <input type="text" class="form-control" formControlName="allowances" id="ki-fname"
+                                    aria-describedby="emailHelp" placeholder="Enter Allowances"> -->
+                                    <mat-form-field>
+                                        <mat-select placeholder="Select" formControlName="awardGroup">
+                                            <mat-option *ngFor="let item of awardGroupList" [value]="item.id">
+                                                {{item.codeDescription}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-fname" class="field-label">Allowances</label>
+                                <!-- <input type="text" class="form-control" formControlName="allowances" id="ki-fname"
+                                    aria-describedby="emailHelp" placeholder="Enter Allowances"> -->
+                                <mat-form-field appearance="fill">
+                                    <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Allowances" formControlName="allowances" value=""
+                                        required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-mname" class="field-label">Standard Daily Hours</label>
+                                <!-- <input type="text" class="form-control" formControlName="dailyHours" id="ki-mname"
+                                    aria-describedby="emailHelp" placeholder="Enter Daily Hours"> -->
+                                <mat-form-field appearance="fill">
+                                    <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Daily Hours" formControlName="dailyHours"
+                                        value="" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="ki-lname" class="field-label">Standard Weekly Hours</label>
+                                <!-- <input type="text" class="form-control" formControlName="weeklyHours" id="ki-lname"
+                                    aria-describedby="emailHelp" placeholder="Enter Weekly Hours"> -->
+                                <mat-form-field appearance="fill">
+                                    <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Weekly Hours" formControlName="weeklyHours"
+                                        value="" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+  
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-action-sm">Update</button>
+                    <button type="button" (click)="cancelModal()" #btnAwardCancel class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

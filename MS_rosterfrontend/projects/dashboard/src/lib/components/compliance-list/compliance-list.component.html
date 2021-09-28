@@ -1,0 +1,321 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Compliance</h1>
+        </div>
+        <div class="table-wrap">
+            <div class="table-title">
+                <h2>Required Compliance</h2>
+            </div>
+            <div class="table-content">
+                <div class="tbl-search-bx">
+                    <form class="form-inline" action="javascript:void(0);">
+                        <mat-form-field appearance="fill">
+                           
+                            <input matInput #empNamerequire placeholder="Employee Name" value=""
+                                required>
+                       </mat-form-field>
+                        <!-- <mat-form-field appearance="fill">
+                            <input matInput #docnamerequire placeholder="Document Name" value=""
+                                required>
+                        </mat-form-field> -->
+                        <input type="button" value="Search" class="btn btn-action-sm" (click)="SearchRequire()">
+                        
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table mat-table [dataSource]="dataSourceRequired" matSort>
+                        <ng-container matColumnDef="sr">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#</th>
+                            <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="clientName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block"> 
+                                    <a href="javascript:void(0);" routerLink="/employee/emp-detail"
+                                    [queryParams]="{Id: element.employeeId}">{{element.clientName}}</a><br>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="document">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Document Name</th>
+                            <td mat-cell *matCellDef="let element">{{element.document}}</td>
+                        </ng-container>
+                        <!-- <ng-container matColumnDef="documentTypeName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Document Type</th>
+                            <td mat-cell *matCellDef="let element">{{element.documentTypeName}}</td>
+                        </ng-container> -->
+                        <ng-container matColumnDef="description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element">{{element.description}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="dateOfIssue">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of issue</th>
+                            <td mat-cell *matCellDef="let element">{{element.dateOfIssue| date: 'dd MMM yyyy'}}</td>
+                        </ng-container>
+                       
+                        <ng-container matColumnDef="hasExpiry">
+                            <th class="center-item" mat-header-cell *matHeaderCellDef
+                                mat-sort-header>Has Expiry</th>
+                            <td class="center-item" mat-cell *matCellDef="let element"
+                                class="text-center">
+                                <svg *ngIf="element.hasExpiry" xmlns="http://www.w3.org/2000/svg" width="12"
+                                    height="12.001" viewBox="0 0 12 12.001">
+                                    <path id="iconfinder_tick_216457"
+                                        d="M16.051,6.232a1.845,1.845,0,0,0-2.511.717l-3.427,6.168L8.151,11.155a1.846,1.846,0,0,0-2.61,2.61l3.692,3.692A1.843,1.843,0,0,0,10.538,18a1.7,1.7,0,0,0,.256-.018,1.846,1.846,0,0,0,1.358-.931l4.615-8.308A1.846,1.846,0,0,0,16.051,6.232Z"
+                                        transform="translate(-5 -5.998)" fill="#8d36b8" />
+                                </svg>
+                            </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="dateOfExpiry">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of Expiry</th>
+                            <td mat-cell *matCellDef="let element">{{element.dateOfExpiry| date: 'dd MMM yyyy'}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="uploadDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Uploaded Date</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.createdDate | date :'dd MMM yyyy'}} 
+                                
+                            </td>
+                        </ng-container>
+                       
+                        <ng-container matColumnDef="alert">
+                            <th class="center-item" mat-header-cell *matHeaderCellDef
+                                mat-sort-header>Alert</th>
+                            <td class="center-item" mat-cell *matCellDef="let element"
+                                class="text-center">
+                                <svg *ngIf="element.alert" xmlns="http://www.w3.org/2000/svg" width="12"
+                                    height="12.001" viewBox="0 0 12 12.001">
+                                    <path id="iconfinder_tick_216457"
+                                        d="M16.051,6.232a1.845,1.845,0,0,0-2.511.717l-3.427,6.168L8.151,11.155a1.846,1.846,0,0,0-2.61,2.61l3.692,3.692A1.843,1.843,0,0,0,10.538,18a1.7,1.7,0,0,0,.256-.018,1.846,1.846,0,0,0,1.358-.931l4.615-8.308A1.846,1.846,0,0,0,16.051,6.232Z"
+                                        transform="translate(-5 -5.998)" fill="#8d36b8" />
+                                </svg>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a href="javascript:void(0);" (click)="OpenEditmodalRequire(element.employeeId,element.Id, $event)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path id="iconfinder_write_126582_1_" data-name="iconfinder_write_126582 (1)" d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z" transform="translate(-1 -1)" fill="#7b7b7b"/>
+                                    </svg>
+                                </a>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#myModalRequire" (click)="DeleteModalRequire(element.Id, $event)">
+                                    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071" viewBox="0 0 15 18.071">
+                                        <g id="Group_66039" data-name="Group 66039">
+                                            <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                <path id="Path_304" data-name="Path 304" d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z" transform="translate(-79.61 -43.5)" fill="#7b7b7b"/>
+                                            </g>
+                                            <g id="Group_66038" data-name="Group 66038" transform="translate(1.716 7.819)">
+                                                <path id="Path_305" data-name="Path 305" d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z" transform="translate(-119.27 -231.53)" fill="#7b7b7b"/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </a>
+                                <a href="javascript:void(0)"  *ngIf="element.fileName?true:false"  (click)="downloadPdf(baseUrl + element.fileName)">
+                                                             
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" viewBox="0 0 16 16">
+                                    <path id="iconfinder_write_126582_1_"
+                                        data-name="iconfinder_write_126582 (1)"
+                                        d="M15.608,6.262h-2.338v0.935h2.338c0.516,0,0.934,0.418,0.934,0.935v8.879c0,0.517-0.418,0.935-0.934,0.935H4.392c-0.516,0-0.935-0.418-0.935-0.935V8.131c0-0.516,0.419-0.935,0.935-0.935h2.336V6.262H4.392c-1.032,0-1.869,0.837-1.869,1.869v8.879c0,1.031,0.837,1.869,1.869,1.869h11.216c1.031,0,1.869-0.838,1.869-1.869V8.131C17.478,7.099,16.64,6.262,15.608,6.262z M9.513,11.973c0.017,0.082,0.047,0.162,0.109,0.226c0.104,0.106,0.243,0.143,0.378,0.126c0.135,0.017,0.274-0.02,0.377-0.126c0.064-0.065,0.097-0.147,0.115-0.231l1.708-1.751c0.178-0.183,0.178-0.479,0-0.662c-0.178-0.182-0.467-0.182-0.645,0l-1.101,1.129V1.588c0-0.258-0.204-0.467-0.456-0.467c-0.252,0-0.456,0.209-0.456,0.467v9.094L8.443,9.553c-0.178-0.182-0.467-0.182-0.645,0c-0.178,0.184-0.178,0.479,0,0.662L9.513,11.973z"
+                                        transform="translate(-1 -1)" fill="#7b7b7b" />
+                                </svg>
+                            </a>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsRequired"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsRequired;"></tr>
+                    </table>
+                    <mat-paginator [length]="totalCountReq" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEventRequire($event)">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+        <div class="table-wrap mt-4">
+            <div class="table-title">
+                <h2>Other Compliance</h2>
+            </div>
+            <div class="table-content">
+                <div class="tbl-search-bx">
+                    <form class="form-inline" action="javascript:void(0);">
+                        <mat-form-field appearance="fill">
+                           
+                            <input matInput #empNameother placeholder="Employee Name" value=""
+                                required>
+                       </mat-form-field>
+                        <!-- <mat-form-field appearance="fill">
+                            <input matInput #docnameother placeholder="Document Name" value=""
+                                required>
+                        </mat-form-field> -->
+                        <input type="button" value="Search" class="btn btn-action-sm" (click)="SearchOther()">
+
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table mat-table [dataSource]="dataSourceOther" matSort>
+                        <ng-container matColumnDef="sr">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#</th>
+                            <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="clientName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee Name</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block"> 
+                                    <a href="javascript:void(0);" routerLink="/employee/emp-detail"
+                                    [queryParams]="{Id: element.employeeId}">{{element.clientName}}</a><br>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="document">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Document Name</th>
+                            <td mat-cell *matCellDef="let element">{{element.document}}</td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element">{{element.description}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="dateOfIssue">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of issue</th>
+                            <td mat-cell *matCellDef="let element">{{element.dateOfIssue| date: 'dd MMM yyyy'}}</td>
+                        </ng-container>
+                       
+                        <ng-container matColumnDef="hasExpiry">
+                            <th class="center-item" mat-header-cell *matHeaderCellDef
+                                mat-sort-header>Has Expiry</th>
+                            <td class="center-item" mat-cell *matCellDef="let element"
+                                class="text-center">
+                                <svg *ngIf="element.hasExpiry" xmlns="http://www.w3.org/2000/svg" width="12"
+                                    height="12.001" viewBox="0 0 12 12.001">
+                                    <path id="iconfinder_tick_216457"
+                                        d="M16.051,6.232a1.845,1.845,0,0,0-2.511.717l-3.427,6.168L8.151,11.155a1.846,1.846,0,0,0-2.61,2.61l3.692,3.692A1.843,1.843,0,0,0,10.538,18a1.7,1.7,0,0,0,.256-.018,1.846,1.846,0,0,0,1.358-.931l4.615-8.308A1.846,1.846,0,0,0,16.051,6.232Z"
+                                        transform="translate(-5 -5.998)" fill="#8d36b8" />
+                                </svg>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="dateOfExpiry">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date of Expiry</th>
+                            <td mat-cell *matCellDef="let element">{{element.dateOfExpiry| date: 'dd MMM yyyy'}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="alert">
+                            <th class="center-item" mat-header-cell *matHeaderCellDef
+                                mat-sort-header>Alert</th>
+                            <td class="center-item" mat-cell *matCellDef="let element"
+                                class="text-center">
+                                <svg *ngIf="element.alert" xmlns="http://www.w3.org/2000/svg" width="12"
+                                    height="12.001" viewBox="0 0 12 12.001">
+                                    <path id="iconfinder_tick_216457"
+                                        d="M16.051,6.232a1.845,1.845,0,0,0-2.511.717l-3.427,6.168L8.151,11.155a1.846,1.846,0,0,0-2.61,2.61l3.692,3.692A1.843,1.843,0,0,0,10.538,18a1.7,1.7,0,0,0,.256-.018,1.846,1.846,0,0,0,1.358-.931l4.615-8.308A1.846,1.846,0,0,0,16.051,6.232Z"
+                                        transform="translate(-5 -5.998)" fill="#8d36b8" />
+                                </svg>
+                            </td>
+                        </ng-container>
+                       
+                        <ng-container matColumnDef="otheruploadDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Uploaded Date</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{element.createdDate | date :'dd MMM yyyy'}} 
+                                
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a href="javascript:void(0);" (click)="OpenEditmodalother(element.employeeId,element.Id, $event)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path id="iconfinder_write_126582_1_" data-name="iconfinder_write_126582 (1)" d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z" transform="translate(-1 -1)" fill="#7b7b7b"/>
+                                    </svg>
+                                </a>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#myModalOther" (click)="DeleteModalOther(element.Id, $event)">
+                                    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071" viewBox="0 0 15 18.071">
+                                        <g id="Group_66039" data-name="Group 66039">
+                                            <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                <path id="Path_304" data-name="Path 304" d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z" transform="translate(-79.61 -43.5)" fill="#7b7b7b"/>
+                                            </g>
+                                            <g id="Group_66038" data-name="Group 66038" transform="translate(1.716 7.819)">
+                                                <path id="Path_305" data-name="Path 305" d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z" transform="translate(-119.27 -231.53)" fill="#7b7b7b"/>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </a>
+                                <a href="javascript:void(0)"  *ngIf="element.otherFileName?true:false"  (click)="downloadPdf(baseUrl + element.otherFileName)">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" viewBox="0 0 16 16">
+                                    <path id="iconfinder_write_126582_1_"
+                                        data-name="iconfinder_write_126582 (1)"
+                                        d="M15.608,6.262h-2.338v0.935h2.338c0.516,0,0.934,0.418,0.934,0.935v8.879c0,0.517-0.418,0.935-0.934,0.935H4.392c-0.516,0-0.935-0.418-0.935-0.935V8.131c0-0.516,0.419-0.935,0.935-0.935h2.336V6.262H4.392c-1.032,0-1.869,0.837-1.869,1.869v8.879c0,1.031,0.837,1.869,1.869,1.869h11.216c1.031,0,1.869-0.838,1.869-1.869V8.131C17.478,7.099,16.64,6.262,15.608,6.262z M9.513,11.973c0.017,0.082,0.047,0.162,0.109,0.226c0.104,0.106,0.243,0.143,0.378,0.126c0.135,0.017,0.274-0.02,0.377-0.126c0.064-0.065,0.097-0.147,0.115-0.231l1.708-1.751c0.178-0.183,0.178-0.479,0-0.662c-0.178-0.182-0.467-0.182-0.645,0l-1.101,1.129V1.588c0-0.258-0.204-0.467-0.456-0.467c-0.252,0-0.456,0.209-0.456,0.467v9.094L8.443,9.553c-0.178-0.182-0.467-0.182-0.645,0c-0.178,0.184-0.178,0.479,0,0.662L9.513,11.973z"
+                                        transform="translate(-1 -1)"  />
+                                </svg>
+                            </a>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsOther"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsOther;"></tr>
+                    </table>
+                    <mat-paginator [length]="totalCountOth" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEventOther($event)">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lhs-sidebar></lhs-sidebar>
+</div>
+<div class="modal custom-popup " id="myModalRequire">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <button type="button" class="close header-close" data-dismiss="modal">
+            &times;
+          </button>
+          <p>Are you sure you want to delete record?</p>
+          <br/>
+          <div class="modal-btn">
+            <button mat-button class="project-btn-1-db project-btn-1-db-gray" data-dismiss="modal">Cancel</button>
+            &nbsp;&nbsp;
+            <button
+    
+            mat-button class="project-btn-1-db"
+              data-dismiss="modal"
+    
+              (click)="DeleteRequireComplianceInfo($event)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="modal custom-popup " id="myModalOther">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+              <button type="button" class="close header-close" data-dismiss="modal">
+                &times;
+              </button>
+              <p>Are you sure you want to delete record?</p>
+              <br/>
+              <div class="modal-btn">
+                <button mat-button class="project-btn-1-db project-btn-1-db-gray" data-dismiss="modal">Cancel</button>
+                &nbsp;&nbsp;
+                <button
+        
+                mat-button class="project-btn-1-db"
+                  data-dismiss="modal"
+        
+                  (click)="DeleteOtherComplianceInfo($event)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>

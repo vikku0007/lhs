@@ -1,0 +1,145 @@
+<a class="popup-link text-right" routerLink="/roster/add-shift">
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+        <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)"
+            d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z"
+            fill="#fff" />
+    </svg>
+</a>
+<div class="scheduler-upper-content">
+    <div class="row">
+        <div class="col-lg-10 col-md-10">
+            <div class="d-inline-block status-item-wrap">
+                <span class="status-item si-absent">Absent</span>
+                <span class="status-item si-approved">Approved</span>
+                <span class="status-item si-booked">Booked</span>
+                <span class="status-item si-cancelled">Cancelled</span>
+                <span class="status-item si-invoiced">Payroll</span>
+                <span class="status-item si-pending">Pending</span>
+            </div>
+            <div class="d-inline-block scheduler-type-wrap">
+                <a routerLink="/roster/shifts" routerLinkActive="active">List View</a>
+                <a routerLink="/roster/scheduler" routerLinkActive="active">Employee View</a>
+                <a routerLink="/roster/location-view" routerLinkActive="active">Location View</a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 text-right">
+            <a href="javascript:void(0);" class="btn link-filter" (click)="toggleFilters()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12.751" height="12.732" viewBox="0 0 12.751 12.732">
+                    <path id="iconfinder_filter_1608702"
+                        d="M203.675,256.353a.522.522,0,0,1-.127.633l-4.458,4.458v6.71a.541.541,0,0,1-.353.534.629.629,0,0,1-.226.045.537.537,0,0,1-.407-.172l-2.315-2.315a.556.556,0,0,1-.172-.407v-4.395l-4.458-4.458a.522.522,0,0,1-.127-.633.541.541,0,0,1,.534-.353h11.575A.541.541,0,0,1,203.675,256.353Z"
+                        transform="translate(-190.979 -256)" fill="#fff" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div class="filter-wrap" *ngIf="show">
+        <form [formGroup]="rForm" (ngSubmit)="searchCalendar()">
+            <div class="row">
+                <!-- <div class="col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label class="field-label">House</label>
+                    <mat-form-field>
+                        <mat-select placeholder="Select Person">
+                            <mat-option>House 1</mat-option>
+                            <mat-option>House 2</mat-option>
+                            <mat-option>House 3</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div> -->
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Location Type</label>
+                        <mat-form-field>
+                            <mat-select formControlName="locationtype" placeholder="Select Location Type"
+                                (selectionChange)="selectChangeHandler($event.value)">
+                                <mat-option *ngFor="let list of LocationTypeList" [value]="list.value">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" *ngIf="isShownLocatiodropdown">
+                    <div class="form-group">
+                        <label class="field-label">Location</label>
+                        <mat-form-field>
+                            <mat-select formControlName="locationId" placeholder="Select Location">
+                                <mat-option *ngFor="let list of LocationList" [value]="list.locationId">
+                                    {{list.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" *ngIf="isShownOtherLocation">
+                    <div class="form-group">
+                        <label class="field-label">House/ Other Location</label>
+                        <mat-form-field appearance="fill">
+                            <input formControlName="otherLocation" matInput placeholder="Enter Location Address">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Employee</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Select Employee" formControlName="employeeId">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Employee'"
+                                      [formControl]="searchcontrol" ngDefaultControl>
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                    {{list.fullName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Client</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Select Client" formControlName="clientId">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Client'"
+                                        [formControl]="searchcontrol" ngDefaultControl>
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let list of filteredRecordsclient | async" [value]="list.id">
+                                    {{list.fullName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Type Of Shift</label>
+                        <mat-form-field>
+                            <mat-select formControlName="shiftType" placeholder="Select Shift">
+                                <mat-option value="0">Morning</mat-option>
+                                <mat-option value="1">Evening</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Status</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Select Status" formControlName="shiftStatus">
+                                <mat-option *ngFor="let list of shiftStatusList" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-action-sm">Search</button>
+            &nbsp;<button type="button" (click)="ClearFilter()" class="btn btn-action-sm">Clear</button>
+        </form>
+    </div>
+</div>

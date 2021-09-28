@@ -1,0 +1,489 @@
+<div class="sidebar-wrap">
+    <ul>
+        <li routerLinkActive="active">
+            <a (click)="openDashboard()" routerLink="/dashboard" class="nav-link" routerLinkActive="active">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <path id="iconfinder_icon-dashboard_2867885"
+                        d="M12,22A10,10,0,1,1,22,12,10,10,0,0,1,12,22ZM5.68,7.1A7.96,7.96,0,0,0,4.06,11H5a1,1,0,0,1,0,2H4.06a7.95,7.95,0,0,0,1.32,3.5A9.96,9.96,0,0,1,11,14.05V9a1,1,0,0,1,2,0v5.05a9.96,9.96,0,0,1,5.62,2.45A7.95,7.95,0,0,0,19.94,13H19a1,1,0,0,1,0-2h.94a7.96,7.96,0,0,0-1.62-3.9l-.66.66a1,1,0,0,1-1.42-1.42l.67-.66A7.96,7.96,0,0,0,13,4.06V5a1,1,0,0,1-2,0V4.06A7.9,7.9,0,0,0,7.1,5.68l.66.66A1,1,0,1,1,6.34,7.76l-.66-.67ZM6.71,18a7.97,7.97,0,0,0,10.58,0A7.97,7.97,0,0,0,6.71,18Z"
+                        transform="translate(-2 -2)" fill="#646464" />
+                </svg>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li *ngIf="roleId==1" routerLinkActive="active">
+            <div class="dropdown">
+                <a href="javascript:void(0);" routerLinkActive="active" role="button" id="dropdownMenuEmployee"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20">
+                        <path id="iconfinder_icon-user_2867954"
+                            d="M12,12a5,5,0,1,1,5-5A5,5,0,0,1,12,12Zm0-2A3,3,0,1,0,9,7,3,3,0,0,0,12,10Zm9,11a1,1,0,0,1-2,0V19a3,3,0,0,0-3-3H8a3,3,0,0,0-3,3v2a1,1,0,0,1-2,0V19a5,5,0,0,1,5-5h8a5,5,0,0,1,5,5Z"
+                            transform="translate(-3 -2)" fill="#646464" />
+                    </svg>
+                    <span>Employee</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuEmployee">
+                    <h2>Employee</h2>
+                    <a (click)="openEmployee()" class="dropdown-item" routerLinkActive="active-submenu"
+                        routerLink="../pages/employee/list" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.04" height="19.488"
+                            viewBox="0 0 19.04 19.488">
+                            <g id="iconfinder_phone-forwarded_2561303" transform="translate(-1.111 0.414)">
+                                <path id="Path_330" data-name="Path 330" d="M19,1l4,4L19,9"
+                                    transform="translate(-3.849)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_110" data-name="Line 110" x2="8" transform="translate(11.151 5)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_331" data-name="Path 331"
+                                    d="M18.151,14.033v2.419a1.613,1.613,0,0,1-1.758,1.613,15.96,15.96,0,0,1-6.96-2.476A15.727,15.727,0,0,1,4.594,10.75,15.961,15.961,0,0,1,2.118,3.758,1.613,1.613,0,0,1,3.723,2H6.143A1.613,1.613,0,0,1,7.756,3.387,10.356,10.356,0,0,0,8.32,5.653a1.613,1.613,0,0,1-.363,1.7L6.933,8.379a12.9,12.9,0,0,0,4.839,4.839L12.8,12.194a1.613,1.613,0,0,1,1.7-.363,10.355,10.355,0,0,0,2.266.565,1.613,1.613,0,0,1,1.387,1.637Z"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Employee List
+                    </a>
+                    <a (click)="openCommunication()" class="dropdown-item" routerLinkActive="active-submenu"
+                        routerLink="../pages/employee/communication-list" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.04" height="19.488"
+                            viewBox="0 0 19.04 19.488">
+                            <g id="iconfinder_phone-forwarded_2561303" transform="translate(-1.111 0.414)">
+                                <path id="Path_330" data-name="Path 330" d="M19,1l4,4L19,9"
+                                    transform="translate(-3.849)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_110" data-name="Line 110" x2="8" transform="translate(11.151 5)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_331" data-name="Path 331"
+                                    d="M18.151,14.033v2.419a1.613,1.613,0,0,1-1.758,1.613,15.96,15.96,0,0,1-6.96-2.476A15.727,15.727,0,0,1,4.594,10.75,15.961,15.961,0,0,1,2.118,3.758,1.613,1.613,0,0,1,3.723,2H6.143A1.613,1.613,0,0,1,7.756,3.387,10.356,10.356,0,0,0,8.32,5.653a1.613,1.613,0,0,1-.363,1.7L6.933,8.379a12.9,12.9,0,0,0,4.839,4.839L12.8,12.194a1.613,1.613,0,0,1,1.7-.363,10.355,10.355,0,0,0,2.266.565,1.613,1.613,0,0,1,1.387,1.637Z"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Communication
+                    </a>
+                    <!-- <a (click)="openAppraisal()" class="dropdown-item" routerLinkActive="active-submenu" routerLink="../pages/employee/appraisal-list" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.65" height="20.897" viewBox="0 0 15.65 20.897">
+                            <g id="iconfinder_trending-down_2561223" transform="translate(-4.349 16.61) rotate(-76)">
+                                <path id="Path_332" data-name="Path 332" d="M16.848,14.644,10,7.8,6.4,11.4,1,6" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                <path id="Path_333" data-name="Path 333" d="M17,18h6V12" transform="translate(-6.152 -3.356)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            </g>
+                        </svg>
+                        Appraisals
+                    </a> -->
+                    <!-- <a (click)="openCompliance()" class="dropdown-item" routerLinkActive="active-submenu" routerLink="../pages/employee/compliance-list" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 16 24">
+                            <g id="iconfinder_award_2561336" transform="translate(-4)">
+                                <circle id="Ellipse_60" data-name="Ellipse 60" cx="7" cy="7" r="7" transform="translate(5 1)" stroke-width="2" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                <path id="Path_334" data-name="Path 334" d="M8.21,13.89,7,23l5-3,5,3-1.21-9.12" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            </g>
+                        </svg>
+                        Compliances
+                    </a> -->
+                    <a (click)="openAccident()" class="dropdown-item" routerLinkActive="active-submenu"
+                        routerLink="../pages/employee/accidents-incidents-list" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18.667" height="17" viewBox="0 0 18.667 17">
+                            <path id="iconfinder_activity_2561310" d="M18.667,10.5H15.333l-2.5,7.5-5-15-2.5,7.5H2"
+                                transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" />
+                        </svg>
+                        Accidents/Incidents
+                    </a>
+                    <a (click)="openLeave()" class="dropdown-item" routerLinkActive="active-submenu"
+                        routerLink="../pages/employee/leave-list" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.081" height="17.414"
+                            viewBox="0 0 19.081 17.414">
+                            <g id="iconfinder_check-square_2561354" transform="translate(-2 -1.586)">
+                                <path id="Path_335" data-name="Path 335" d="M9,11l3,3L23,3"
+                                    transform="translate(-3.333)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <path id="Path_336" data-name="Path 336"
+                                    d="M17.667,10.5v5.833A1.648,1.648,0,0,1,16.037,18H4.63A1.648,1.648,0,0,1,3,16.333V4.667A1.648,1.648,0,0,1,4.63,3h8.963"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Leave
+                    </a>
+                    <a (click)="openStaff()" class="dropdown-item" routerLinkActive="active-submenu"
+                        routerLink="../pages/employee/staff-warning-list" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="27.253" height="21.414"
+                            viewBox="0 0 27.253 21.414">
+                            <g id="iconfinder_user-x_2561495" transform="translate(9.54 0.602)">
+                                <line id="Line_111" data-name="Line 111" x2="5" y2="5"
+                                    transform="translate(11.299 0.812)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_112" data-name="Line 112" x1="5" y2="5"
+                                    transform="translate(11.299 0.812)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <path id="Path_338" data-name="Path 338" d="M17,21V19a4,4,0,0,0-4-4H5a4,4,0,0,0-4,4v2"
+                                    transform="translate(-9.54 -1.188)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <circle id="Ellipse_62" data-name="Ellipse 62" cx="4" cy="4" r="4"
+                                    transform="translate(-4.701 2.812)" stroke-width="2" stroke="#fff"
+                                    stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                                <path id="Path_339" data-name="Path 339" d="M23,21V19a4,4,0,0,0-3-3.87"
+                                    transform="translate(-10.701 -1.188)" fill="none" stroke="#fff"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                <path id="Path_340" data-name="Path 340" d="M16,3.13a4,4,0,0,1,0,7.75"
+                                    transform="translate(-10.237 -0.442)" fill="none" stroke="#fff"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </g>
+                        </svg>
+                        Employee Warnings
+                    </a>
+                    <!-- <a class="dropdown-item" routerLinkActive="active-submenu"
+                        routerLink="../pages/employee/availability-list" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.227" height="19.5" viewBox="0 0 19.227 19.5">
+                            <path id="iconfinder_thumbs-up_2561480"
+                                d="M12.5,8.125v-3.5A2.625,2.625,0,0,0,9.875,2l-3.5,7.875V19.5h9.87A1.75,1.75,0,0,0,18,18.013L19.2,10.138a1.75,1.75,0,0,0-1.75-2.013ZM6.375,19.5H3.75A1.75,1.75,0,0,1,2,17.75V11.625a1.75,1.75,0,0,1,1.75-1.75H6.375"
+                                transform="translate(-1 -1)" fill="none" stroke="#fff" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" />
+                        </svg>
+                        Availability
+                    </a> -->
+                </div>
+            </div>
+        </li>
+        <li *ngIf="roleId==1">
+            <div class="dropdown">
+                <a href="javascript:void(0);" routerLinkActive="active" role="button" id="dropdownMenuClient"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"> <svg
+                        xmlns="http://www.w3.org/2000/svg" width="19.945" height="20" viewBox="0 0 19.945 20">
+                        <path id="iconfinder_icon-user-check_2867951"
+                            d="M9,12a5,5,0,1,1,5-5A5,5,0,0,1,9,12Zm0-2A3,3,0,1,0,6,7,3,3,0,0,0,9,10Zm8,11a1,1,0,0,1-2,0V19a3,3,0,0,0-3-3H7a3,3,0,0,0-3,3v2a1,1,0,0,1-2,0V19a5,5,0,0,1,5-5h5a5,5,0,0,1,5,5ZM15.7,10.3,17,11.59l3.3-3.3a1,1,0,0,1,1.4,1.42l-4,4a1,1,0,0,1-1.4,0l-2-2a1,1,0,0,1,1.4-1.42Z"
+                            transform="translate(-2 -2)" fill="#646464" />
+                    </svg>
+                    <span>Client</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuClient">
+                    <h2>Client</h2>
+                    <a (click)="openClient()" class="dropdown-item" href="javascript:void(0);"
+                        routerLinkActive="active-submenu" routerLink="../pages/client/list">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.04" height="19.488"
+                            viewBox="0 0 19.04 19.488">
+                            <g id="iconfinder_phone-forwarded_2561303" transform="translate(-1.111 0.414)">
+                                <path id="Path_330" data-name="Path 330" d="M19,1l4,4L19,9"
+                                    transform="translate(-3.849)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_110" data-name="Line 110" x2="8" transform="translate(11.151 5)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_331" data-name="Path 331"
+                                    d="M18.151,14.033v2.419a1.613,1.613,0,0,1-1.758,1.613,15.96,15.96,0,0,1-6.96-2.476A15.727,15.727,0,0,1,4.594,10.75,15.961,15.961,0,0,1,2.118,3.758,1.613,1.613,0,0,1,3.723,2H6.143A1.613,1.613,0,0,1,7.756,3.387,10.356,10.356,0,0,0,8.32,5.653a1.613,1.613,0,0,1-.363,1.7L6.933,8.379a12.9,12.9,0,0,0,4.839,4.839L12.8,12.194a1.613,1.613,0,0,1,1.7-.363,10.355,10.355,0,0,0,2.266.565,1.613,1.613,0,0,1,1.387,1.637Z"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Client List
+                    </a>
+                    <!-- <a (click)="openClientAccidents()" class="dropdown-item" href="javascript:void(0);" routerLinkActive="active-submenu" routerLink="../pages/client/accidents-incidents-list">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18.667" height="17" viewBox="0 0 18.667 17">
+                            <path id="iconfinder_activity_2561310" d="M18.667,10.5H15.333l-2.5,7.5-5-15-2.5,7.5H2" transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                        </svg>
+                        Accidents/Incidents
+                    </a> -->
+                    <a (click)="openMedicalHistory()" class="dropdown-item" href="javascript:void(0);"
+                        routerLinkActive="active-submenu" routerLink="../pages/client/medical-history-list">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 16 24">
+                            <g id="iconfinder_award_2561336" transform="translate(-4)">
+                                <circle id="Ellipse_60" data-name="Ellipse 60" cx="7" cy="7" r="7"
+                                    transform="translate(5 1)" stroke-width="2" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" fill="none" />
+                                <path id="Path_334" data-name="Path 334" d="M8.21,13.89,7,23l5-3,5,3-1.21-9.12"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Medical Histories
+                    </a>
+                    <a (click)="openProgressNotes()" class="dropdown-item" href="javascript:void(0);"
+                        routerLinkActive="active-submenu" routerLink="../pages/client/progress-notes-list">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.65" height="20.897"
+                            viewBox="0 0 15.65 20.897">
+                            <g id="iconfinder_trending-down_2561223" transform="translate(-4.349 16.61) rotate(-76)">
+                                <path id="Path_332" data-name="Path 332" d="M16.848,14.644,10,7.8,6.4,11.4,1,6"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <path id="Path_333" data-name="Path 333" d="M17,18h6V12"
+                                    transform="translate(-6.152 -3.356)" fill="none" stroke="#fff"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </g>
+                        </svg>
+                        Progress Notes
+                    </a>
+                    <a (click)="openClientDocuments()" class="dropdown-item" href="javascript:void(0);"
+                        routerLinkActive="active-submenu" routerLink="../pages/client/documents-list">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.081" height="17.414"
+                            viewBox="0 0 19.081 17.414">
+                            <g id="iconfinder_check-square_2561354" transform="translate(-2 -1.586)">
+                                <path id="Path_335" data-name="Path 335" d="M9,11l3,3L23,3"
+                                    transform="translate(-3.333)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <path id="Path_336" data-name="Path 336"
+                                    d="M17.667,10.5v5.833A1.648,1.648,0,0,1,16.037,18H4.63A1.648,1.648,0,0,1,3,16.333V4.667A1.648,1.648,0,0,1,4.63,3h8.963"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Clients Documents
+                    </a>
+                </div>
+            </div>
+        </li>
+        <li *ngIf="roleId==1">
+            <a href="javascript:void(0);" (click)="openRoster()" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20">
+                    <path id="iconfinder_icon-calander_2867870"
+                        d="M17,4h2a2,2,0,0,1,2,2V20a2,2,0,0,1-2,2H5a2,2,0,0,1-2-2V6A2.006,2.006,0,0,1,5,4H7V3A1,1,0,0,1,9,3V4h6V3a1,1,0,0,1,2,0ZM15,6H9V7A1,1,0,0,1,7,7V6H5v4H19V6H17V7a1,1,0,0,1-2,0Zm4,6H5v8H19Z"
+                        transform="translate(-3 -2)" fill="#646464" />
+                </svg>
+                <span>Roster</span>
+            </a>
+        </li>
+        <li>
+
+            <div class="dropdown">
+                <a href="javascript:void(0);" routerLinkActive="active" role="button" id="dropdownMenuClient"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                        <path id="iconfinder_icon-news_2867930"
+                            d="M18,21H7a4,4,0,0,1-4-4V5A2.006,2.006,0,0,1,5,3H15a2,2,0,0,1,2,2h2a2,2,0,0,1,2,2V18A3,3,0,0,1,18,21Zm-3-3V5H5V17a2.006,2.006,0,0,0,2,2h8.17A3,3,0,0,1,15,18ZM8,15h4a1,1,0,0,1,0,2H8a1,1,0,0,1,0-2Zm0-4h4a1,1,0,0,1,0,2H8a1,1,0,0,1,0-2ZM8,7h4a1,1,0,0,1,0,2H8A1,1,0,0,1,8,7Zm9,11a1,1,0,0,0,2,0V7H17Z"
+                            transform="translate(-3 -3)" fill="#646464" />
+                    </svg>
+
+                    <span>Payroll</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuClient">
+                    <h2>Payroll</h2>
+                    <a (click)="openpayroll()" class="dropdown-item" href="javascript:void(0);"
+                        routerLinkActive="active-submenu" routerLink="../pages/client/list">
+
+                        Accepted Shift Payroll
+                    </a>
+
+                    <a (click)="rejectedShiftPayroll()" class="dropdown-item" href="javascript:void(0);"
+                        routerLinkActive="active-submenu" routerLink="../pages/client/medical-history-list">
+
+                        Rejected Shift Payroll
+                    </a>
+
+                    <a (click)="incompleteShiftPayroll()" class="dropdown-item" href="javascript:void(0);"
+                        routerLinkActive="active-submenu" routerLink="../pages/client/medical-history-list">
+
+                        Incomplete Payroll
+                    </a>
+                    <a (click)="payrollInMyOb()" class="dropdown-item" href="javascript:void(0);"
+                    routerLinkActive="active-submenu" routerLink="../pages/client/medical-history-list">
+
+                    Payroll In MYOb
+                </a>
+                </div>
+            </div>
+        </li>
+        <!-- <li>
+            <div class="dropdown">
+                <a href="javascript:void(0);" routerLinkActive="active" role="button" id="dropdownTimesheet" class="nav-link"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20">
+                        <path id="iconfinder_icon-file_2867898_1_" data-name="iconfinder_icon-file_2867898 (1)"
+                            d="M6,2h9a1,1,0,0,1,.7.3l4,4A1,1,0,0,1,20,7V20a2,2,0,0,1-2,2H6a2,2,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2Zm9,2.41V7h2.59ZM18,9H15a2,2,0,0,1-2-2V4H6V20H18Zm-2,7a1,1,0,0,1-1,1H9a1,1,0,0,1,0-2h6A1,1,0,0,1,16,16Zm0-4a1,1,0,0,1-1,1H9a1,1,0,0,1,0-2h6A1,1,0,0,1,16,12ZM11,8a1,1,0,0,1-1,1H9A1,1,0,0,1,9,7h1A1,1,0,0,1,11,8Z"
+                            transform="translate(-4 -2)" fill="#646464" />
+                    </svg>
+                    <span>Timesheets</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownTimesheet">
+                    <h2>Timesheet</h2>
+                    <a (click)="openTimesheet()" class="dropdown-item" href="javascript:void(0);"
+                        routerLinkActive="active-submenu" routerLink="../pages/client/list">
+                        Timesheet
+                    </a>
+                    <a (click)="openHourlyTimesheet()" class="dropdown-item" href="javascript:void(0);"
+                        routerLinkActive="active-submenu" routerLink="../pages/client/list">
+                        Hourly Timesheet
+                    </a>
+                </div>
+            </div>
+        </li> -->
+        <li>
+            <a href="javascript:void(0);" (click)="openTimesheet()" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20">
+                    <path id="iconfinder_icon-calander_2867870"
+                        d="M17,4h2a2,2,0,0,1,2,2V20a2,2,0,0,1-2,2H5a2,2,0,0,1-2-2V6A2.006,2.006,0,0,1,5,4H7V3A1,1,0,0,1,9,3V4h6V3a1,1,0,0,1,2,0ZM15,6H9V7A1,1,0,0,1,7,7V6H5v4H19V6H17V7a1,1,0,0,1-2,0Zm4,6H5v8H19Z"
+                        transform="translate(-3 -2)" fill="#646464" />
+                </svg>
+                <span>Timesheet</span>
+            </a>
+        </li>
+        <li *ngIf="roleId==1">
+            <div class="dropdown">
+                <a href="javascript:void(0);" role="button" id="dropdownMenuEmployee" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18">
+                        <path id="iconfinder_icon-briefcase_2867867"
+                            d="M8,7V5a2.006,2.006,0,0,1,2-2h4a2,2,0,0,1,2,2V7h4a2,2,0,0,1,2,2V19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V9A2.006,2.006,0,0,1,4,7Zm8,2H8V19h8Zm2,0V19h2V9ZM6,9H4V19H6Zm4-2h4V5H10Z"
+                            transform="translate(-2 -3)" fill="#646464" />
+                    </svg>
+                    <span>Administration</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuEmployee">
+                    <h2>Administration</h2>
+                    <!-- <a class="dropdown-item" (click)="openlocation()" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.804" height="14.537" viewBox="0 0 15.804 14.537">
+                            <g id="iconfinder_map_2561464" transform="translate(1 1)">
+                            <path id="Path_311" data-name="Path 311" d="M1,4.507V14.537l4.392-2.507,5.02,2.507L14.8,12.029V2L10.412,4.507,5.392,2Z" transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            <line id="Line_49" data-name="Line 49" y2="9" transform="translate(4.88 0.514)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            <line id="Line_50" data-name="Line 50" y2="9" transform="translate(8.88 2.514)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            </g>
+                        </svg>
+                        Location
+                    </a> -->
+                    <a class="dropdown-item" (click)="openmaster()" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.804" height="14.537"
+                            viewBox="0 0 15.804 14.537">
+                            <g id="iconfinder_map_2561464" transform="translate(1 1)">
+                                <path id="Path_311" data-name="Path 311"
+                                    d="M1,4.507V14.537l4.392-2.507,5.02,2.507L14.8,12.029V2L10.412,4.507,5.392,2Z"
+                                    transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_49" data-name="Line 49" y2="9" transform="translate(4.88 0.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <line id="Line_50" data-name="Line 50" y2="9" transform="translate(8.88 2.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Master Entries
+                    </a>
+                    <a class="dropdown-item" (click)="openpublicholiday()" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.804" height="14.537"
+                            viewBox="0 0 15.804 14.537">
+                            <g id="iconfinder_map_2561464" transform="translate(1 1)">
+                                <path id="Path_311" data-name="Path 311"
+                                    d="M1,4.507V14.537l4.392-2.507,5.02,2.507L14.8,12.029V2L10.412,4.507,5.392,2Z"
+                                    transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_49" data-name="Line 49" y2="9" transform="translate(4.88 0.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <line id="Line_50" data-name="Line 50" y2="9" transform="translate(8.88 2.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Add Public Holiday
+                    </a>
+                    <a class="dropdown-item" (click)="openAuditLog()" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.804" height="14.537"
+                            viewBox="0 0 15.804 14.537">
+                            <g id="iconfinder_map_2561464" transform="translate(1 1)">
+                                <path id="Path_311" data-name="Path 311"
+                                    d="M1,4.507V14.537l4.392-2.507,5.02,2.507L14.8,12.029V2L10.412,4.507,5.392,2Z"
+                                    transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_49" data-name="Line 49" y2="9" transform="translate(4.88 0.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <line id="Line_50" data-name="Line 50" y2="9" transform="translate(8.88 2.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Audit Log
+                    </a>
+                    <a class="dropdown-item" (click)="openTodoItem()" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.804" height="14.537"
+                            viewBox="0 0 15.804 14.537">
+                            <g id="iconfinder_map_2561464" transform="translate(1 1)">
+                                <path id="Path_311" data-name="Path 311"
+                                    d="M1,4.507V14.537l4.392-2.507,5.02,2.507L14.8,12.029V2L10.412,4.507,5.392,2Z"
+                                    transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_49" data-name="Line 49" y2="9" transform="translate(4.88 0.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <line id="Line_50" data-name="Line 50" y2="9" transform="translate(8.88 2.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Add To Do Item
+                    </a>
+                    <a class="dropdown-item" (click)="openglobalpayrate()" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.804" height="14.537"
+                            viewBox="0 0 15.804 14.537">
+                            <g id="iconfinder_map_2561464" transform="translate(1 1)">
+                                <path id="Path_311" data-name="Path 311"
+                                    d="M1,4.507V14.537l4.392-2.507,5.02,2.507L14.8,12.029V2L10.412,4.507,5.392,2Z"
+                                    transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_49" data-name="Line 49" y2="9" transform="translate(4.88 0.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <line id="Line_50" data-name="Line 50" y2="9" transform="translate(8.88 2.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                        Pay Rate
+                    </a>
+                    <a class="dropdown-item" (click)="openserviceprice()" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.804" height="14.537"
+                            viewBox="0 0 15.804 14.537">
+                            <g id="iconfinder_map_2561464" transform="translate(1 1)">
+                                <path id="Path_311" data-name="Path 311"
+                                    d="M1,4.507V14.537l4.392-2.507,5.02,2.507L14.8,12.029V2L10.412,4.507,5.392,2Z"
+                                    transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_49" data-name="Line 49" y2="9" transform="translate(4.88 0.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <line id="Line_50" data-name="Line 50" y2="9" transform="translate(8.88 2.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                       Service Rate
+                    </a>
+                    <a class="dropdown-item" (click)="openaddlocation()" href="javascript:void(0);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15.804" height="14.537"
+                            viewBox="0 0 15.804 14.537">
+                            <g id="iconfinder_map_2561464" transform="translate(1 1)">
+                                <path id="Path_311" data-name="Path 311"
+                                    d="M1,4.507V14.537l4.392-2.507,5.02,2.507L14.8,12.029V2L10.412,4.507,5.392,2Z"
+                                    transform="translate(-1 -2)" fill="none" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" />
+                                <line id="Line_49" data-name="Line 49" y2="9" transform="translate(4.88 0.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                                <line id="Line_50" data-name="Line 50" y2="9" transform="translate(8.88 2.514)"
+                                    fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </g>
+                        </svg>
+                       Add Location
+                    </a>
+                </div>
+            </div>
+        </li>
+        <!-- <li>
+            <a href="javascript:void(0);" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+                    <g id="iconfinder_printer_2561375" transform="translate(1 1)">
+                        <path id="Path_324" data-name="Path 324" d="M6,9V2H18V9" transform="translate(-2 -2)"
+                            fill="none" stroke="#646464" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" />
+                        <path id="Path_325" data-name="Path 325"
+                            d="M6,18H4a2,2,0,0,1-2-2V11A2,2,0,0,1,4,9H20a2,2,0,0,1,2,2v5a2,2,0,0,1-2,2H18"
+                            transform="translate(-2 -2.075)" fill="none" stroke="#646464" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2" />
+                        <rect id="Rectangle_140" data-name="Rectangle 140" width="12" height="8"
+                            transform="translate(4.001 12)" stroke-width="2" stroke="#646464" stroke-linecap="round"
+                            stroke-linejoin="round" fill="none" />
+                    </g>
+                </svg>
+                <span>Invoicing</span>
+            </a>
+        </li> -->
+    </ul>
+</div>

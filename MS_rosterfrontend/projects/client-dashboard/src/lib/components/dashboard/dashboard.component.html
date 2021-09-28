@@ -1,0 +1,35 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-inner-wrap">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="counters-wrap mb-4">                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-wrap mb-4">
+                                    <div class="table-title">
+                                        <h2>Current Shift</h2>
+                                    </div>
+                                    <!-- <lib-currentshift [employeeId]="employeeId"></lib-currentshift> -->
+                                    <lib-current-shift></lib-current-shift>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="table-wrap">
+                                    <div class="table-title">
+                                        <h2>Assigned Shift</h2>
+                                    </div>
+                                    <lib-assigned-shift></lib-assigned-shift>
+                                    <!-- <lib-assignedshift [assignedShiftModel]="assignedModel" [totalCount]="totalCount"
+                                        (pageAssignedShift)="updatePagingAssignedShift($event)"></lib-assignedshift> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lib-client-sidebar></lib-client-sidebar>
+</div>>

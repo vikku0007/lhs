@@ -1,0 +1,324 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+<div class="container-fluid page-wrap">
+    <div class="page-title page-tile-with-tabs">        
+        <h1>Employee <app-page-submenu></app-page-submenu></h1>
+    </div>
+    <div class="page-inner-wrap">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3 ">
+                <lib-employee-primaryinfo [empPrimaryInfo]="responseModel.responseData.employeePrimaryInfo"></lib-employee-primaryinfo>
+
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 col-xl-9">
+                <div class="row">
+                   
+                    <div class="col-lg-12 col-xl-6">
+                        <!-- Kin Info Section Starts Here -->
+                        <section class="section-info-bx">
+                            <lib-employee-kininfo [empKinInfo]="responseModel.responseData.employeeKinInfo"></lib-employee-kininfo>
+                            <!-- <div class="section-title">
+                                <h2>Kin Info</h2>
+                                <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editKinInfoPopup">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                                        <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="section-content">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>First Name</h3>
+                                        <p>{{responseModel.responseData.employeeKinInfo.firstName}}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Middle Name</h3>
+                                        <p>{{responseModel.responseData.employeeKinInfo.middelName}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>Last Name</h3>
+                                        <p>{{responseModel.responseData.employeeKinInfo.lastName}}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Relationship</h3>
+                                        <p>{{responseModel.responseData.employeeKinInfo.relationShip}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>Contact</h3>
+                                        <p class="mb-0">{{responseModel.responseData.employeeKinInfo.contactNo}}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Email</h3>
+                                        <p class="mb-0">{{responseModel.responseData.employeeKinInfo.email}}</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </section><!-- /Kin Info Section End -->
+                    </div>
+                    <div class="col-lg-12 col-xl-6 ">
+                        <div class="row">
+                           
+                            <div class="col-lg-12">
+                                <!-- Login ID Section Starts Here -->
+                                <section class="section-info-bx">
+                                    <lib-employee-login-password [empPrimaryInfo]="responseModel.responseData.employeeJobProfile"></lib-employee-login-password>
+                                </section><!-- /Login ID Section End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-xl-6">
+                        <!-- Awards Section Starts Here -->
+                        <section class="section-info-bx">
+                            <lib-employee-awards [empAward]="responseModel.responseData.employeeAwardInfo"></lib-employee-awards>
+                           </section><!-- /Awards Section End -->
+                    </div>
+                    <div class="col-lg-12 col-xl-6">
+                        <!-- Job Profile Section Starts Here -->
+                        <section class="section-info-bx">
+                            <lib-employee-jobprofile [empJobProfile]="responseModel.responseData.employeeJobProfile"></lib-employee-jobprofile>
+                            </section><!-- /Job Profile Section End -->
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <section class="section-info-bx">
+                  <lib-employee-today-shift></lib-employee-today-shift>
+                  </section>
+                 
+              </div>
+            <div class="col-lg-12 col-sm-12">
+                <!-- Driver License Section Starts Here -->
+                <section class="section-info-bx">
+                    <lib-employee-drivinglicense [employeeDrivingLicenseInfo]="responseModel.responseData.employeeDrivingLicenseInfo"></lib-employee-drivinglicense>
+                   </section>
+                <!-- /Driver License Section End -->
+            </div>
+            <div class="col-12">
+                <!-- Education Section Starts Here -->
+                <section class="section-info-bx">
+                    <lib-employee-education [employeeEducationInfo]="responseModel.responseData.employeeEducation"></lib-employee-education>
+                    <!-- <div class="section-title">
+                        <h2>Education</h2>
+                        <a href="javascript:void(0);" class="action-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                                <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)" d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z" fill="#fff"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col">
+                                <div class="table-wrap table-wrap-inner">
+                                    <div class="table-content">
+                                        <div class="table-responsive">
+                                            <table name="tbl1" mat-table [dataSource]="dataSourceEducation" matSort>
+                                                <ng-container matColumnDef="institute">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Institution</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.institute}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="degree">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Degree/Diploma</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.degree}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="fieldStudy">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Field(s) Of Study</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.fieldStudy}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="completionDate">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Of Completion</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.completionDate  }}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="additionalNotes">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Additional Notes</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.additionalNotes}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="action">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        <a href="javascript:void(0);">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                                                <path id="iconfinder_write_126582_1_" data-name="iconfinder_write_126582 (1)" d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z" transform="translate(-1 -1)" fill="#7b7b7b"/>
+                                                            </svg>
+                                                        </a>
+                                                        <a href="javascript:void(0);">
+                                                            <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071" viewBox="0 0 15 18.071">
+                                                                <g id="Group_66039" data-name="Group 66039">
+                                                                    <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                                        <path id="Path_304" data-name="Path 304" d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z" transform="translate(-79.61 -43.5)" fill="#7b7b7b"/>
+                                                                    </g>
+                                                                    <g id="Group_66038" data-name="Group 66038" transform="translate(1.716 7.819)">
+                                                                        <path id="Path_305" data-name="Path 305" d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z" transform="translate(-119.27 -231.53)" fill="#7b7b7b"/>
+                                                                    </g>
+                                                                </g>
+                                                            </svg>
+                                                        </a>
+                                                    </td>
+                                                </ng-container>
+                                                <tr mat-header-row *matHeaderRowDef="displayedColumnsEducation"></tr>
+                                                <tr mat-row *matRowDef="let row; columns: displayedColumnsEducation;"></tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </section><!-- /Education Section End -->
+            </div>
+
+            <div class="col-12">
+                <!-- Experience Section Starts Here -->
+                <section class="section-info-bx">
+                    <lib-employee-experience [employeeWorkInfo]="responseModel.responseData.employeeWorkExp"></lib-employee-experience>
+                    <!-- <div class="section-title">
+                        <h2>Experience</h2>
+                        <a href="javascript:void(0);" class="action-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                                <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)" d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z" fill="#fff"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col">
+                                <div class="table-wrap table-wrap-inner">
+                                    <div class="table-content">
+                                        <div class="table-responsive">
+                                            <table name="tbl2" mat-table [dataSource]="dataSourceExperience" matSort>
+                                                <ng-container matColumnDef="company">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Company</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.company}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="jobTitle">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Title</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.jobTitle}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="startDate">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>From Date</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.startDate }}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="endDate">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>To Date</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.endDate }}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="jobDesc">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Description</th>
+                                                    <td mat-cell *matCellDef="let element">{{element.jobDesc}}</td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="action">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        <a href="javascript:void(0);">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                                                <path id="iconfinder_write_126582_1_" data-name="iconfinder_write_126582 (1)" d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z" transform="translate(-1 -1)" fill="#7b7b7b"/>
+                                                            </svg>
+                                                        </a>
+                                                        <a href="javascript:void(0);">
+                                                            <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071" viewBox="0 0 15 18.071">
+                                                                <g id="Group_66039" data-name="Group 66039">
+                                                                    <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                                        <path id="Path_304" data-name="Path 304" d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z" transform="translate(-79.61 -43.5)" fill="#7b7b7b"/>
+                                                                    </g>
+                                                                    <g id="Group_66038" data-name="Group 66038" transform="translate(1.716 7.819)">
+                                                                        <path id="Path_305" data-name="Path 305" d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z" transform="translate(-119.27 -231.53)" fill="#7b7b7b"/>
+                                                                    </g>
+                                                                </g>
+                                                            </svg>
+                                                        </a>
+                                                    </td>
+                                                </ng-container>
+                                                <tr mat-header-row *matHeaderRowDef="displayedColumnsExperience"></tr>
+                                                <tr mat-row *matRowDef="let row; columns: displayedColumnsExperience;"></tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </section><!-- /Experience Section End -->
+            </div>
+            <div class="col-12">
+                <section class="section-info-bx">
+                    <lib-employee-compliances></lib-employee-compliances>
+                </section>
+             </div>
+            <div class="col-12">
+                <!-- Experience Section Starts Here -->
+                <section class="section-info-bx">
+                    <lib-employee-training [employeeTrainingInfo]="responseModel.responseData.employeeTraining"></lib-employee-training>
+                 
+                      
+                </section><!-- /Experience Section End -->
+            </div>
+
+            <div class="col-12">
+                <!-- Pay Rate Section Starts Here -->
+                <section class="section-info-bx">
+                    <lib-employee-payrates [empPayRates]="responseModel.responseData.employeePayRate"></lib-employee-payrates>
+                  <!--   <div class="section-title">
+                        <h2>Pay Rate - <span> Lavel: {{responseModel.responseData.employeePayRate.lavel}}</span></h2>
+                        <a href="javascript:void(0);" class="action-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                                <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <h3>Monday - Friday From 6Am To 12Am</h3>
+                                <p>$ {{responseModel.responseData.employeePayRate.monToFri6To12AM}}</p>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <h3>Saturday From 6Am To 12Am</h3>
+                                <p>$ {{responseModel.responseData.employeePayRate.sat6To12AM}}</p>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <h3>Sunday From 6Am To 12Am</h3>
+                                <p>$ {{responseModel.responseData.employeePayRate.sun6To12AM}}</p>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <h3>Public Holiday From 6Am To 12Am</h3>
+                                <p>$ {{responseModel.responseData.employeePayRate.holiday6To12AM}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <h3>Monday - Friday From 12Am To 6Am</h3>
+                                <p class="mb-0">$ {{responseModel.responseData.employeePayRate.monToFri12To6AM}}</p>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <h3>Saturday From 12Am To 6Am</h3>
+                                <p class="mb-0">$ {{responseModel.responseData.employeePayRate.sat12To6AM}}</p>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <h3>Sunday From 12Am To 6Am</h3>
+                                <p class="mb-0">$ {{responseModel.responseData.employeePayRate.sun12To6AM}}</p>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <h3>Public Holiday From 12Am To 6Am</h3>
+                                <p class="mb-0">$ {{responseModel.responseData.employeePayRate.holiday12To6AM}}</p>
+                            </div>
+                        </div>
+                    </div> -->
+                </section><!-- /Pay Rate Section End -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+ <lhs-sidebar></lhs-sidebar>
+ </div>

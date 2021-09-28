@@ -1,0 +1,55 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-inner-wrap">
+            <div class="page-sub-inner-wrap">
+                <div class="scheduler-upper-content">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-10">
+                            <div class="d-inline-block status-item-wrap">
+                                <span class="status-item si-absent">Absent</span>
+                                <span class="status-item si-approved">Approved</span>
+                                <span class="status-item si-booked">Booked</span>
+                                <span class="status-item si-cancelled">Cancelled</span>
+                                <span class="status-item si-invoiced">Invoiced</span>
+                                <span class="status-item si-pending">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <ul class="default-tabs dt-no-accordian mt-0" style="flex-flow:row;">
+                            <li class="nav-item active">
+                                <button (click)="previousMonth()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                        viewBox="0 0 6.828 10.828">
+                                        <path id="Path_297" data-name="Path 297" d="M1616.328,3621.169l-4,4,4,4"
+                                            transform="translate(-1610.913 -3619.755)" fill="none" stroke="#969696"
+                                            stroke-linecap="round" stroke-width="2" />
+                                    </svg>
+                                </button>
+                            </li>
+                            <li class="nav-item"><button (click)="thisMonth()">This Month</button></li>
+                            <li class="nav-item">
+                                <button (click)="nextMonth()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                        viewBox="0 0 6.828 10.828">
+                                        <path id="Path_298" data-name="Path 298" d="M4,0,0,4,4,8"
+                                            transform="translate(5.414 9.414) rotate(180)" fill="none" stroke="#969696"
+                                            stroke-linecap="round" stroke-width="2" />
+                                    </svg>
+                                </button>
+                            </li>
+                            <li>{{runningMonth}}</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <daypilot-month [config]="config" [events]="tempEventsArray" #calendar></daypilot-month>
+            </div>
+        </div>
+    </div>
+    <lib-client-sidebar></lib-client-sidebar>
+</div>>

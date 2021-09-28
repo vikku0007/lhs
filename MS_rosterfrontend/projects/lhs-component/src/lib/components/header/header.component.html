@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top header-navbar">
+    <a class="navbar-brand" href="javascript:void(0);">
+        <img src="../../../assets/img/logo-main.jpeg" alt="Roster Management" />
+    </a>
+    <div class="hdr-hamburger" id="hdr-hamburger" (click)="toggleCls()"><img src="assets/img/hambuger-icon.svg" alt="" style="display: block;width: 30px;" /></div>
+    <div class="navbar-nav ml-auto rgt-info">
+        <!-- <a href="#" class="nav-item nav-link link-notify">
+            <span>1</span>
+            <svg id="Icons" xmlns="http://www.w3.org/2000/svg" width="25" height="28.904" viewBox="0 0 25 28.904">
+                <g id="Group_9" data-name="Group 9">
+                <path id="Path_1" data-name="Path 1" d="M14.243,24.64h-.006a.35.35,0,0,0-.344.355,7.077,7.077,0,0,0,.127,1.218.351.351,0,0,0,.343.283.391.391,0,0,0,.067-.006.35.35,0,0,0,.277-.41,6.312,6.312,0,0,1-.114-1.1A.35.35,0,0,0,14.243,24.64Z" transform="translate(-11.566 -9.539)" fill="none"/>
+                <path id="Path_2" data-name="Path 2" d="M16.906,19.064a7.13,7.13,0,0,0-1.384,1.286,7.206,7.206,0,0,0-1.4,2.733.35.35,0,0,0,.677.178,6.455,6.455,0,0,1,2.509-3.627.35.35,0,1,0-.4-.57Z" transform="translate(-11.566 -9.565)" fill="none"/>
+                <path id="Path_3" data-name="Path 3" d="M28.1,14.693l.16.617,1.028-.56h.023v5.187h.777V14H29.4Z" transform="translate(-11.47 -9.595)" fill="none"/>
+                <path id="Path_4" data-name="Path 4" d="M17.393,19.147a.347.347,0,0,0-.488-.083,7.13,7.13,0,0,0-1.384,1.286,7.206,7.206,0,0,0-1.4,2.733.35.35,0,0,0,.677.178,6.455,6.455,0,0,1,2.509-3.627A.349.349,0,0,0,17.393,19.147Z" transform="translate(-11.566 -9.565)" fill="none"/>
+                <path id="Path_5" data-name="Path 5" d="M14.243,24.64h-.006a.35.35,0,0,0-.344.355,7.077,7.077,0,0,0,.127,1.218.351.351,0,0,0,.343.283.391.391,0,0,0,.067-.006.35.35,0,0,0,.277-.41,6.312,6.312,0,0,1-.114-1.1A.35.35,0,0,0,14.243,24.64Z" transform="translate(-11.566 -9.539)" fill="none"/>
+                <path id="Path_6" data-name="Path 6" d="M28.1,14.693l.16.617,1.028-.56h.023v5.187h.777V14H29.4Z" transform="translate(-11.47 -9.595)" fill="none"/>
+                <path id="Path_7" data-name="Path 7" d="M33.888,9.625H24.293a2.548,2.548,0,0,0-2.545,2.545v9.595a2.312,2.312,0,0,0,2.545,2.545h9.595a2.548,2.548,0,0,0,2.545-2.545V12.17A2.548,2.548,0,0,0,33.888,9.625Z" transform="translate(-11.434 -9.625)" fill="#8d36b8"/>
+                <path id="Path_8" data-name="Path 8" d="M33.132,29.031a2.34,2.34,0,0,0-.463-.721,2.266,2.266,0,0,0-.826-.525,5.693,5.693,0,0,1-2.234-2.676h-6.07a2.821,2.821,0,0,1-2.721-2.425l.021-6.626-.036,0a5.438,5.438,0,0,0-1.473-.01l-.023-.06a2.338,2.338,0,0,0-4.369,1.669l.019.05a8.442,8.442,0,0,0-2.821,9.8l1.331,3.455s0,0,0,0a6.3,6.3,0,0,1,.177,3.732,2.106,2.106,0,0,0-.172,1.853l.006.015a1.5,1.5,0,0,0,1.933.764l16.864-6.4a1.486,1.486,0,0,0,.856-1.9Zm-18.684-2.54a.4.4,0,0,1-.067.006.352.352,0,0,1-.345-.283A7.034,7.034,0,0,1,13.907,25a.351.351,0,0,1,.346-.355h.006a.351.351,0,0,1,.352.344,6.274,6.274,0,0,0,.115,1.1A.351.351,0,0,1,14.448,26.491Zm2.9-6.856a6.457,6.457,0,0,0-2.525,3.627.352.352,0,0,1-.681-.178,7.146,7.146,0,0,1,2.8-4.02.35.35,0,1,1,.407.57Z" transform="translate(-11.566 -9.471)" fill="#4e4e4e"/>
+                <path id="Path_9" data-name="Path 9" d="M23.863,34.857l-.653.251-4.068,1.564-.661.254a2.772,2.772,0,0,0,3.435,1.262l.251-.1a2.775,2.775,0,0,0,1.54-1.457A2.724,2.724,0,0,0,23.863,34.857Z" transform="translate(-11.519 -9.471)" fill="#4e4e4e"/>
+                </g>
+            </svg>  
+        </a> -->
+        <div class="dropdown show user-info">
+            <a class="btn" href="javascript:void(0);" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="{{imagedetails.imageUrl ?  baseUrl+imagedetails.imageUrl : '../../../assets/img/dummy-profile-pic.jpg'}}"  class="profile-pic" />
+               <span class="hdr-user-name">{{imagedetails.fullName}}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10.055" height="6.255" viewBox="0 0 10.055 6.255" class="dd-arrow">
+                    <path id="iconfinder_arrow-down-01_186411_2_" data-name="iconfinder_arrow-down-01_186411 (2)" d="M8.829,15.537,4.8,11.511a.952.952,0,0,1,0-1.342l.336-.336a.952.952,0,0,1,1.342,0L9.553,12.9l3.073-3.073a.952.952,0,0,1,1.342,0l.336.336a.952.952,0,0,1,0,1.342l-4.027,4.026a.942.942,0,0,1-.724.272A.944.944,0,0,1,8.829,15.537Z" transform="translate(-4.526 -9.556)" fill="#9a9a9a"/>
+                </svg>
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <!-- <a class="dropdown-item" href="#">Profile</a> -->
+                <a class="dropdown-item" (click)="logout()">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,299 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+    
+        <div class="page-inner-wrap">
+            <div class="page-sub-inner-wrap">
+                <div class="row">
+                   
+                    <div class="col-sm-12">
+                        <div class="psiw-rgt">
+                            <div class="psiw-bx-title">
+                                <h2>Pay Rate</h2>
+                                <button id="openPayModalButton" hidden data-toggle="modal" data-target="#editpayrateopup"></button>
+                             
+                            </div>
+                            <div class="psiw-bx-content">
+                                <div class="table-wrap table-wrap-inner">
+                                    <div class="table-content">
+                                       
+                                        <div class="table-responsive">
+                                            <table name="tbl2"  mat-table [dataSource]="dataSourcepayrate" matSort>
+                                                <ng-container matColumnDef="action">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Details</th>
+                                                    <td mat-cell *matCellDef="let element">  
+                                                                                     
+                                                      <a href="javascript:void(0);" (click)=openEditModal(element)>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                viewBox="0 0 16 16">
+                                                                <path id="iconfinder_write_126582_1_"
+                                                                    data-name="iconfinder_write_126582 (1)"
+                                                                    d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z"
+                                                                    transform="translate(-1 -1)" fill="#7b7b7b" />
+                                                            </svg>
+                                                        </a>
+     
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="level">
+                                                   <th mat-header-cell *matHeaderCellDef mat-sort-header>Level</th>
+                                                   <td mat-cell *matCellDef="let element">
+                                                    {{element.levelName}}
+                                                   </td>
+                                               </ng-container>
+                                               
+                                               <ng-container matColumnDef="MonToFri12To6AM">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Monday-Friday <br/>6Am To 12Am</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                 ${{element.monToFri12To6AM}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Sat12To6AM">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Saturday<br/>6Am To 12Am</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.sat12To6AM}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Sun12To6AM">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Sunday<br/>6Am To 12Am</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.sun12To6AM}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Holiday12To6AM">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Holiday<br/>6Am To 12Am</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.holiday12To6AM}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="MonToFri6To12AM">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Monday-Friday<br/>12Am To 6Am</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.monToFri6To12AM}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Sat6To12AM">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Saturday<br/>12Am To 6Am</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.sat6To12AM}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Sun6To12AM">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Sunday<br/>12Am To 6Am</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.sun6To12AM}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="Holiday6To12AM">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Holiday<br/>12Am To 6Am</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.holiday6To12AM}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="ActiveNightsAndSleep">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Sleepover</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.activeNightsAndSleep}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="HouseCleaning">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>House Cleaning</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.houseCleaning}}
+                                                </td>
+                                            </ng-container>
+                                            <ng-container matColumnDef="TransportPetrol">
+                                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Transport–Petrol<br/> Reimbursement</th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    ${{element.transportPetrol}}
+                                                </td>
+                                            </ng-container>
+                                             
+                                               <tr mat-header-row *matHeaderRowDef="displayedColumnsLeave"></tr>
+                                               <tr mat-row *matRowDef="let row; columns: displayedColumnsLeave;"></tr>
+                                           </table>
+                                            <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                                            </mat-paginator>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<lhs-sidebar></lhs-sidebar>
+</div>
+<!-- payrate Info Popup Start Here -->
+<div class="modal popup-default" id="editpayrateopup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form [formGroup]="rForm" (ngSubmit)="UpdateEmpPayrate()" #formDirective="ngForm">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Edit Pay Rates Details</h4>
+            <button type="button" class="close" data-dismiss="modal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                    <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                </svg>  
+            </button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-level" class="field-label">Level</label>
+                        <!-- <input type="text" formControlName="level" class="form-control" id="ki-level" aria-describedby="emailHelp" placeholder="Enter Location"> -->
+                        <mat-form-field>
+                            <mat-select placeholder="Select" (selectionChange)="selected()" formControlName="level">
+                                <mat-option *ngFor="let item of levelList" [value]="item.id">
+                                    {{item.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-monToFri6To12AM" class="field-label">Monday - Friday From 6AM To 12AM</label>
+                        <!-- <input type="text" formControlName="monToFri6To12AM" class="form-control" id="ki-monToFri6To12AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 6AM To 12AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Monday - Friday From 6AM To 12AM Rate" formControlName="monToFri6To12AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+
+                    </div>
+                </div>
+                   
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-sat6To12AM"  class="field-label">Saturday From 6AM To 12AM</label>
+                            <!-- <input type="text" formControlName="sat6To12AM" class="form-control" id="ki-sat6To12AM" aria-describedby="emailHelp" placeholder="Enter Saturday From 6AM To 12AM Rate"> -->
+                            <mat-form-field appearance="fill">
+                                <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Saturday From 6AM To 12AM Rate" formControlName="sat6To12AM" value=""
+                                    required>
+                                <mat-error>{{getErrorMessage}}</mat-error>
+                            </mat-form-field>    
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-sun6To12AM" class="field-label">Sunday From 6AM To 12AM</label>
+                        <!-- <input type="text" formControlName="sun6To12AM" class="form-control" id="ki-sun6To12AM" aria-describedby="emailHelp" placeholder="Enter Sunday From 6AM To 12AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Sunday From 6AM To 12AM Rate" formControlName="sun6To12AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="holiday6To12AM" class="field-label">Public Holiday From 6AM To 12AM</label>
+                        <!-- <input type="text" formControlName="holiday6To12AM" class="form-control" id="ki-holiday6To12AM" aria-describedby="emailHelp" placeholder="Enter Holiday From 6AM To 12AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Holiday From 6AM To 12AM Rate" formControlName="holiday6To12AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-monToFri12To6AM" class="field-label">Monday - Friday From 12AM To 6AM</label>
+                        <!-- <input type="text" formControlName="monToFri12To6AM" class="form-control" id="ki-monToFri12To6AM" aria-describedby="emailHelp" placeholder="Enter Monday - Friday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Monday - Friday From 12AM To 6AM Rate" formControlName="monToFri12To6AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-sat12To6AM" class="field-label">Saturday From 12AM To 6AM</label>
+                        <!-- <input type="text" formControlName="sat12To6AM" class="form-control" id="ki-sat12To6AM" aria-describedby="emailHelp" placeholder="Enter Saturday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Saturday From 12AM To 6AM Rate" formControlName="sat12To6AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-sun12To6AM" class="field-label">Sunday From 12AM To 6AM</label>
+                        <!-- <input type="text" formControlName="sun12To6AM" class="form-control" id="ki-sun12To6AM" aria-describedby="emailHelp" placeholder="Enter Sunday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Sunday From 12AM To 6AM Rate" formControlName="sun12To6AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-holiday12To6AM" class="field-label">Public Holiday From 12AM To 6AM</label>
+                        <!-- <input type="text" formControlName="holiday12To6AM" class="form-control" id="ki-holiday12To6AM" aria-describedby="emailHelp" placeholder="Enter Holiday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Holiday From 12AM To 6AM Rate" formControlName="holiday12To6AM" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-holiday12To6AM" class="field-label">Sleepover </label>
+                        <!-- <input type="text" formControlName="holiday12To6AM" class="form-control" id="ki-holiday12To6AM" aria-describedby="emailHelp" placeholder="Enter Holiday From 12AM To 6AM Rate"> -->
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Sleepover" formControlName="activenights" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-housecleaning" class="field-label">House Cleaning</label>
+                              <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter House Cleaning" formControlName="housecleaning" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="ki-transportpetrol" class="field-label">Transport – Petrol Reimbursement </label>
+                         <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" type="number" placeholder="Enter Transport – Petrol Reimbursement" formControlName="transportpetrol" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>    
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-action-sm">Update</button>
+            <button type="button" #btnPayRatesCancel class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+        </form>
+      </div>
+    </div>
+ </div><!-- /payrate Popup end -->

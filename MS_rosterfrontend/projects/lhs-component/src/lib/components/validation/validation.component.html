@@ -1,0 +1,10 @@
+<div *ngIf="showErrors()">
+    <div *ngFor="let error of errors(); let i=index;">
+        <p class="k-widget k-tooltip k-tooltip-validation k-invalid-msg" *ngIf="i==0">
+            <span>
+                <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
+                {{error}}
+            </span>
+        </p>
+    </div>
+</div>

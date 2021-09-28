@@ -1,0 +1,44 @@
+<form [formGroup]="rFormDeclaration" (ngSubmit)="AddDeclaration()">
+    <div class="card-header" role="tab" id="heading-finished">
+        <h5 class="mb-0">Declaration</h5>
+    </div>
+    <div class="collapse show p-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 mb-3">
+                    <mat-checkbox class="mr-1" value="1" formControlName="IsDeclaration"></mat-checkbox>
+                    I understand I need to submit another notification about this incident to the NDIS Commission within <strong>5 Business Days</strong>.
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Full Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Full Name" value="" formControlName="DeclarationName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Position at Oranisation</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Position" value="" formControlName="DeclarationPosition">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Date</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="off" [matDatepicker]="declarationDate" placeholder="Select Date" formControlName="DeclarationDate">
+                            <mat-datepicker-toggle matSuffix [for]="declarationDate"></mat-datepicker-toggle>
+                            <mat-datepicker #declarationDate></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-action-sm">{{textDeclaration}}</button>
+        </div>
+    </div>
+</form>

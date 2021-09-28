@@ -1,0 +1,113 @@
+<form [formGroup]="rFormIncidentInfo" (ngSubmit)="AddIncidentDetails()">
+    <div class="card-header" role="tab" id="heading-finished">
+        <h5 class="mb-0">Incident Details</h5>
+    </div>
+    <div class="collapse show p-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 col-sm-12" >
+                    <div class="form-group">
+                        <label class="field-label">Location Type</label>
+                        <mat-form-field>
+                            <mat-select formControlName="locationtype" placeholder="Select Location Type" (selectionChange)="selectChangeHandler($event.value)">
+                                <mat-option *ngFor="let list of LocationTypeList" [value]="list.value">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-sm-12" *ngIf="isShownLocatiodropdown">
+                    <div class="form-group">
+                        <label class="field-label">Location</label>
+                        <mat-form-field>
+                            <mat-select formControlName="locationId" placeholder="Select Location" (selectionChange)="SelectOtherLocation($event.value)">
+                                <mat-option *ngFor="let list of LocationList" [value]="list.locationId">
+                                    {{list.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12" *ngIf="isShownLocation">
+                    <div class="form-group input-textarea">
+                        <label class="field-label">Other Location</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="off" formControlName="Location"  matInput placeholder="Enter Location">
+                        </mat-form-field> 
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12" *ngIf="isShownOtherLocation">
+                    <div class="form-group input-textarea">
+                        <label class="field-label">Address</label>
+                        <lib-googleaddress autofocus autocomplete="disabled"  [control]="otherlocation"  (onAddressChange)="handleAddressChange($event)">
+                        </lib-googleaddress> 
+                       
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Date of Incident/Allegation</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="off" [matDatepicker]="incidentdate" placeholder="Select Date" formControlName="Incidentdate">
+                            <mat-datepicker-toggle matSuffix [for]="incidentdate"></mat-datepicker-toggle>
+                            <mat-datepicker #incidentdate></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">If Date Unknown, Reason Why</label>
+                        <mat-form-field >
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Reason" value="" formControlName="Reason">
+                            
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Time the NDIS provider became aware of the incident</label>
+                       <!-- <mat-form-field>
+                            <input matInput autofocus autocomplete="off" type="time" formControlName="NdisProviderTime"   placeholder="Enter Time" value="" >
+                         </mat-form-field> -->
+                         <mat-form-field>
+                            <mat-select formControlName="NdisProviderTime" placeholder="Select Time">
+                                <mat-option *ngFor="let list of TimeDropdownList" [value]="list.id">
+                                    {{list.text}}
+                                </mat-option>    
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Date the NDIS provider became aware of the incident</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="off" [matDatepicker]="providerdate" placeholder="Select Date" formControlName="NdisProviderDate">
+                            <mat-datepicker-toggle matSuffix [for]="providerdate"></mat-datepicker-toggle>
+                            <mat-datepicker #providerdate></mat-datepicker>
+                         </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group input-textarea">
+                        <label class="field-label">Describe the Incident/Allegation</label>
+                        <mat-form-field>
+                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="DescribeIncident"></textarea>
+                        </mat-form-field> 
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group input-textarea">
+                        <label class="field-label">What were the circumstances leading up to the Incident/Allegation?</label>
+                        <mat-form-field>
+                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="circumstanceIncident"></textarea>
+                        </mat-form-field> 
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-action-sm">{{textIncident}}</button>
+        </div>
+    </div>
+</form>

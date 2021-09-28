@@ -1,0 +1,110 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+<div class="container-fluid page-wrap">
+    <div class="page-title">        
+        <h1>Employee  <lib-submenu-page></lib-submenu-page></h1>
+    </div>
+    <div class="page-inner-wrap">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                <lib-emp-primary-detail [empPrimaryInfo]="responseModel.responseData.employeePrimaryInfo"></lib-emp-primary-detail> 
+
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 col-xl-9">
+                <div class="row">
+                   
+                    <div class="col-lg-12 col-xl-6">
+                        <!-- Kin Info Section Starts Here -->
+                        <section class="section-info-bx">
+                            <lib-emp-next-kin [empKinInfo]="responseModel.responseData.employeeKinInfo"></lib-emp-next-kin>
+                           </section>
+                    </div><div class="col-lg-12 col-xl-6">
+                        <!-- Login ID Section Starts Here -->
+                        <section class="section-info-bx">
+                            <lib-emp-login-password [empPrimaryInfo]="responseModel.responseData.employeeJobProfile">
+
+                            </lib-emp-login-password>
+                        </section>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-xl-6">
+                        <!-- Awards Section Starts Here -->
+                        <section class="section-info-bx">
+                            <lib-emp-awarddetail [empAward]="responseModel.responseData.employeeAwardInfo"></lib-emp-awarddetail> 
+                           </section>
+                </div>
+                <div class="col-lg-12 col-xl-6">
+                    <!-- Job Profile Section Starts Here -->
+                    <section class="section-info-bx">
+                        <lib-emp-job-profile [empJobProfile]="responseModel.responseData.employeeJobProfile"></lib-emp-job-profile>
+                       </section>
+    
+                </div>
+              
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <section class="section-info-bx">
+                  <lib-emp-today-shift></lib-emp-today-shift>
+                  </section>
+                 
+              </div>
+           
+            <div class="col-12">
+               <section class="section-info-bx">
+                    <lib-emp-driverlicense [employeeDrivingLicenseInfo]="responseModel.responseData.employeeDrivingLicenseInfo"></lib-emp-driverlicense>
+                   </section>
+            </div>
+            <div class="col-12">
+                <!-- Education Section Starts Here -->
+                <section class="section-info-bx">
+                    <lib-emp-qualification [employeeEducationInfo]="responseModel.responseData.employeeEducation">
+
+                    </lib-emp-qualification>
+                  </section>
+            </div>
+            
+            <div class="col-12">
+                <!-- Experience Section Starts Here -->
+                <section class="section-info-bx">
+                   <lib-emp-experience [employeeWorkInfo]="responseModel.responseData.employeeWorkExp">
+
+                   </lib-emp-experience>
+                   </section>
+            </div>
+            <div class="col-12">
+                <!-- Experience Section Starts Here -->
+                <section class="section-info-bx">
+                   <lib-emp-compliances>
+
+                   </lib-emp-compliances>
+                   </section>
+            </div>
+            <div class="col-12">
+                <!-- Experience Section Starts Here -->
+                <section class="section-info-bx">
+                 <lib-emp-proffessionaldevelopment [employeeTrainingInfo]="responseModel.responseData.employeeTraining">
+
+                 </lib-emp-proffessionaldevelopment> 
+                 
+                      
+                </section><!-- /Experience Section End -->
+            </div>
+
+            <div class="col-12">
+                <!-- Pay Rate Section Starts Here -->
+                <section class="section-info-bx">
+            <lib-emp-payrate [empPayRates]="responseModel.responseData.employeePayRate">
+              </lib-emp-payrate>
+                 </section>
+
+            </div>
+        </div>
+    </div>
+</div>
+<lib-admin-sidebar></lib-admin-sidebar>
+ </div>

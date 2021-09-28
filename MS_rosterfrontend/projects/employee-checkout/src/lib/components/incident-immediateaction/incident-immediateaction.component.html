@@ -1,0 +1,129 @@
+<form [formGroup]="rFormAction" (ngSubmit)="AddActionTaken()">
+    <div class="card-header" role="tab" id="heading-finished">
+        <h5 class="mb-0">Immediate Action Taken</h5>
+    </div>
+    <div class="collapse show p-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Have the police been informed of the incident?</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="IsPoliceInformed">
+                            <mat-radio-button value="1">Yes</mat-radio-button>
+                            <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Officer's Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Officer's Name" value="" formControlName="OfficerName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Police Station</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Police Station" value="" formControlName="PoliceStation">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Police Event Number</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Police Event Number" value="" formControlName="PoliceNumber">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">If the police have not been informed of the incident/allegation, why not?</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="PoliceNotInform">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Are the impacted person's family or guardian aware of the incident?</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="IsFamilyAware">
+                            <mat-radio-button value="1" (change)="radioImpactedChange($event)">Yes</mat-radio-button>
+                            <mat-radio-button value="2" checked="true" (change)="radioImpactedChange($event)">No</mat-radio-button>
+                            <mat-radio-button value="3" (change)="radioImpactedChange($event)">Unsure</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">If not, why hasn't the impacted person's family or guardian been contacted?</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="Guardian">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">If the impacted person is under 18, has the relevant child protection agency been contacted?</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="IsUnder18">
+                            <mat-radio-button value="1" (change)="radio18Change($event)">Yes</mat-radio-button>
+                            <mat-radio-button value="2" checked="true" (change)="radio18Change($event)">No</mat-radio-button>
+                            <mat-radio-button value="3" (change)="radio18Change($event)">Unknown</mat-radio-button>
+                            <mat-radio-button value="4" (change)="radio18Change($event)">Not Applicable</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">If not, why hasn't the child protection agency been contacted?</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Detail" value="" formControlName="ChildContacted">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h6>Impacted</h6>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group input-textarea">
+                        <label class="field-label">Describe any immediate support that has been offered/provided to the person with disability impacted by the incident</label>
+                        <mat-form-field>
+                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="DescribeImmediate"></textarea>
+                        </mat-form-field> 
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h6>Subject of Allegation - Worker</h6>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group input-textarea">
+                        <label class="field-label">Describe any immediate action that has been taken in respect to the worker who is the subject of the allegation</label>
+                        <mat-form-field>
+                            <textarea matInput autofocus autocomplete="off" placeholder="Write Your Message Here..." formControlName="WorkerDescribe"></textarea>
+                        </mat-form-field> 
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h6>Subject of Allegation - Person with Disability</h6>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group input-textarea">
+                        <label class="field-label">Describe any immediate action that has been taken or Commenced in respect to the person with disability</label>
+                        <mat-form-field>
+                            <textarea matInput autofocus autocomplete="disabled" placeholder="Write Your Message Here..." formControlName="DescribeDisability"></textarea>
+                        </mat-form-field> 
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-action-sm">{{textImmediate}}</button>
+        </div>
+    </div>
+</form>

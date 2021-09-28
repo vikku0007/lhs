@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Account\Commands\Delete\" />
+    <Folder Include="Account\Commands\Update\" />
+    <Folder Include="Account\Queries\LogOut\" />
+    <Folder Include="Administration\Models\" />
+    <Folder Include="Client\Commands\Create\AddIncidentProviderInfo\" />
+    <Folder Include="..\..\..\RoasterManagement_Backend%25280807%2529\MS_lifehealthservices\LHSAPI.Application\Client\Commands\Create\AddIncidentProviderInfo\" />
+    <Folder Include="..\..\..\RoasterManagement_Backend%252801 sept%2529\MS_lifehealthservices\LHSAPI.Application\Master\Queries\NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="EasyNetQ" Version="5.2.2" />
+    <PackageReference Include="FluentValidation" Version="8.6.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="SendGrid" Version="9.21.0" />
+    <PackageReference Include="System.Data.OleDb" Version="4.7.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LHSAPI.Common\LHSAPI.Common.csproj" />
+    <ProjectReference Include="..\LHSAPI.Persistence\LHSAPI.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

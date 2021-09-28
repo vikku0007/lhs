@@ -1,0 +1,348 @@
+<form [formGroup]="rFormAllegation" (ngSubmit)="AddSubjectAllegation()">
+    <div class="card-header" role="tab" id="heading-finished">
+        <h5 class="mb-0">Subject of Allegation</h5>
+    </div>
+    <div class="collapse show p-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">If the incident is a death of a person with disability, was the death anticipated?</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="IsSubjectAllegation">
+                            <mat-radio-button value="1">Yes</mat-radio-button>
+                            <mat-radio-button value="2" checked="true">No</mat-radio-button>
+                            <mat-radio-button value="3">Unknown</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h6>Subject of Allegation - Worker</h6>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Title</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Title" value="" formControlName="WorkerTitle">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">First Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput  autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="WorkerFirstName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Last Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Last Name" value="" formControlName="WorkerLastName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Position at time of allegation</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Position" value="" formControlName="WorkerPosition">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Gender</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Gender" formControlName="WorkerGender">
+                                <mat-option *ngFor="let list of genderList" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Date of Birth</label>
+                        <mat-form-field appearance="fill">
+                            
+                            <input matInput autofocus autocomplete="disabled" [matDatepicker]="WorkerDOB1" placeholder="Select Date" formControlName="WorkerDOB" [max]="todayDatemax">
+                            <mat-datepicker-toggle matSuffix [for]="WorkerDOB1"></mat-datepicker-toggle>
+                            <mat-datepicker #WorkerDOB1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Phone Number</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput  autofocus placeholder="Enter Phone Number"
+                            formControlName="WorkerPhoneNo" autocomplete="off" maxlength="12"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type = "number" 
+                             />
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Email</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email" value="" formControlName="WorkerEmail">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h6>Subject of Allegation - Person with disability</h6>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Title</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Title" value="" formControlName="DisableTitle">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">First Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="DisableFirstName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Last Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Last Name" value="" formControlName="DisableLastName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">NDIS Participant Number</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter NDIS Participant Number" value="" formControlName="DisableNdisNo">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Gender</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Gender" formControlName="DisableGender">
+                                <mat-option *ngFor="let list of genderList" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Date of Birth</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" formControlName="DisableDOBirth" [matDatepicker]="WorkerDOB3" placeholder="Select Date" [max]="todayDatemax">
+                            <mat-datepicker-toggle matSuffix [for]="WorkerDOB3"></mat-datepicker-toggle>
+                            <mat-datepicker #WorkerDOB3></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                   
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="form-group">
+                        <label class="field-label">Primary Disability</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Primary Disability" multiple formControlName="DisablePrimaryDisability">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Primary Disability'" [formControl]="controlPrimarydis" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredPrimarydisRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option> 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="form-group">
+                        <label class="field-label">Other Disability</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Other Disability" multiple formControlName="DisableOtherDisability">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Other Disability'" [formControl]="controlotherdis" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredotherdisRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>  
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group">
+                        <label class="field-label">Does the person have any behaviours of concern?</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Behaviuor Of Concern" multiple formControlName="DisableBehaviour">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Behaviours of concern'" [formControl]="controlBehaviourconcern" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredbehaviourRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">How does the person communicate?</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Communication" multiple formControlName="DisableCommunication">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Communication'" [formControl]="controlCommunication" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredcommunicationRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option> 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Phone Number</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput  autofocus placeholder="Enter Phone Number"
+                            formControlName="DisablePhoneNo" autocomplete="off" maxlength="12"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type = "number" 
+                             />
+                           
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Email Address</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email Address" value="" formControlName="DisableEmail">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h6>Subject of Allegation - Other</h6>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Title</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Title" value="" formControlName="OtherTitle">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">First Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="OtherFirstName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Last Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Last Name" value="" formControlName="OtherLastName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Relationship to Impacted Person</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Relationship" value="" formControlName="OtherRelationShip">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Gender</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Gender" formControlName="OtherGender">
+                                <mat-option *ngFor="let list of genderList" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Date of Birth</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="disabled" [matDatepicker]="SOAOtherDOB" placeholder="Select Date" formControlName="OtherDOB" [max]="todayDatemax">
+                            <mat-datepicker-toggle matSuffix [for]="SOAOtherDOB"></mat-datepicker-toggle>
+                            <mat-datepicker #SOAOtherDOB></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="form-group">
+                        <label class="field-label">Phone Number</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput formControlName="OtherPhoneNo"
+                            placeholder="Enter Phone Number"  
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            maxlength = "12">
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Email Address</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email Address" value="" formControlName="OtherEmail">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Other Details</label>
+                        <mat-form-field>
+                            <textarea matInput placeholder="Enter Other Details" value="" formControlName="AllegationOtherDetail"></textarea>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-action-sm">{{textSubject}}</button>
+        </div>
+    </div>
+    </form>

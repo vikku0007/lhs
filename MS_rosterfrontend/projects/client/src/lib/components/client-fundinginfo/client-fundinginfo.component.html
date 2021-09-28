@@ -1,0 +1,678 @@
+    <div class="section-title">
+            <h2>Client's Agreement</h2>
+            <button id="openEditModalButtonfund" hidden data-toggle="modal" data-target="#editFundingdetailPopup"></button>
+            <button id="openEditModalButtonAgreement" hidden data-toggle="modal" data-target="#editFundInfoPopup"></button>
+             <a  href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#addAgreementPopup">
+             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+            <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)" d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z" fill="#fff"/>
+             </svg>
+         </a>   
+        </div>
+        <div class="section-content">
+            <div class="page-inner-wrap">
+                <div class="page-sub-inner-wrap">
+                    <div class="row">
+                       
+                        <div class="col-sm-12">
+                            <div class="psiw-rgt">
+                               
+                                <div class="psiw-bx-content">
+                                    <div class="table-wrap table-wrap-inner">
+                                        <div class="table-content">
+                                           
+                                            <div class="table-responsive">
+                                                <table name="tbl2"  mat-table [dataSource]="dataSourceAgreement" matSort>
+                                                    <ng-container matColumnDef="claimNumber">
+                                                       <th mat-header-cell *matHeaderCellDef mat-sort-header>Claim Number</th>
+                                                       <td mat-cell *matCellDef="let element">
+                                                        {{element.claimNumber}}
+                                                       </td>
+                                                   </ng-container>
+                                                   
+                                                   <ng-container matColumnDef="fundTypeName">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Fund Type</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                     {{element.fundTypeName}}
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="startDate">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Start Date</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        {{element.startDate| date :'dd/MM/yyyy'}}
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="endDate">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>End Date</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        {{element.endDate| date :'dd/MM/yyyy'}}
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="amount">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        {{element.amount| currency : 'AUD' : true : '1.2-2'}}
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="refNumber">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Reference Number</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        {{element.refNumber}}
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container matColumnDef="action">
+                                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                                    <td mat-cell *matCellDef="let element">
+                                                        <a href="javascript:void(0);" (click)=openEditAgreement(element)>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                                                <path id="iconfinder_write_126582_1_" data-name="iconfinder_write_126582 (1)" d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z" transform="translate(-1 -1)" fill="#7b7b7b"/>
+                                                            </svg>
+                                                        </a>
+                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#myModalagreement" (click)="DeleteModalAgreement(element.id, $event)">
+                                                            <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071" viewBox="0 0 15 18.071">
+                                                                <g id="Group_66039" data-name="Group 66039">
+                                                                    <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                                        <path id="Path_304" data-name="Path 304" d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z" transform="translate(-79.61 -43.5)" fill="#7b7b7b"/>
+                                                                    </g>
+                                                                    <g id="Group_66038" data-name="Group 66038" transform="translate(1.716 7.819)">
+                                                                        <path id="Path_305" data-name="Path 305" d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z" transform="translate(-119.27 -231.53)" fill="#7b7b7b"/>
+                                                                    </g>
+                                                                </g>
+                                                            </svg>
+                                                        </a>
+                                                    </td>
+                                                </ng-container>
+                                                   <tr mat-header-row *matHeaderRowDef="displayedColumnsAgreement"></tr>
+                                                   <tr mat-row *matRowDef="let row; columns: displayedColumnsAgreement;"></tr>
+                                               </table>
+                                                <mat-paginator [length]="totalCountAgreement" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEventAgreement($event)">
+                                                </mat-paginator>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <br/>
+        <div class="page-inner-wrap">
+            <div class="page-sub-inner-wrap">
+        <div class="section-title">
+            <h2>Service List</h2>
+            <div class="d-flex justify-content-end mb-2 mt-3">
+                <a href="javascript:void(0);" class="other-action-link" data-toggle="modal" data-target="#addFundPopup">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                        <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)" d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z" fill="#fff"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="section-content">
+            <div class="row">
+                <div class="col">
+                    <div class="table-wrap table-wrap-inner">
+                        <div class="table-content">
+                            <div class="table-responsive">
+                                <table name="tbl-fundingInfo" mat-table [dataSource]="dataSourceFundingInfo" matSort>
+                                    <ng-container matColumnDef="serviceType">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Service Type</th>
+                                        <td mat-cell *matCellDef="let element">{{element.serviceTypeName}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="paymentterm">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Payment Term</th>
+                                        <td mat-cell *matCellDef="let element">{{element.paymentTermName}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="nodays">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>No. Of days</th>
+                                        <td mat-cell *matCellDef="let element">{{element.noDays}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="ammount">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                                        <td mat-cell *matCellDef="let element">{{element.ammount| currency : 'AUD' : true : '1.2-2'}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="totalAmount">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Amount</th>
+                                        <td mat-cell *matCellDef="let element">{{element.totalAmount| currency : 'AUD' : true : '1.2-2'}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="payer">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Payer</th>
+                                        <td mat-cell *matCellDef="let element">{{element.payerName}}</td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="action">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                        <td mat-cell *matCellDef="let element">
+                                            <a href="javascript:void(0);" (click)=openEditDetailsfunding(element)>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                                    <path id="iconfinder_write_126582_1_" data-name="iconfinder_write_126582 (1)" d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z" transform="translate(-1 -1)" fill="#7b7b7b"/>
+                                                </svg>
+                                            </a>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" (click)="DeleteModal(element.Id, $event)">
+                                                <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071" viewBox="0 0 15 18.071">
+                                                    <g id="Group_66039" data-name="Group 66039">
+                                                        <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                            <path id="Path_304" data-name="Path 304" d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z" transform="translate(-79.61 -43.5)" fill="#7b7b7b"/>
+                                                        </g>
+                                                        <g id="Group_66038" data-name="Group 66038" transform="translate(1.716 7.819)">
+                                                            <path id="Path_305" data-name="Path 305" d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z" transform="translate(-119.27 -231.53)" fill="#7b7b7b"/>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </ng-container>
+                                    <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                                    </mat-paginator>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFundingInfo"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFundingInfo;"></tr>
+                                </table>
+                                <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                                </mat-paginator>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        
+<!-- Fund Info Popup Start Here -->
+<div class="modal popup-default" id="addAgreementPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rFormAdd">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Client's Agreement Details</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+           
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Claim Number</label>
+                            <mat-form-field >
+                                <input matInput placeholder="Enter Claim Number" formControlName="AddClaimNumber"  maxlength="15">
+                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Fund Type</label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select Fund Type" formControlName="AddFundtype" (selectionChange)="getother($event.value)">
+                                    <mat-option *ngFor="let ftype of ftypes" [value]="ftype.value">
+                                        {{ftype.codeDescription}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        
+                        <div class="form-group">
+                            <label class="field-label">Ref Number</label>
+                            <mat-form-field >
+                                <input matInput autofocus autocomplete="off" placeholder="Enter Ref Number" formControlName="AddRefNumber"  maxlength="15">
+                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="pci-email" class="field-label">Amount</label>
+                            <mat-form-field>
+                                <input type="number" autofocus autocomplete="off" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxlength = "12" matInput placeholder="Enter Amount"  formControlName="AddAmount" >
+                             </mat-form-field>                               
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Start Date</label>
+                            <mat-form-field>
+                                <input class="filter-date" matInput autofocus autocomplete="off" [matDatepicker]="pickerDate3" placeholder="Select Date" formControlName="AddStartDate">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDate3"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDate3></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">End Date</label>
+                            <mat-form-field>
+                                <input class="filter-date" matInput [matDatepicker]="pickerDate4" placeholder="Select Date" formControlName="AddEndDate">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDate4"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDate4></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-12 col-sm-12" *ngIf="isShown">
+                        <div class="form-group">
+                            <label for="pci-email" class="field-label">Other Fund Type</label>
+                            <mat-form-field>
+                                <input matInput placeholder="Enter Other" formControlName="AddOther"  maxlength="15">
+                               
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" #btnAgreementupdate class="btn btn-action-sm" (click)="AddAgreementInfo()">Add</button>
+                <button type="button" #btnAgreementcancel class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div><!-- /Fund Info Popup End -->     
+<!-- Fund Info Popup Start Here -->
+<div class="modal popup-default" id="editFundInfoPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rForm">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Client's Agreement Details</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+            
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        
+                        <div class="form-group">
+                            <label class="field-label">Claim Number</label>
+                            <mat-form-field >
+                                <input matInput placeholder="Enter Claim Number" formControlName="ClaimNumber"  maxlength="15">
+                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Fund Type</label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select Fund Type" formControlName="Fundtype" (selectionChange)="getother($event.value)">
+                                    <mat-option *ngFor="let ftype of ftypes" [value]="ftype.value">
+                                        {{ftype.codeDescription}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        
+                        <div class="form-group">
+                            <label class="field-label">Ref Number</label>
+                            <mat-form-field >
+                                <input matInput autofocus autocomplete="off" placeholder="Enter Ref Number" formControlName="RefNumber"  maxlength="15">
+                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="pci-email" class="field-label">Amount</label>
+                            <mat-form-field>
+                                <input type="number" autofocus autocomplete="off" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxlength = "12" matInput placeholder="Enter Amount"  formControlName="Amount" >
+                             </mat-form-field>                               
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Start Date</label>
+                            <mat-form-field>
+                                <input class="filter-date" matInput autofocus autocomplete="off" [matDatepicker]="pickerDate1" placeholder="Select Date" formControlName="StartDate">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDate1"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDate1></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">End Date</label>
+                            <mat-form-field>
+                                <input class="filter-date" matInput [matDatepicker]="pickerDate2" placeholder="Select Date" formControlName="EndDate">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDate2"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDate2></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-12 col-sm-12" *ngIf="isShown">
+                        <div class="form-group">
+                            <label for="pci-email" class="field-label">Other Fund Type</label>
+                            <mat-form-field>
+                                <input matInput placeholder="Enter Other" formControlName="Other"  maxlength="15">
+                               
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="bd-mobile" class="field-label">Aged Care Recipient Id</label>
+                            <mat-form-field>
+                                <input matInput placeholder="Enter Aged Care Recipient Id" formControlName="RecipientId"  maxlength="15">
+                                
+                            </mat-form-field>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" #btnclientupdate class="btn btn-action-sm" (click)="UpdateFundingInfo()">Update</button>
+                <button type="button" #btnclientfundinInfo class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div><!-- /Fund Info Popup End -->
+
+<!-- Add Fund Popup Start Here -->
+<div class="modal popup-default" id="addFundPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rFormfundtype" #formDirective="ngForm">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Service Details</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Service Type</label>
+                            <mat-form-field>   
+                                 <mat-select formControlName="ServiceType" placeholder="Select Service Type" (selectionChange)="getRate($event.value)" #Select>
+                                    <mat-option>
+                                        <ngx-mat-select-search [placeholderLabel]="'Search Service Type'" [formControl]="control" 
+                                        ngDefaultControl></ngx-mat-select-search>
+                                      </mat-option>
+                                     <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                        {{list.supportItemName}}
+                                    </mat-option>    
+                                </mat-select>
+                                <mat-error>{{getErrorMessage}}</mat-error>                                        
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Reference Number</label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select Reference Number" formControlName="ReferenceNumber" (selectionChange)="Changetext($event.value)">
+                                    <mat-option *ngFor="let reference of ReferenceList" [value]="reference.id">
+                                        {{reference.refNumber}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div></div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Payment Term</label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select Payment Term" formControlName="Paymentterm" (selectionChange)="Changetext($event.value)">
+                                    <mat-option *ngFor="let payment of PaymentList" [value]="payment.id">
+                                        {{payment.codeDescription}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                      
+                    </div>
+                    <div class="col-md-6 col-sm-12" *ngIf="isShownpayers">
+                        <div class="form-group">
+                            <label class="field-label">Payer</label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select Payer" formControlName="Payers">
+                                    <mat-option *ngFor="let payer of PayerList" [value]="payer.id">
+                                        {{payer.codeDescription}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Amount</label>
+                            <mat-form-field>
+                                <input type="number" autofocus autocomplete="off" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxlength = "12" matInput placeholder="Enter Amount"  formControlName="Amount" >
+                             </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">{{DaysText}}</label>
+                            <mat-form-field>
+                                <input type="number" autofocus autocomplete="off" (keyup)="gettotalAmount()" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "10" matInput placeholder="Enter Value"   formControlName="NoDays">
+                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Total Amount</label>
+                            <mat-form-field>
+                                <input type="number" autofocus autocomplete="off"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxlength = "12" matInput placeholder="Enter Total Amount"  formControlName="TotalAmount" >
+                             </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-action-sm" (click)="AddFuntypeDetails()">Add</button>
+                <button type="button" (click)="ResetForm()" #btnAddfundtype class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div><!-- /Add Fund Popup End -->
+
+<!-- Edit Fund Popup Start Here -->
+<div class="modal popup-default" id="editFundingdetailPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rFormEditfundtype">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Service Details</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Service Type</label>
+                            <mat-form-field> 
+                                 <mat-select formControlName="ServiceTypeEdit" placeholder="Select Service Type" (selectionChange)="getRateEdit($event.value)">
+                                    <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Service Type'" [formControl]="searchcontrol" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                    {{list.supportItemName}}
+                                </mat-option> 
+                                </mat-select>
+                                <mat-error>{{getErrorMessage}}</mat-error>                                        
+                            </mat-form-field>
+                        </div>
+                    </div>
+                     <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Reference Number</label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select Reference Number" formControlName="ReferenceNumberEdit" (selectionChange)="Changetext($event.value)">
+                                    <mat-option *ngFor="let reference of ReferenceList" [value]="reference.id">
+                                        {{reference.refNumber}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div></div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Payment Term</label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select Payment Term" formControlName="PaymenttermEdit" (selectionChange)="ChangetextEdit($event.value)">
+                                    <mat-option *ngFor="let payment of PaymentList" [value]="payment.id">
+                                        {{payment.codeDescription}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                      
+                    </div>
+                    <div class="col-md-6 col-sm-12" *ngIf="isShownpayersEdit">
+                        <div class="form-group">
+                            <label class="field-label">Payer</label>
+                            <mat-form-field>
+                                <mat-select placeholder="Select Payer" formControlName="PayersEdit">
+                                    <mat-option *ngFor="let payer of PayerList" [value]="payer.id">
+                                        {{payer.codeDescription}}
+                                      </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Amount</label>
+                            <mat-form-field>
+                                <input type="number" autofocus autocomplete="off" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxlength = "12" matInput placeholder="Enter Amount"  formControlName="AmountEdit" >
+                             </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">{{DaysTextEdit}}</label>
+                            <mat-form-field>
+                                <input type="number" autofocus autocomplete="off" (keyup)="gettotalAmountEdit()" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "10" matInput placeholder="Enter Value"   formControlName="NoDaysEdit">
+                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Total Amount</label>
+                            <mat-form-field>
+                                <input type="number" autofocus autocomplete="off" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxlength = "12" matInput placeholder="Enter Total Amount"  formControlName="TotalAmountEdit" >
+                             </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-action-sm" (click)="UpdateFuntypeDetails()">Update</button>
+                <button type="button" #btnEditfundtype class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div><!-- /Edit Fund Popup End -->
+
+<div class="modal custom-popup " id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <button type="button" class="close header-close" data-dismiss="modal">
+            &times;
+          </button>
+          <p>Are you sure you want to delete record?</p>
+          <br/>
+          <div class="modal-btn">
+            <button mat-button class="project-btn-1-db project-btn-1-db-gray" data-dismiss="modal">Cancel</button>
+            &nbsp;&nbsp;
+            <button
+    
+            mat-button class="project-btn-1-db"
+              data-dismiss="modal"
+    
+              (click)="DeletefundingTypeInfo($event)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="modal custom-popup " id="myModalagreement">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+              <button type="button" class="close header-close" data-dismiss="modal">
+                &times;
+              </button>
+              <p>Are you sure you want to delete record?</p>
+              <br/>
+              <div class="modal-btn">
+                <button mat-button class="project-btn-1-db project-btn-1-db-gray" data-dismiss="modal">Cancel</button>
+                &nbsp;&nbsp;
+                <button
+        
+                mat-button class="project-btn-1-db"
+                  data-dismiss="modal"
+        
+                  (click)="DeleteAgreementInfo($event)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>

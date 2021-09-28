@@ -1,0 +1,76 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Timesheet</h1>
+            <div class="row">
+                <div class="col-lg-10 col-md-10">
+                    <ul class="timesheet-hdr-arrow default-tabs dt-no-accordian mt-0">
+                        <li class="nav-item active">
+                            <button (click)="previousMonth()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_297" data-name="Path 297" d="M1616.328,3621.169l-4,4,4,4"
+                                        transform="translate(-1610.913 -3619.755)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li class="nav-item"><button (click)="thisMonth()">This Month</button></li>
+                        <li class="nav-item">
+                            <button (click)="nextMonth()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="6.828" height="10.828"
+                                    viewBox="0 0 6.828 10.828">
+                                    <path id="Path_298" data-name="Path 298" d="M4,0,0,4,4,8"
+                                        transform="translate(5.414 9.414) rotate(180)" fill="none" stroke="#969696"
+                                        stroke-linecap="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </li>
+                        <li>{{runningMonth}}</li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-2 text-right">
+                    <a href="javascript:void(0);" class="btn link-filter filter-icon-right" (click)="toggleFilters()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12.751" height="12.732"
+                            viewBox="0 0 12.751 12.732">
+                            <path id="iconfinder_filter_1608702"
+                                d="M203.675,256.353a.522.522,0,0,1-.127.633l-4.458,4.458v6.71a.541.541,0,0,1-.353.534.629.629,0,0,1-.226.045.537.537,0,0,1-.407-.172l-2.315-2.315a.556.556,0,0,1-.172-.407v-4.395l-4.458-4.458a.522.522,0,0,1-.127-.633.541.541,0,0,1,.534-.353h11.575A.541.541,0,0,1,203.675,256.353Z"
+                                transform="translate(-190.979 -256)" fill="#fff" />
+                        </svg>
+                    </a>
+                </div>
+            </div>            
+            <div class="filter-wrap" *ngIf="show">
+                <form [formGroup]="rForm" (ngSubmit)="searchTimesheet()">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Employee</label>
+                                <mat-form-field>
+                                    <mat-select placeholder="Select Employee" formControlName="employeeId">
+                                        <mat-option>
+                                            <ngx-mat-select-search [placeholderLabel]="'Search Employee'"
+                                              [formControl]="searchcontrol" ngDefaultControl>
+                                            </ngx-mat-select-search>
+                                        </mat-option>
+                                        <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                            {{list.fullName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-action-sm">Search</button>
+                    &nbsp;<button type="button" (click)="ClearFilter()" class="btn btn-action-sm">Clear</button>
+                </form>
+            </div>
+            <div>
+                <daypilot-scheduler [config]="config" [events]="events" CellWidth="200" RowMinHeight="150" #scheduler>
+                </daypilot-scheduler>
+            </div>
+        </div>
+    </div>
+    <lhs-sidebar></lhs-sidebar>
+</div>

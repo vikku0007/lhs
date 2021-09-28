@@ -1,0 +1,175 @@
+<form [formGroup]="rFormImpacted" (ngSubmit)="AddImpactedPerson()">
+    <div class="card-header" role="tab" id="heading-finished">
+        <h5 class="mb-0">Impacted Person</h5>
+    </div>
+    <div class="collapse show p-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Title</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Title" value="" formControlName="ImpactedTitle">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">First Name</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter First Name" value="" formControlName="ImpactedFirstName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Middle Name</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Middle Name" value="" formControlName="ImpactedMiddleName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Last Name</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="off" placeholder="Enter Last Name" value="" formControlName="ImpactedLastName">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">NDIS Participant Number</label>
+                        <mat-form-field appearance="fill">
+                            <input matInput autofocus autocomplete="off" placeholder="NDIS Participant Number" value="" formControlName="ImpactedNdisNo">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Gender</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Gender" formControlName="ImpactedGender">
+                                <mat-option *ngFor="let list of genderList" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Date of Birth</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="off" [matDatepicker]="impactedPersonDOB" placeholder="Select Date" formControlName="ImpactedDOB" [max]="todayDatemax">
+                            <mat-datepicker-toggle matSuffix [for]="impactedPersonDOB"></mat-datepicker-toggle>
+                            <mat-datepicker #impactedPersonDOB></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Primary Disability</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Primary Disability" formControlName="ImpactedPrimaryDisbility" multiple>
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Primary Disability'" [formControl]="controlPrimarydis" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredPrimarydisRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option> 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Other Disability</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Other Disability" formControlName="ImpactedSecondaryDisbility" multiple>
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Other Disability'" [formControl]="controlotherdis" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredotherdisRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option> 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Does the person have any behaviours of concern?</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Behaviours of concern" formControlName="ImpactedBehaviour" multiple>
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Behaviours of concern'" [formControl]="controlBehaviourconcern" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredbehaviourRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option> 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">How does the person communicate?</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Communication" formControlName="ImpactedCommunication" multiple>
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Communication'" [formControl]="controlCommunication" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredcommunicationRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Phone Number</label>
+                        <mat-form-field>
+                            <input matInput  autofocus placeholder="Enter Phone Number"
+                            formControlName="ImpactedPhoneNo" autocomplete="off" maxlength="12"
+                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type = "number" 
+                             />
+                           
+                           
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Email Address</label>
+                        <mat-form-field>
+                            <input matInput autofocus autocomplete="disabled" placeholder="Enter Email Address" value="" formControlName="ImpactedEmail">
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Other Details</label>
+                        <mat-form-field>
+                            <textarea matInput autofocus autocomplete="disabled" placeholder="Enter Other Details" value="" formControlName="OtherDetail"></textarea>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-action-sm">{{textImpacted}}</button>
+        </div>
+    </div>
+    </form>

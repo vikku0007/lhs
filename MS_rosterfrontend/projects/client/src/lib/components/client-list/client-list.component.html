@@ -1,0 +1,343 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Client List</h1>
+            <a href="javascript:void(0);" class="popup-link" data-toggle="modal" data-target="#addEmployeePopup">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                    <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)" d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z" fill="#fff"/>
+                </svg>
+            </a>
+        </div>
+        <div class="table-wrap">
+            
+            <div class="table-content">
+                <div class="tbl-search-bx">
+                    <!-- <form [formGroup]="searchClientList()" (ngSubmit)="" class="form-inline"> -->
+                        <mat-form-field appearance="fill">
+                            <input #clientName matInput autofocus autocomplete="off" placeholder="Search Client By Name" value=""
+                                required>
+                            <mat-error>{{getErrorMessage}}</mat-error>
+                        </mat-form-field>
+                       
+                        <input type="button" (click)="search()" value="Search" class="btn btn-action-sm">
+                    <!-- </form> -->
+                </div>
+                <div class="table-responsive">
+                    <table mat-table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="fullName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block profile-fst-block">
+                                    <img src="{{ element.imageUrl ?  baseUrl+element.imageUrl : '../../../assets/img/dummy-profile-pic.jpg' }}"
+                                    alt="{{element.firstname}}" class="profile-pic" />
+                                    <a href="javascript:void(0);" routerLink="/client/client-details"
+                                    [queryParams]="{Id: element.id}">{{element.fullName}}</a><br>
+                                    <span *ngIf="element.genderName && element.age">{{element.genderName}}, {{element.age}}</span>
+                                    <span *ngIf="element.genderName">{{element.genderName}}</span>
+                                    <span *ngIf="element.age">{{element.age}}</span>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="emailId">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                            <td mat-cell *matCellDef="let element">{{element.emailId}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="mobileNo">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Telephone No.</th>
+                            <td mat-cell *matCellDef="let element">{{element.mobileNo}}</td>
+                        </ng-container>
+                        <!-- <ng-container matColumnDef="location">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Location</th>
+                            <td mat-cell *matCellDef="let element">{{element.locationId}}</td>
+                        </ng-container> -->
+                        <ng-container matColumnDef="address">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+                            <td mat-cell *matCellDef="let element">{{element.address}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                            <td mat-cell *matCellDef="let element">{{element.isActive==true?'Active':'Inactive'}}</td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Details</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a href="javascript:void(0);" (click)="UpdateClientStatus(element)" class="status-box {{element.isActive==true?'inactive':'active'}}"></a>
+                                <a href="javascript:void(0);" routerLink="/client/client-details"
+                                [queryParams]="{Id: element.id}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path id="iconfinder_write_126582_1_" data-name="iconfinder_write_126582 (1)"
+                                            d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z"
+                                            transform="translate(-1 -1)" fill="#7b7b7b" />
+                                    </svg>
+                                </a>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" (click)="DeleteModal(element.id, $event)">
+                                    <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071"
+                                        viewBox="0 0 15 18.071">
+                                        <g id="Group_66039" data-name="Group 66039">
+                                            <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                <path id="Path_304" data-name="Path 304"
+                                                    d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z"
+                                                    transform="translate(-79.61 -43.5)" fill="#7b7b7b" />
+                                            </g>
+                                            <g id="Group_66038" data-name="Group 66038"
+                                                transform="translate(1.716 7.819)">
+                                                <path id="Path_305" data-name="Path 305"
+                                                    d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z"
+                                                    transform="translate(-119.27 -231.53)" fill="#7b7b7b" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+                        (page)="PageIndexEvent($event)">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Employee Popup Start Here -->
+    <div class="modal popup-default" id="addEmployeePopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form [formGroup]="clientForm" (ngSubmit)="AddClientDetails()" #formDirective="ngForm">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Client</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                                <path id="iconfinder_Close_5416278"
+                                    d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                    transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">Salutation</label>
+                                    <mat-form-field>
+                                        <!-- <input matInput formControlName="salutation" placeholder="Enter Salutation" value="" required> -->
+                                        <mat-select formControlName="salutation" placeholder="Select Salutation">
+                                            <mat-option *ngFor="let list of SalutationList" [value]="list.id">
+                                                {{list.codeDescription}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error>{{getErrorMessage}}</mat-error>                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">First Name</label>
+                                    <mat-form-field >
+                                        <input matInput autofocus autocomplete="disabled" formControlName="firstName" placeholder="Enter Client Name" value="">
+                                        <mat-error>{{getErrorMessage}}</mat-error>                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">Middle Name</label>
+                                    <mat-form-field appearance="fill">
+                                        <input matInput autofocus autocomplete="disabled" formControlName="middleName" placeholder="Enter Client Name" value="">
+                                        <mat-error>{{getErrorMessage}}</mat-error>                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">Last Name</label>
+                                    <mat-form-field>
+                                        <input matInput autofocus autocomplete="disabled" formControlName="lastName" placeholder="Enter Client Name" value="">
+                                        <mat-error>{{getErrorMessage}}</mat-error>                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">Gender</label>
+                                    <mat-form-field>                                                                                
+                                        <mat-select formControlName="gender" placeholder="Select Gender">
+                                            <mat-option *ngFor="let list of GenderList" [value]="list.id">
+                                                {{list.codeDescription}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <mat-error>{{getErrorMessage}}</mat-error>                                        
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">Email</label>
+                                    <mat-form-field>
+                                        <input matInput autofocus autocomplete="disabled" formControlName="emailId" placeholder="Enter Email">
+                                        <mat-error>{{getErrorMessage}}</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">Phone No.</label>
+                                    <mat-form-field>
+                                        <input matInput  autofocus placeholder="Phone Number"
+                                formControlName="mobileNo" autocomplete="disabled" maxlength="11"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number" 
+                                 />
+                                
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6 col-sm-12" >
+                                <div class="form-group">
+                                    <label class="field-label">Location Type</label>
+                                    <mat-form-field>
+                                        <mat-select formControlName="locationtype" placeholder="Select Location Type" (selectionChange)="selectChangeHandler($event.value)">
+                                            <mat-option *ngFor="let list of LocationTypeList" [value]="list.value">
+                                                {{list.codeDescription}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-6" *ngIf="isShownLocatiodropdown">
+                                <div class="form-group input-location">
+                                    <label class="field-label">Location</label>
+                                    <mat-form-field>
+                                         <mat-select placeholder="Enter Location" formControlName="Location">
+                                            <mat-option *ngFor="let list of LocationList" [value]="list.locationId">
+                                                {{list.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                        <mat-error>{{getErrorMessage}}</mat-error>
+                                    </mat-form-field>
+                                   
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12" *ngIf="isShownOtherLocation">
+                                <div class="form-group input-textarea">
+                                    <label class="field-label">Address</label>
+                                    <mat-form-field>
+                                        <textarea  formControlName="otherlocation"  matInput placeholder="Enter Address"></textarea>
+                                    </mat-form-field> 
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-md-6 col-sm-12">
+                                <div class="form-group input-location">
+                                    <label class="field-label">Location</label>
+                                    <mat-form-field appearance="fill">
+                                        <input matInput formControlName="location" placeholder="Select Location" value="" required>
+                                        <mat-error>{{getErrorMessage}}</mat-error>
+                                    </mat-form-field>
+                                    <a href="javascript:void(0);" class="location-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12.924" height="17.729"
+                                            viewBox="0 0 12.924 17.729">
+                                            <g id="iconfinder_location_1585851" transform="translate(-33.621 -18.8)">
+                                                <ellipse id="XMLID_3_" cx="5.962" cy="5.891" rx="5.962" ry="5.891"
+                                                    transform="translate(34.121 19.3)" fill="#9a9a9a" stroke="#9a9a9a"
+                                                    stroke-miterlimit="10" stroke-width="1" />
+                                                <ellipse id="XMLID_1_" cx="3.456" cy="3.62" rx="3.456" ry="3.62"
+                                                    transform="translate(36.627 21.806)" fill="#fff" />
+                                                <path id="XMLID_8_"
+                                                    d="M40.247,66.074c-.157,0-.383-.226-.383-.226C33.251,58.242,34.121,54.5,34.121,54.5s1.914,6.109,6.126,6.126"
+                                                    transform="translate(0 -29.545)" fill="#9a9a9a" />
+                                                <path id="XMLID_6_"
+                                                    d="M69.5,66.074c.157,0,.383-.226.383-.226C76.5,58.242,75.626,54.5,75.626,54.5s-1.914,6.109-6.126,6.126"
+                                                    transform="translate(-29.581 -29.545)" fill="#9a9a9a" />
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div> -->
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label for="dob" class="field-label">Date Of Birth</label>
+                                    <mat-form-field>
+                                        <input matInput autofocus autocomplete="off" formControlName="dateOfBirth" [matDatepicker]="pickerDattOfBirth"  placeholder="Select Date" [max]="todayDatemax">
+                                        <mat-datepicker-toggle matSuffix [for]="pickerDattOfBirth" > 
+                                        </mat-datepicker-toggle>
+                                        <mat-datepicker #pickerDattOfBirth></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6 col-sm-12">
+                                <div class="form-group select-dropdown">
+                                    <label class="field-label">Language Spoken</label>
+                                    <mat-form-field>                                        
+                                        <mat-select formControlName="language" [(value)]="selectedLang" placeholder="Select Language">
+                                            <mat-option *ngFor="let lang of languages">
+                                                {{lang.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div> -->
+                           
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label class="field-label">Address</label>
+                                   
+                                        <lib-googleaddress autofocus autocomplete="off" [control]="address"  (onAddressChange)="handleAddressChange($event)">
+                                        </lib-googleaddress> 
+                                        <!-- <textarea matInput autofocus autocomplete="disabled" formControlName="address" placeholder="Enter Address"></textarea> -->
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-action-sm">Add</button>
+                        <button type="button" (click)="cancelForm()" #btnCancel class="btn btn-action-sm btn-action-secondary"
+                            data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /Add Employee Popup End -->
+    <lhs-sidebar></lhs-sidebar>
+    
+</div>
+
+<div class="modal popup-default" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Are you sure you want to delete record?</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278"
+                            d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                            transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">  
+                <div class="row">
+                    <p></p>
+                 </div>                            
+            </div>
+
+            <div class="modal-footer">
+                <button type="button"
+                    class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+                   &nbsp;&nbsp; <button type="button" class="btn btn-action-sm btn-action-primary" data-dismiss="modal" (click)="deleteClient($event)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

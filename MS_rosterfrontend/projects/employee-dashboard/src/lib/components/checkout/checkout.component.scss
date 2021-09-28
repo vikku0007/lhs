@@ -1,0 +1,33 @@
+::ng-deep .table-wrap {
+    th:last-child {
+        .mat-sort-header-container {
+            justify-content:flex-start !important;
+        }
+    }
+    td {
+        padding:10px 10px 10px 24px !important;
+        &:last-child {
+            padding-left:0 !important;
+        }
+        .form-group {
+            width:100%;
+            display:inline-block;
+            padding:0.525rem 0.625rem 0.725rem 0.625rem;
+            height:2.5rem;
+            margin-bottom:0;
+            vertical-align:top;
+            margin-right:10px;
+            background-color:#ffffff;
+            .mat-form-field-wrapper {
+                padding:0;
+                .mat-form-field-infix {
+                    padding:0;
+                    border:none;
+                    .mat-form-field-label {
+                        top:12px;
+                    }
+                }
+            }
+        }
+    }
+}

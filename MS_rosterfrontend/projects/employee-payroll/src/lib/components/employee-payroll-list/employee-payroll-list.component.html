@@ -1,0 +1,276 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title">
+            <h1>Employee Payroll Approved Shifts</h1>
+        </div>
+        <div class="filter-wrap">
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Employee</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Select" [(ngModel)]="employeeId"
+                                (selectionChange)="empChange($event.value)">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Employee'"
+                                      [formControl]="searchcontrol" ngDefaultControl>
+                                    </ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                    {{list.fullName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Start Date</label>
+                        <mat-form-field>
+                            <input (dateChange)="DateChange()" [(ngModel)]="startdate" class="filter-date" matInput
+                                [matDatepicker]="pickerDate" placeholder="Enter Start Date">
+                            <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerDate></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">End Date</label>
+                        <mat-form-field>
+                            <input (dateChange)="DateChange()" [(ngModel)]="enddate" class="filter-date" matInput
+                                [matDatepicker]="pickerDate1" placeholder="Enter End Date">
+                            <mat-datepicker-toggle matSuffix [for]="pickerDate1"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerDate1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">           
+            <div class="col-md-12 col-sm-4">
+                <button class="btn btn-action-sm  float-right" mat-raised-button
+                    (click)="exporter.exportTable('xlsx', {fileName:'AllApprovedEmployeeHours', sheet: 'sheet_1', Props: {Author: 'LHS'}})">Export
+                    to Excel</button>
+            </div>
+        </div>
+
+        <div class="table-wrap mt-2">
+            <div class="table-content">
+                <div class="table-responsive">
+                    <table matTableExporter mat-table [dataSource]="dataSource" matSort #exporter="matTableExporter"
+                        [hiddenColumns]="[0,13]">
+                        <ng-container matColumnDef="sr">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#</th>
+                            <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                            <td mat-cell *matCellDef="let element">
+                                <div class="fst-block">
+                                    <a href="javascript:void(0);" routerLink="/employee/emp-detail"
+                                        [queryParams]="{Id: element.employeeId}">{{element.firstName}}
+                                        {{element.lastName}}</a><br>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <ng-container matColumnDef="admin">
+                            <th mat-header-cell *matHeaderCellDef>Admin</th>
+                            <td mat-cell *matCellDef="let element">{{element.admin}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="cleaning">
+                            <th mat-header-cell *matHeaderCellDef>Cleaning</th>
+                            <td mat-cell *matCellDef="let element">{{element.cleaning}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="weekday">
+                            <th mat-header-cell *matHeaderCellDef>Weekday</th>
+                            <td mat-cell *matCellDef="let element">{{element.weekDay}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="sat">
+                            <th mat-header-cell *matHeaderCellDef>Saturday</th>
+                            <td mat-cell *matCellDef="let element">{{element.sat}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="sun">
+                            <th mat-header-cell *matHeaderCellDef>Sunday</th>
+                            <td mat-cell *matCellDef="let element">{{element.sun}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="ph">
+                            <th mat-header-cell *matHeaderCellDef>Public Holiday</th>
+                            <td mat-cell *matCellDef="let element">{{element.holiday}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="sleepover">
+                            <th mat-header-cell *matHeaderCellDef>Sleepover</th>
+                            <td mat-cell *matCellDef="let element">{{element.sleepOver}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="anwd">
+                            <th mat-header-cell *matHeaderCellDef>A/N WD</th>
+                            <td mat-cell *matCellDef="let element">{{element.activeNightWeekDay}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="ansat">
+                            <th mat-header-cell *matHeaderCellDef>A/N Sat</th>
+                            <td mat-cell *matCellDef="let element">{{element.activeNightSat}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="ansun">
+                            <th mat-header-cell *matHeaderCellDef>A/N Sun</th>
+                            <td mat-cell *matCellDef="let element">{{element.activeNightSun}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="anp">
+                            <th mat-header-cell *matHeaderCellDef>AN PH</th>
+                            <td mat-cell *matCellDef="let element">{{ element.activeNightHoliday }}</td>
+                        </ng-container>
+                        <!-- <ng-container matColumnDef="total">
+                            <th mat-header-cell *matHeaderCellDef>Total</th>
+                            <td mat-cell *matCellDef="let element">{{element.total}}</td>
+                        </ng-container> -->
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef class="text-right">Details</th>
+                            <td mat-cell *matCellDef="let element">
+                                <a href="javascript:void(0);" (click)="openEditDetails(element)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21.333" height="16"
+                                        viewBox="0 0 21.333 16">
+                                        <path id="iconfinder_view_126581_2_" data-name="iconfinder_view_126581 (2)"
+                                            d="M10.667,7.333A2.668,2.668,0,0,1,8,10a2.667,2.667,0,1,0,2.667-2.667Zm0-5.333C5.2,2,0,8.2,0,10s5.2,8,10.667,8,10.667-6.2,10.667-8S16.136,2,10.667,2Zm0,13.333A5.333,5.333,0,1,1,16,10,5.334,5.334,0,0,1,10.667,15.333Z"
+                                            transform="translate(0 -2)" fill="#7b7b7b" />
+                                    </svg>
+                                </a>
+
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lhs-sidebar></lhs-sidebar>
+</div>
+<div class="modal popup-default popup-lg" id="editCommunicationPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Employee Hours Details</h4>
+                    <button type="button" class="close" data-dismiss="modal" #btnCancel>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278"
+                                d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z"
+                                transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="table-content">
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSourceHourDetail" matSort class="w-100">
+                                <ng-container matColumnDef="sr">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#</th>
+                                    <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div class="fst-block">
+                                            <a href="javascript:void(0);" routerLink="/employee/emp-detail"
+                                                [queryParams]="{Id: element.employeeId}">{{element.firstName}}
+                                                {{element.lastName}}</a><br>
+                                        </div>
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="client">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.clientFirstName}} {{element.clientLastName}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="date">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>StartDate - EndDate</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.startDate |  date :'dd/MM/yyyy'}}
+                                        {{element.endDate |  date :'dd/MM/yyyy'}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="time">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>StartTime - EndTime</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        {{element.startTimeString}} - {{element.endTimeString}}
+                                    </td>
+                                </ng-container>
+                                <ng-container matColumnDef="admin">
+                                    <th mat-header-cell *matHeaderCellDef>Admin</th>
+                                    <td mat-cell *matCellDef="let element">{{element.admin}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="cleaning">
+                                    <th mat-header-cell *matHeaderCellDef>Cleaning</th>
+                                    <td mat-cell *matCellDef="let element">{{element.cleaning}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="weekday">
+                                    <th mat-header-cell *matHeaderCellDef>Weekday</th>
+                                    <td mat-cell *matCellDef="let element">{{element.weekDay}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="sat">
+                                    <th mat-header-cell *matHeaderCellDef>Saturday</th>
+                                    <td mat-cell *matCellDef="let element">{{element.sat}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="sun">
+                                    <th mat-header-cell *matHeaderCellDef>Sunday</th>
+                                    <td mat-cell *matCellDef="let element">{{element.sun}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="ph">
+                                    <th mat-header-cell *matHeaderCellDef>Public Holiday</th>
+                                    <td mat-cell *matCellDef="let element">{{element.holiday}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="sleepover">
+                                    <th mat-header-cell *matHeaderCellDef>Sleepover</th>
+                                    <td mat-cell *matCellDef="let element">{{element.sleepOver}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="anwd">
+                                    <th mat-header-cell *matHeaderCellDef>A/N WD</th>
+                                    <td mat-cell *matCellDef="let element">{{element.activeNightWeekDay}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="ansat">
+                                    <th mat-header-cell *matHeaderCellDef>A/N Sat</th>
+                                    <td mat-cell *matCellDef="let element">{{element.activeNightSat}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="ansun">
+                                    <th mat-header-cell *matHeaderCellDef>A/N Sun</th>
+                                    <td mat-cell *matCellDef="let element">{{element.activeNightSun}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="anp">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header>AN PH</th>
+                                    <td mat-cell *matCellDef="let element">{{element.activeNightHoliday}}</td>
+                                </ng-container>
+                                <!-- <ng-container matColumnDef="total">
+                                    <th mat-header-cell *matHeaderCellDef>Total</th>
+                                    <td mat-cell *matCellDef="let element">{{element.total}}</td>
+                                </ng-container> -->
+                                <ng-container matColumnDef="action">
+                                    <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <a (click)="redirectToShiftDetail(element.shiftId)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="21.333" height="16"
+                                                viewBox="0 0 21.333 16">
+                                                <path id="iconfinder_view_126581_2_"
+                                                    data-name="iconfinder_view_126581 (2)"
+                                                    d="M10.667,7.333A2.668,2.668,0,0,1,8,10a2.667,2.667,0,1,0,2.667-2.667Zm0-5.333C5.2,2,0,8.2,0,10s5.2,8,10.667,8,10.667-6.2,10.667-8S16.136,2,10.667,2Zm0,13.333A5.333,5.333,0,1,1,16,10,5.334,5.334,0,0,1,10.667,15.333Z"
+                                                    transform="translate(0 -2)" fill="#7b7b7b" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedHourDetailColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedHourDetailColumns;"></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<button id="openEditModalButton" hidden data-toggle="modal" data-target="#editCommunicationPopup"></button>

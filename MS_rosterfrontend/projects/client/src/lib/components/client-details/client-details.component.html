@@ -1,0 +1,897 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+    <div class="container-fluid page-wrap">
+        <div class="page-title page-tile-with-tabs">
+            <h1>Client Details 
+                <lib-page-submenu></lib-page-submenu>
+            </h1>
+        </div>
+        <div class="page-inner-wrap">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <section class="user-info-bx user-info-bx-inner">
+                        <div class="ui-img-bx">                               
+                            <img src="{{BasicInfo?.imageUrl ?clientPic : '../../../assets/img/dummy-profile-pic.jpg' }}"/>
+                            <div class="overlay">
+                                <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editProfilePicPopup">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                                        <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+                                    </svg>
+                                </a>
+                                <div class="intro-txt">
+                                   
+                                    <h2>{{BasicInfo?.salutationName}} {{BasicInfo?.fullName}}</h2>
+                                    <small>{{BasicInfo?.genderName}}</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui-content-bx">
+                            <a (click)="editBasicInfoDetails()" href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editBasicInfoDetailsPopup">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                                    <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+                                </svg>
+                            </a>
+                            <div class="upr-txt">
+                                <p><strong>Client ID :</strong> {{BasicInfo?.clientId}}</p>
+                                <p><strong>Age :</strong> {{BasicInfo?.age}} Years</p>
+                                <p><strong>Language Spoken :</strong> English</p>
+                            </div>
+                            <div class="btm-txt">
+                                <p>{{BasicInfo?.address}}</p>
+                                <p>{{BasicInfo?.emailId}}</p>
+                                <p>{{BasicInfo?.mobileNo}}</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <!-- Today's Shift Section Starts Here -->
+                            <section class="section-info-bx">
+                                <lib-support-coordinator-info></lib-support-coordinator-info>
+                                <!-- <div class="section-title">
+                                    <h2>Basic Info</h2>
+                                    <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editBasicDetailsPopup">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                                            <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)" d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z" fill="#fff"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="section-content">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3>Staff Name</h3>
+                                            <p class="mb-0">David Doe</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <h3>Location</h3>
+                                            <p class="mb-0">08:00 Am to 4:00 Pm</p>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </section><!-- /Today's Shift Section End -->
+                        </div>
+                        <!-- <div class="col-lg-6 col-sm-12" >
+                        <div class="section-title" *ngIf="BasicInfo?.userName == null">
+                            <h4>Generate User & Password</h4>
+                            <button type="button" (click)="GeneratePassword()">Generate Username/Password</button>
+                        </div>
+                        <div class="section-title" *ngIf="BasicInfo?.userName">
+                            <p><b>User Name : </b>  {{BasicInfo?.userName}}</p>
+                        </div>
+                        
+                    </div> -->
+                      
+                        <div class="col-lg-12 col-sm-12">
+                            <!-- Kin Info Section Starts Here -->
+                            <section class="section-info-bx">
+                                <lib-client-primarycareerinfo></lib-client-primarycareerinfo>
+                                <!-- <div class="section-title">
+                                    <h2>Primary Career Info</h2>
+                                    <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editPrimaryCareerInfoPopup">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                                            <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div class="section-content">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3>Name</h3>
+                                            <p>David Doe</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <h3>Relationship</h3>
+                                            <p>Brother</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3>Mobile</h3>
+                                            <p>+91-9876543210</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <h3>Phone</h3>
+                                            <p>+1-202-555-0143</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3>Email</h3>
+                                            <p class="mb-0">daviddoe@gmail.com</p>
+                                        </div>
+                                        <div class="col-6">
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </section><!-- /Kin Info Section End -->
+                        </div>
+                        <!-- <div class="col-lg-6 col-sm-12">
+                          
+                            <section class="section-info-bx">
+                                <lib-client-guardiani-information></lib-client-guardiani-information>
+                                </section>
+                                </div> -->
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <!-- OnBoading Notes Section Starts Here -->
+                    <section class="section-info-bx">
+                       
+                        <div class="section-content">
+                        <lib-client-profile-info></lib-client-profile-info>
+                        </div>
+                        <!-- <div class="section-title">
+                            <h2>OnBoading Notes</h2>
+                            <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editOnBoardingNotesPopup">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                                    <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="section-content">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3>Care Notes</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in lectus tristique, scelerisque ligula vel, facilisis mauris. Proin id dolor ultrices, sodales dolor vitae, elementum est. Donec blandit leo vestibulum justo pharetra sodales. Donec at mi nisi. Etiam velit nisi, fermentum sit amet varius et, maximus vel diam. Nam sodales suscipit mi ac dignissim.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3>Care Notes Client Provided</h3>
+                                    <p class="mb-0">Aenean condimentum risus non lectus porta, vel vehicula dolor tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam finibus felis at rutrum vulputate. Fusce a volutpat quam, ac volutpat risus.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                    </section><!-- /OnBoading Notes Section End -->
+                </div>
+            </div>
+            <div class="row">
+               
+                <div class="col-12">
+                    <!-- Education Section Starts Here -->
+                    <section class="section-info-bx">
+                        <lib-client-fundinginfo></lib-client-fundinginfo>
+                        <!-- <div class="section-title">
+                            <h2>Funding Info</h2>
+                            <a href="javascript:void(0);" class="action-link" data-toggle="modal" data-target="#editFundInfoPopup">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="10.334" height="10.334" viewBox="0 0 10.334 10.334">
+                                    <path id="iconfinder_write_126582_3_" data-name="iconfinder_write_126582 (3)" d="M2.073,7.125C1.557,7.641,1,10.377,1,10.6a.733.733,0,0,0,.738.738c.219,0,2.956-.557,3.472-1.073L9.434,6.038,6.3,2.9ZM9.12,1a2.248,2.248,0,0,0-1.58.658l-.21.21L10.467,5l.21-.21a2.245,2.245,0,0,0,.658-1.58A2.215,2.215,0,0,0,9.12,1Z" transform="translate(-1 -1)" fill="#fff"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="section-content">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <h3>NDIA</h3>
+                                    <p>846856485</p>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <h3>Ref Number</h3>
+                                    <p>7897894564</p>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <h3>PO</h3>
+                                    <p>4567874566</p>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <h3>Aged Care Recipient Id</h3>
+                                    <p>4564789456</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mb-2 mt-3">
+                                <a href="javascript:void(0);" class="other-action-link" data-toggle="modal" data-target="#addFundPopup">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+                                        <path id="iconfinder_add_126583_3_" data-name="iconfinder_add_126583 (3)" d="M11.25,4.5H7.5V.75A.752.752,0,0,0,6.75,0H5.25A.752.752,0,0,0,4.5.75V4.5H.75A.752.752,0,0,0,0,5.25v1.5a.752.752,0,0,0,.75.75H4.5v3.75a.752.752,0,0,0,.75.75h1.5a.752.752,0,0,0,.75-.75V7.5h3.75A.752.752,0,0,0,12,6.75V5.25A.752.752,0,0,0,11.25,4.5Z" fill="#fff"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="table-wrap table-wrap-inner">
+                                        <div class="table-content">
+                                            <div class="table-responsive">
+                                                <table name="tbl-fundingInfo" mat-table [dataSource]="dataSourceFundingInfo" matSort>
+                                                    <ng-container matColumnDef="fundType">
+                                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fund Type</th>
+                                                        <td mat-cell *matCellDef="let element">{{element.fundType}}</td>
+                                                    </ng-container>
+                                                    <ng-container matColumnDef="amount">
+                                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                                                        <td mat-cell *matCellDef="let element">{{element.amount}}</td>
+                                                    </ng-container>
+                                                    <ng-container matColumnDef="hours">
+                                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Hours</th>
+                                                        <td mat-cell *matCellDef="let element">{{element.hours}}</td>
+                                                    </ng-container>
+                                                    <ng-container matColumnDef="expiry">
+                                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Expiry</th>
+                                                        <td mat-cell *matCellDef="let element">{{element.expiry}}</td>
+                                                    </ng-container>
+                                                    <ng-container matColumnDef="action">
+                                                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                                                        <td mat-cell *matCellDef="let element">
+                                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#editFundPopup">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                                                    <path id="iconfinder_write_126582_1_" data-name="iconfinder_write_126582 (1)" d="M2.661,10.482c-.8.8-1.661,5.035-1.661,5.375A1.135,1.135,0,0,0,2.143,17c.339,0,4.576-.862,5.375-1.661L14.057,8.8,9.2,3.943ZM13.571,1a3.48,3.48,0,0,0-2.447,1.018l-.325.325L15.657,7.2l.325-.325A3.475,3.475,0,0,0,17,4.429,3.429,3.429,0,0,0,13.571,1Z" transform="translate(-1 -1)" fill="#7b7b7b"/>
+                                                                </svg>
+                                                            </a>
+                                                            <a href="javascript:void(0);" (click)="delete(element)">
+                                                                <svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" width="15" height="18.071" viewBox="0 0 15 18.071">
+                                                                    <g id="Group_66039" data-name="Group 66039">
+                                                                        <g id="Group_66037" data-name="Group 66037" transform="translate(0 0)">
+                                                                            <path id="Path_304" data-name="Path 304" d="M92.736,46.408h-2.7a2.922,2.922,0,0,0-5.844,0h-2.7a1.891,1.891,0,0,0-1.874,1.907v.054a1.891,1.891,0,0,0,1.874,1.907H92.736a1.891,1.891,0,0,0,1.874-1.907v-.054A1.891,1.891,0,0,0,92.736,46.408ZM87.11,44.865a1.6,1.6,0,0,1,1.58,1.543H85.53A1.6,1.6,0,0,1,87.11,44.865Z" transform="translate(-79.61 -43.5)" fill="#7b7b7b"/>
+                                                                        </g>
+                                                                        <g id="Group_66038" data-name="Group 66038" transform="translate(1.716 7.819)">
+                                                                            <path id="Path_305" data-name="Path 305" d="M119.457,231.536c-.063,0-.126,0-.187-.006v7.93a2.3,2.3,0,0,0,2.271,2.322h7.027a2.3,2.3,0,0,0,2.27-2.322V231.53c-.062,0-.124.006-.187.006H119.457Zm4.537,7.712a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Zm3.454,0a.668.668,0,1,1-1.335,0v-5a.668.668,0,1,1,1.335,0Z" transform="translate(-119.27 -231.53)" fill="#7b7b7b"/>
+                                                                        </g>
+                                                                    </g>
+                                                                </svg>
+                                                            </a>
+                                                        </td>
+                                                    </ng-container>
+                                                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFundingInfo"></tr>
+                                                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFundingInfo;"></tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </section><!-- /Education Section End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     <!-- Edit Profile Pic Popup Start Here -->
+<div class="modal popup-default" id="editProfilePicPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Profile Pic</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="upload-img-wrap">
+                    <div class="uiw-uploader">
+                        <svg id="iconfinder_cloud-upload_322433" xmlns="http://www.w3.org/2000/svg" width="60" height="45" viewBox="0 0 60 45">
+                            <path id="Path_300" data-name="Path 300" d="M-43.635,20.978A14.2,14.2,0,0,0-43.5,19a15.019,15.019,0,0,0-15-15A14.972,14.972,0,0,0-70.492,9.979,12.811,12.811,0,0,0-73.5,9.625,13.142,13.142,0,0,0-86.625,22.75c0,.184,0,.358.011.54A13.14,13.14,0,0,0-96,35.875,13.144,13.144,0,0,0-82.875,49H-51A15.016,15.016,0,0,0-36,34,14.991,14.991,0,0,0-43.635,20.978ZM-51,45.25H-82.877a9.374,9.374,0,0,1-9.375-9.375A9.372,9.372,0,0,1-82.877,26.5c.285,0,.559.058.834.084a9.316,9.316,0,0,1-.834-3.834A9.372,9.372,0,0,1-73.5,13.375a9.321,9.321,0,0,1,4.631,1.266A11.24,11.24,0,0,1-58.5,7.75,11.251,11.251,0,0,1-47.25,19a11.2,11.2,0,0,1-.823,4.179A11.217,11.217,0,0,1-39.75,34,11.249,11.249,0,0,1-51,45.25Z" transform="translate(96 -4)" fill="#8d36b8"/>
+                            <path id="Path_301" data-name="Path 301" d="M-86,23.625h7.75V35.25h7.75V23.625h7.75L-74.376,12Z" transform="translate(104.374 2.5)" fill="#8d36b8"/>
+                        </svg>
+                        <h2>Drag And Drop File Here</h2>
+                        <h3>Or</h3>
+                        <div class="file-wrap">
+                           
+                            <input #fileInput (change)="ImageChanges()" type="file" class="btn btn-action-sm" >
+                            <span class="btn btn-action-sm">Browse File</span>
+                           
+                        </div>
+                    </div>
+                    <div *ngIf="ImageName" class="uiw-view-img">
+                        <!-- <img src="../../../../assets/img/profile-pic.jpg" alt="" > -->
+                        <div class="img-details">
+                            <p>{{ImageName}}</p>
+                            <small>{{ImageSize}}</small>
+                        </div>
+                        <a href="javascript:void(0);" (click)="ImageDelete()" class="delete-img">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                <path id="iconfinder_Close_5416278" d="M21,11A10,10,0,1,0,31,21,10,10,0,0,0,21,11Zm2.851,11.764a.769.769,0,0,1-1.087,1.087L21,22.087l-1.764,1.764a.769.769,0,1,1-1.087-1.087L19.913,21l-1.764-1.764a.769.769,0,0,1,1.087-1.087L21,19.913l1.764-1.764a.769.769,0,0,1,1.087,1.087L22.087,21Z" transform="translate(-11 -11)" fill="#ef5257" opacity="0.75"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" (click)="AddImage()" class="btn btn-action-sm">Update</button>
+                    <button type="button" #btnImageCancel class="btn btn-action-sm btn-action-secondary"
+                        data-dismiss="modal">Cancel</button>
+            </div>
+           
+        </div>
+    </div>
+</div><!-- /Edit Profile Pic Popup End -->
+
+    
+   <!-- Basic Info Popup Start Here -->
+ <div class="modal popup-default" id="editBasicInfoDetailsPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form [formGroup]="rForm">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Basic Details</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                        <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                    </svg>  
+                </button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Salutation</label>
+                            <mat-form-field>
+                                <mat-select formControlName="Salutation" placeholder="select salutation">
+                                    <mat-option *ngFor="let list of SalutationList" [value]="list.id">
+                                        {{list.codeDescription}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">First Name</label>
+                            <mat-form-field>
+                                <input matInput autofocus autocomplete="disabled" placeholder="Enter First Name" formControlName="FirstName" maxlength="15">
+                             </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Middle Name</label>
+                            <mat-form-field appearance="fill">
+                                <input matInput autofocus autocomplete="disabled" placeholder="Enter Middle Name" formControlName="MiddleName" maxlength="15">
+                               
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Last Name</label>
+                            <mat-form-field>
+                                <input matInput autofocus autocomplete="disabled" placeholder="Enter Last Name" formControlName="LastName" maxlength="15">
+                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Gender</label>
+                            <mat-form-field>                                                                                
+                                <mat-select formControlName="gender" placeholder="Select Gender">
+                                    <mat-option *ngFor="let list of GenderList" [value]="list.id">
+                                        {{list.codeDescription}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>{{getErrorMessage}}</mat-error>                                        
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Email</label>
+                            <mat-form-field appearance="fill">
+                                <input matInput autofocus autocomplete="disabled" placeholder="Enter Email" formControlName="EmailId">
+                                <mat-error>{{getErrorMessage}}</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Phone No.</label>
+                            <mat-form-field>
+                                <input matInput  autofocus placeholder="Enter Phone Number"
+                                formControlName="TelephoneNo" autocomplete="disabled" maxlength="12"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number" 
+                                 />
+                                 
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6 col-sm-12" >
+                        <div class="form-group">
+                            <label class="field-label">Location Type</label>
+                            <mat-form-field>
+                                <mat-select formControlName="locationtype" placeholder="Select Location Type" (selectionChange)="selectChangeHandler($event.value)">
+                                    <mat-option *ngFor="let list of LocationTypeList" [value]="list.value">
+                                        {{list.codeDescription}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12" *ngIf="isShownLocatiodropdown">
+                        <div class="form-group input-location">
+                            <label class="field-label">Location</label>
+                            <mat-form-field>
+                                 <mat-select placeholder="Enter Location" formControlName="Location">
+                                    <mat-option *ngFor="let list of LocationList" [value]="list.locationId">
+                                        {{list.name}}
+                                    </mat-option>
+                                  </mat-select>
+                                <mat-error>{{getErrorMessage}}</mat-error>
+                            </mat-form-field>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12" *ngIf="isShownOtherLocation">
+                        <div class="form-group input-textarea">
+                            <label class="field-label">Address</label>
+                            <mat-form-field>
+                                <textarea  formControlName="otherlocation"  matInput placeholder="Enter Address"></textarea>
+                            </mat-form-field> 
+                        </div>
+                    </div> -->
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Date Of Birth</label>
+                            <mat-form-field>
+                                <input matInput autofocus autocomplete="off" [matDatepicker]="pickerDateOfBirth"  placeholder="Select Date Of Birth" formControlName="DOB" [max]="todayDatemax">
+                                <mat-datepicker-toggle matSuffix [for]="pickerDateOfBirth"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerDateOfBirth></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">Service Type</label>
+                            <mat-form-field>                                                                                
+                                <mat-select formControlName="ServiceType" placeholder="Select Service Type">
+                                    <mat-option *ngFor="let list of ServiceTypeList" [value]="list.id">
+                                        {{list.codeDescription}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>{{getErrorMessage}}</mat-error>                                        
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label class="field-label">NDIS ID</label>
+                            <mat-form-field>
+                                <input matInput autofocus autocomplete="off" placeholder="Enter NDIS" formControlName="NDIS" maxlength="15">
+                                
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6 col-sm-12">
+                        <div class="form-group select-dropdown">
+                            <label class="field-label">Language Spoken</label>
+                            <mat-form-field>
+                                <mat-select [(value)]="selectedLang" placeholder="Select Language" formControlName="LanguageSpoken">
+                                    <mat-option *ngFor="let lang of languages" [value]="lang.value">
+                                        {{lang.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div> -->
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group input-textarea">
+                            <label class="field-label">Address</label>
+                            <lib-googleaddress autofocus autocomplete="off" [control]="Address"  (onAddressChange)="handleAddressChange($event)">
+                            </lib-googleaddress> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-action-sm" (click)="UpdateClientBasicInfo()">Update</button>
+                <button type="button" #btnprimarycareCancel class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /Basic Info Popup End -->
+    
+    <!-- Primary Career Info Popup Start Here -->
+    <div class="modal popup-default" id="editPrimaryCareerInfoPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Primary Career Info</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                        </svg>  
+                    </button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Name</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Name" value="David Doe" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group select-dropdown">
+                                <label class="field-label">Relationship</label>
+                                <mat-form-field>
+                                    <mat-select [(value)]="selectedRelationship" placeholder="Select Relationship">
+                                        <mat-option *ngFor="let relation of relations" [value]="relation.value">
+                                            {{relation.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="pci-email" class="field-label">Email</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Email" value="daviddoe27@gmail.com" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-mobile" class="field-label">Mobile</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Mobile No." value="+91-9876543210" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-phone" class="field-label">Phone</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Phone No." value="+1-202-555-0143" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-action-sm">Update</button>
+                    <button type="button" class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /Primary Career Info Popup End -->
+    
+    <!-- On Boarding Notes Start Here -->
+    <div class="modal popup-default" id="editOnBoardingNotesPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit OnBoarding Notes</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                        </svg>  
+                    </button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group input-textarea">
+                                <label class="field-label">Care Notes</label>
+                                <mat-form-field>
+                                    <textarea matInput placeholder="Enter Care Notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in lectus tristique, scelerisque ligula vel, facilisis mauris. Proin id dolor ultrices, sodales dolor vitae, elementum est. Donec blandit leo vestibulum justo pharetra sodales. Donec at mi nisi. Etiam velit nisi, fermentum sit amet varius et, maximus vel diam. Nam sodales suscipit mi ac dignissim.</textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group input-textarea">
+                                <label class="field-label">Care Notes Client Provided</label>
+                                <mat-form-field>
+                                    <textarea matInput placeholder="Enter Care Notes Client Provided">Aenean condimentum risus non lectus porta, vel vehicula dolor tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam finibus felis at rutrum vulputate. Fusce a volutpat quam, ac volutpat risus.</textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-action-sm">Update</button>
+                    <button type="button" class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /On Boarding Notes Popup End -->
+    
+    <!-- Additional Notes Start Here -->
+    <div class="modal popup-default" id="editAdditionalNotesPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Additional Notes</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                        </svg>  
+                    </button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group input-textarea">
+                                <label class="field-label">Private Notes</label>
+                                <mat-form-field>
+                                    <textarea matInput placeholder="Enter Private Notes">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in lectus tristique, scelerisque ligula vel, facilisis mauris. Proin id dolor ultrices, sodales dolor vitae, elementum est. Donec blandit leo vestibulum justo pharetra sodales. Donec at mi nisi. Etiam velit nisi, fermentum sit amet varius et, maximus vel diam. Nam sodales suscipit mi ac dignissim.</textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group input-textarea">
+                                <label class="field-label">Public Info</label>
+                                <mat-form-field>
+                                    <textarea matInput placeholder="Enter Public Info">Aenean condimentum risus non lectus porta, vel vehicula dolor tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam finibus felis at rutrum vulputate. Fusce a volutpat quam, ac volutpat risus.</textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-action-sm">Update</button>
+                    <button type="button" class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /Additional Notes Popup End -->
+    
+    <!-- Fund Info Popup Start Here -->
+    <div class="modal popup-default" id="editFundInfoPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Fund Info</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                        </svg>  
+                    </button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">NDIA</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter NDIA" value="846856485" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Ref Number</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Ref Number" value="7897894564" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="pci-email" class="field-label">PO</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter PO Number" value="4567874566" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label for="bd-mobile" class="field-label">Aged Care Recipient Id</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Aged Care Recipient Id" value="4567874566" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-action-sm">Update</button>
+                    <button type="button" class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /Fund Info Popup End -->
+    
+    <!-- Add Fund Popup Start Here -->
+    <div class="modal popup-default" id="addFundPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Fund</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                        </svg>  
+                    </button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Fund Type</label>
+                                <mat-form-field>
+                                    <mat-select placeholder="Select Fund Type">
+                                        <mat-option *ngFor="let ftype of ftypes" [value]="ftype.value">
+                                            {{ftype.name}}
+                                          </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Amount</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Amount" value="" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Hours</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Hours" value="" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Expiry</label>
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="pickerAddExpiry" placeholder="Select Date">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerAddExpiry"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerAddExpiry></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-action-sm">Add</button>
+                    <button type="button" class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /Add Fund Popup End -->
+    
+    <!-- Edit Fund Popup Start Here -->
+    <div class="modal popup-default" id="editFundPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Fund</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+                            <path id="iconfinder_Close_5416278" d="M23.5,11A12.5,12.5,0,1,0,36,23.5,12.5,12.5,0,0,0,23.5,11Zm3.564,14.705a.961.961,0,1,1-1.359,1.359L23.5,24.859l-2.205,2.205a.961.961,0,1,1-1.359-1.359L22.141,23.5l-2.205-2.205a.962.962,0,0,1,1.359-1.359L23.5,22.141l2.205-2.205a.962.962,0,0,1,1.359,1.359L24.859,23.5Z" transform="translate(-11 -11)" fill="#5b5b5b" opacity="0.75"/>
+                        </svg>  
+                    </button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Fund Type</label>
+                                <mat-form-field>
+                                    <mat-select [(value)]="selectedFundType" placeholder="Select Fund Type">
+                                        <mat-option *ngFor="let ftype of ftypes" [value]="ftype.value">
+                                            {{ftype.name}}
+                                          </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Amount</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Amount" value="$3,550" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Hours</label>
+                                <mat-form-field appearance="fill">
+                                    <input matInput placeholder="Enter Hours" value="11.5 Hrs" required>
+                                    <mat-error>{{getErrorMessage}}</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="field-label">Expiry</label>
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="pickerEditExpiry" placeholder="Select Date" value="6/11/2020">
+                                    <mat-datepicker-toggle matSuffix [for]="pickerEditExpiry"></mat-datepicker-toggle>
+                                    <mat-datepicker #pickerEditExpiry></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-action-sm">Update</button>
+                    <button type="button" class="btn btn-action-sm btn-action-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /Edit Fund Popup End -->
+     
+    <lhs-sidebar></lhs-sidebar>
+</div>>

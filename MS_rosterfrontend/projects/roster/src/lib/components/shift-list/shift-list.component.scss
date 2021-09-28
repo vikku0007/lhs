@@ -1,0 +1,8 @@
+::ng-deep .pac-container:not(:empty)  {
+    z-index:2000;
+    display: block !important;
+}
+
+.table-date-min-width table th:nth-child(2), .table-date-min-width table th:nth-child(3) {
+    min-width: 160px;
+}

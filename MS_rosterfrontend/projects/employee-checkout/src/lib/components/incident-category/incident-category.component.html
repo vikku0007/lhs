@@ -1,0 +1,54 @@
+<form [formGroup]="rFormCategory" (ngSubmit)="AddIncidentCategory()">
+    <div class="card-header" role="tab" id="heading-finished">
+        <h5 class="mb-0">Incident Category</h5>
+    </div>
+    <div class="collapse show p-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Primary Category</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Select Primary Category" multiple formControlName="PrimaryCategory">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Primary Category'" [formControl]="controlPrimary" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredRecords | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">Secondary Category</label>
+                        <mat-form-field>
+                            <mat-select placeholder="Select Secondary Category" multiple formControlName="SecondaryCategory">
+                                <mat-option>
+                                    <ngx-mat-select-search [placeholderLabel]="'Search Secondary Category'" [formControl]="controlSecondary" 
+                                    ngDefaultControl></ngx-mat-select-search>
+                                  </mat-option>
+                                 <mat-option *ngFor="let list of filteredRecordsSecondary | async" [value]="list.id">
+                                    {{list.codeDescription}}
+                                </mat-option> 
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label class="field-label">If the incident is a death of a person with disability, was the death anticipated?</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="IsIncidentAnticipated">
+                            <mat-radio-button value="1">Yes</mat-radio-button>
+                            <mat-radio-button value="2">No</mat-radio-button>
+                            <mat-radio-button value="3">Unknown</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-action-sm">{{textCategory}}</button>
+        </div>
+    </div>
+    </form>

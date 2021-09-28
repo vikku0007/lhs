@@ -1,0 +1,53 @@
+<div class="page-wrapper">
+    <lhs-header></lhs-header>
+<div class="container-fluid page-wrap">
+    <div class="page-title">
+        <h1>Audit Log</h1>
+      
+    </div>
+    <div class="table-wrap">
+      
+        <div class="table-content">
+            <div class="tbl-search-bx">
+                <form class="form-inline" action="javascript:void(0);">
+                    <mat-form-field appearance="fill">
+                         <input matInput #EntityName placeholder="Search User Name" autofocus autocomplete="off" value="">
+                   </mat-form-field>
+                   <input type="button" value="Search" class="btn btn-action-sm" (click)="Search()">
+                 </form>
+            </div>
+            <div class="table-responsive">
+                <table mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="sr">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>SR#</th>
+                        <td mat-cell *matCellDef="let i = index;">{{i+1}}</td>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="Description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                        <td mat-cell *matCellDef="let element">{{element.description}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="EntityName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>User Name</th>
+                        <td mat-cell *matCellDef="let element">{{element.createdBy}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="appliedDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.createdDate | date :'dd/MM/yyyy'}} 
+                        </td>
+                    </ng-container>
+                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [length]="totalCount" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="PageIndexEvent($event)">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
+<lhs-sidebar></lhs-sidebar>
+</div>
+
+
+   
